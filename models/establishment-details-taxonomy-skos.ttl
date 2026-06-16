@@ -1,0 +1,1092 @@
+@prefix gias: <https://education.gov.uk/gias/vocabulary/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# GIAS 2.0 Establishment Details Taxonomy — full-scope version
+#
+# This is an expanded version of:
+# docs/transformation/data/modelling/establishment-details-taxonomy-skos.ttl
+#
+# The prior version was scoped to three worked examples (academy converter,
+# community school, other independent school). This version covers all 46
+# establishment types defined in the ERD, including the five archived types
+# that have no rows in current extracts.
+#
+# All 46 establishment types are represented as taxons under EstablishmentType,
+# with an intermediate type-group level following the ERD group codes.
+#
+# Facets are represented as top concepts. Taxons are narrower concepts beneath
+# their facet. Dates, identifiers, measures and organisation relationships are
+# excluded because they are not taxonomy classifications.
+#
+# Evidenced by:
+#   docs/data/extract-data/establishment-fields/establishment-type-analysis.md
+#   docs/data/extract-data/establishment-fields/establishment-details-tab-fields-by-type.md
+#
+# Maintained in: docs/transformation/data/modelling/claude/
+
+gias:status
+    a rdf:Property ;
+    rdfs:label "Vocabulary status"@en ;
+    rdfs:comment "The review status assigned to a concept in the working GIAS 2.0 vocabulary or taxonomy."@en .
+
+gias:establishmentDetailsTaxonomy
+    a skos:ConceptScheme ;
+    dcterms:title "GIAS 2.0 Establishment Details Taxonomy"@en ;
+    dcterms:description "Faceted taxonomy containing classifications for the Establishment Details public tab, expanded to cover all 46 establishment types and all classification facets observed across the full type range."@en ;
+    dcterms:created "2026-06-16"^^xsd:date ;
+    gias:status "Provisional"@en ;
+    skos:hasTopConcept
+        gias:EstablishmentType,
+        gias:EducationPhase,
+        gias:EstablishmentStatus,
+        gias:AdmissionsPolicy,
+        gias:GenderOfEntry,
+        gias:BoardingProvision,
+        gias:NurseryProvision,
+        gias:SixthFormProvision,
+        gias:SpecialClassProvision,
+        gias:ReligiousCharacter,
+        gias:ReligiousEthos .
+
+#################################################################
+# Facet collection
+#################################################################
+
+gias:establishmentDetailsTaxonomyFacets
+    a skos:Collection ;
+    skos:prefLabel "Establishment Details taxonomy facets"@en ;
+    skos:member
+        gias:EstablishmentType,
+        gias:EducationPhase,
+        gias:EstablishmentStatus,
+        gias:AdmissionsPolicy,
+        gias:GenderOfEntry,
+        gias:BoardingProvision,
+        gias:NurseryProvision,
+        gias:SixthFormProvision,
+        gias:SpecialClassProvision,
+        gias:ReligiousCharacter,
+        gias:ReligiousEthos .
+
+#################################################################
+# Type-group collection
+#################################################################
+
+gias:establishmentTypeGroups
+    a skos:Collection ;
+    skos:prefLabel "Establishment type groups"@en ;
+    skos:member
+        gias:EstablishmentTypeGroupColleges,
+        gias:EstablishmentTypeGroupUniversities,
+        gias:EstablishmentTypeGroupIndependentSchools,
+        gias:EstablishmentTypeGroupLaMaintainedSchools,
+        gias:EstablishmentTypeGroupNonMaintainedSpecialSchools,
+        gias:EstablishmentTypeGroupWelshEstablishments,
+        gias:EstablishmentTypeGroupOtherTypes,
+        gias:EstablishmentTypeGroupAcademies,
+        gias:EstablishmentTypeGroupFreeSchools,
+        gias:EstablishmentTypeGroupChildrensCentres,
+        gias:EstablishmentTypeGroupOnlineProviders .
+
+#################################################################
+# Facets
+#################################################################
+
+gias:EstablishmentType
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:topConceptOf gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Establishment type"@en ;
+    skos:definition "The legal, operational or policy classification recorded as the establishment's type."@en ;
+    skos:scopeNote "This remains an overloaded legacy classification mixing legal form, sector and operational model. The intermediate type-group level follows ERD group codes."@en ;
+    gias:status "Provisional"@en .
+
+gias:EducationPhase
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:topConceptOf gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Education phase"@en ;
+    skos:definition "The broad stage of education provided by an establishment."@en ;
+    gias:status "Provisional"@en .
+
+gias:EstablishmentStatus
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:topConceptOf gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Establishment status"@en ;
+    skos:definition "The current lifecycle or operating-state classification of an establishment."@en ;
+    gias:status "Provisional"@en .
+
+gias:AdmissionsPolicy
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:topConceptOf gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Admissions policy"@en ;
+    skos:definition "The classification describing how places are allocated."@en ;
+    gias:status "Provisional"@en .
+
+gias:GenderOfEntry
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:topConceptOf gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Gender of entry"@en ;
+    skos:definition "The classification describing the establishment's gender admission arrangement."@en ;
+    gias:status "Provisional"@en .
+
+gias:BoardingProvision
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:topConceptOf gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Boarding provision"@en ;
+    skos:definition "The classification describing whether boarding places are offered."@en ;
+    gias:status "Provisional"@en .
+
+gias:NurseryProvision
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:topConceptOf gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Nursery provision"@en ;
+    skos:definition "The classification describing whether the establishment offers nursery classes."@en ;
+    gias:status "Provisional"@en .
+
+gias:SixthFormProvision
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:topConceptOf gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Sixth-form provision"@en ;
+    skos:definition "The classification describing whether the establishment has a sixth form."@en ;
+    gias:status "Provisional"@en .
+
+gias:SpecialClassProvision
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:topConceptOf gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Special-class provision"@en ;
+    skos:definition "The classification describing whether the establishment has special classes."@en ;
+    gias:status "Provisional"@en .
+
+gias:ReligiousCharacter
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:topConceptOf gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Religious character"@en ;
+    skos:definition "The formal religious-character classification designated for an establishment."@en ;
+    gias:status "Provisional"@en .
+
+gias:ReligiousEthos
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:topConceptOf gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Religious ethos"@en ;
+    skos:definition "The recorded religious-ethos classification associated with an establishment."@en ;
+    skos:scopeNote "Its distinction from religious character requires business validation."@en ;
+    gias:status "Provisional"@en .
+
+#################################################################
+# Establishment type groups (ERD group codes)
+#################################################################
+
+gias:EstablishmentTypeGroupColleges
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Colleges"@en ;
+    skos:altLabel "Further education colleges"@en ;
+    skos:definition "The GIAS establishment type group covering further and sixth-form education colleges (ERD group code 1)."@en ;
+    skos:broader gias:EstablishmentType ;
+    skos:narrower
+        gias:FurtherEducation,
+        gias:SixthFormCentre ;
+    gias:status "Provisional"@en .
+
+gias:EstablishmentTypeGroupUniversities
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Universities and higher education"@en ;
+    skos:altLabel "HEI"@en ;
+    skos:definition "The GIAS establishment type group covering higher education institutions (ERD group code 2)."@en ;
+    skos:broader gias:EstablishmentType ;
+    skos:narrower
+        gias:HigherEducationInstitution ;
+    gias:status "Provisional"@en .
+
+gias:EstablishmentTypeGroupIndependentSchools
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Independent schools"@en ;
+    skos:definition "The GIAS establishment type group covering city technology colleges and other independent schools (ERD group code 3)."@en ;
+    skos:broader gias:EstablishmentType ;
+    skos:narrower
+        gias:CityTechnologyCollege,
+        gias:OtherIndependentSchool ;
+    gias:status "Provisional"@en .
+
+gias:EstablishmentTypeGroupLaMaintainedSchools
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Local authority maintained schools"@en ;
+    skos:altLabel "LA maintained schools"@en ;
+    skos:definition "The GIAS establishment type group covering schools maintained by a local authority (ERD group code 4)."@en ;
+    skos:broader gias:EstablishmentType ;
+    skos:narrower
+        gias:CommunitySchool,
+        gias:VoluntaryAidedSchool,
+        gias:VoluntaryControlledSchool,
+        gias:FoundationSchool,
+        gias:CommunitySpecialSchool,
+        gias:FoundationSpecialSchool,
+        gias:PupilReferralUnit,
+        gias:LocalAuthorityNurserySchool ;
+    gias:status "Provisional"@en .
+
+gias:EstablishmentTypeGroupNonMaintainedSpecialSchools
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Non-maintained special schools"@en ;
+    skos:definition "The GIAS establishment type group covering non-maintained and independent special schools (ERD group code 5)."@en ;
+    skos:broader gias:EstablishmentType ;
+    skos:narrower
+        gias:NonMaintainedSpecialSchool,
+        gias:IndependentSchoolApprovedForSenPupils,
+        gias:OtherIndependentSpecialSchool ;
+    gias:status "Provisional"@en .
+
+gias:EstablishmentTypeGroupWelshEstablishments
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Welsh establishments"@en ;
+    skos:definition "The GIAS establishment type group covering establishments in Wales (ERD group code 6)."@en ;
+    skos:broader gias:EstablishmentType ;
+    skos:narrower
+        gias:WelshEstablishment ;
+    gias:status "Provisional"@en .
+
+gias:EstablishmentTypeGroupOtherTypes
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Other types"@en ;
+    skos:altLabel "Miscellaneous"@en ;
+    skos:definition "The GIAS establishment type group covering miscellaneous and other establishment types (ERD group code 9)."@en ;
+    skos:broader gias:EstablishmentType ;
+    skos:narrower
+        gias:EuropeanSchools,
+        gias:EarlyYearsSetting,
+        gias:PlayingForSuccessCentres,
+        gias:SecureUnits,
+        gias:OffshoreSchools,
+        gias:ServiceChildrensEducation,
+        gias:MiscellaneousEstablishment,
+        gias:SpecialPost16Institution,
+        gias:BritishSchoolsOverseas,
+        gias:InstitutionFundedByOtherGovernmentDepartment,
+        gias:LegacyTypes ;
+    gias:status "Provisional"@en .
+
+gias:EstablishmentTypeGroupAcademies
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Academies"@en ;
+    skos:definition "The GIAS establishment type group covering all academy types (ERD group code 10)."@en ;
+    skos:broader gias:EstablishmentType ;
+    skos:narrower
+        gias:AcademySponsorLed,
+        gias:AcademySpecialSponsorLed,
+        gias:AcademyConverter,
+        gias:AcademyAlternativeProvisionConverter,
+        gias:AcademyAlternativeProvisionSponsorLed,
+        gias:AcademySpecialConverter,
+        gias:Academy1619Converter,
+        gias:Academy16To19SponsorLed,
+        gias:AcademySecure16To19 ;
+    gias:status "Provisional"@en .
+
+gias:EstablishmentTypeGroupFreeSchools
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Free schools"@en ;
+    skos:definition "The GIAS establishment type group covering all free school types (ERD group code 11)."@en ;
+    skos:broader gias:EstablishmentType ;
+    skos:narrower
+        gias:FreeSchool,
+        gias:FreeSchoolSpecial,
+        gias:FreeSchoolAlternativeProvision,
+        gias:FreeSchool16To19,
+        gias:UniversityTechnicalCollege,
+        gias:StudioSchool ;
+    gias:status "Provisional"@en .
+
+gias:EstablishmentTypeGroupChildrensCentres
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Children's centres"@en ;
+    skos:definition "The GIAS establishment type group covering children's centres and linked sites (ERD group code 12)."@en ;
+    skos:broader gias:EstablishmentType ;
+    skos:narrower
+        gias:ChildrensCentre,
+        gias:ChildrensCentreLinkedSite ;
+    gias:status "Provisional"@en .
+
+gias:EstablishmentTypeGroupOnlineProviders
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Online providers"@en ;
+    skos:definition "The GIAS establishment type group covering online education providers (ERD group code 13)."@en ;
+    skos:broader gias:EstablishmentType ;
+    skos:narrower
+        gias:OnlineProvider ;
+    gias:status "Provisional"@en .
+
+#################################################################
+# Establishment-type taxons — group 4: LA maintained schools
+#################################################################
+
+gias:CommunitySchool
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Community school"@en ;
+    skos:broader gias:EstablishmentTypeGroupLaMaintainedSchools ;
+    dcterms:source "Type code 01; ERD group 4"@en ;
+    gias:status "Provisional"@en .
+
+gias:VoluntaryAidedSchool
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Voluntary aided school"@en ;
+    skos:broader gias:EstablishmentTypeGroupLaMaintainedSchools ;
+    dcterms:source "Type code 02; ERD group 4"@en ;
+    gias:status "Provisional"@en .
+
+gias:VoluntaryControlledSchool
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Voluntary controlled school"@en ;
+    skos:broader gias:EstablishmentTypeGroupLaMaintainedSchools ;
+    dcterms:source "Type code 03; ERD group 4"@en ;
+    gias:status "Provisional"@en .
+
+gias:FoundationSchool
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Foundation school"@en ;
+    skos:broader gias:EstablishmentTypeGroupLaMaintainedSchools ;
+    dcterms:source "Type code 05; ERD group 4"@en ;
+    gias:status "Provisional"@en .
+
+gias:CommunitySpecialSchool
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Community special school"@en ;
+    skos:broader gias:EstablishmentTypeGroupLaMaintainedSchools ;
+    dcterms:source "Type code 07; ERD group 4"@en ;
+    gias:status "Provisional"@en .
+
+gias:FoundationSpecialSchool
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Foundation special school"@en ;
+    skos:broader gias:EstablishmentTypeGroupLaMaintainedSchools ;
+    dcterms:source "Type code 12; ERD group 4"@en ;
+    gias:status "Provisional"@en .
+
+gias:PupilReferralUnit
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Pupil referral unit"@en ;
+    skos:altLabel "PRU"@en ;
+    skos:broader gias:EstablishmentTypeGroupLaMaintainedSchools ;
+    dcterms:source "Type code 14; ERD group 4"@en ;
+    gias:status "Provisional"@en .
+
+gias:LocalAuthorityNurserySchool
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Local authority nursery school"@en ;
+    skos:broader gias:EstablishmentTypeGroupLaMaintainedSchools ;
+    dcterms:source "Type code 15; ERD group 4"@en ;
+    gias:status "Provisional"@en .
+
+#################################################################
+# Establishment-type taxons — group 5: non-maintained special schools
+#################################################################
+
+gias:NonMaintainedSpecialSchool
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Non-maintained special school"@en ;
+    skos:broader gias:EstablishmentTypeGroupNonMaintainedSpecialSchools ;
+    dcterms:source "Type code 08; ERD group 5"@en ;
+    gias:status "Provisional"@en .
+
+gias:IndependentSchoolApprovedForSenPupils
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Independent school approved for SEN pupils"@en ;
+    skos:scopeNote "Archived type. No rows in current extracts."@en ;
+    skos:broader gias:EstablishmentTypeGroupNonMaintainedSpecialSchools ;
+    dcterms:source "Type code 09; ERD group 5; archived in ERD"@en ;
+    gias:status "Provisional"@en .
+
+gias:OtherIndependentSpecialSchool
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Other independent special school"@en ;
+    skos:broader gias:EstablishmentTypeGroupNonMaintainedSpecialSchools ;
+    dcterms:source "Type code 10; ERD group 5"@en ;
+    gias:status "Provisional"@en .
+
+#################################################################
+# Establishment-type taxons — group 3: independent schools
+#################################################################
+
+gias:CityTechnologyCollege
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "City technology college"@en ;
+    skos:altLabel "CTC"@en ;
+    skos:broader gias:EstablishmentTypeGroupIndependentSchools ;
+    dcterms:source "Type code 06; ERD group 3"@en ;
+    gias:status "Provisional"@en .
+
+gias:OtherIndependentSchool
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Other independent school"@en ;
+    skos:broader gias:EstablishmentTypeGroupIndependentSchools ;
+    dcterms:source "Type code 11; ERD group 3"@en ;
+    gias:status "Provisional"@en .
+
+#################################################################
+# Establishment-type taxons — group 1: colleges
+#################################################################
+
+gias:FurtherEducation
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Further education"@en ;
+    skos:altLabel "Further education college"@en ;
+    skos:broader gias:EstablishmentTypeGroupColleges ;
+    dcterms:source "Type code 18; ERD group 1"@en ;
+    gias:status "Provisional"@en .
+
+gias:SixthFormCentre
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Sixth form centre"@en ;
+    skos:broader gias:EstablishmentTypeGroupColleges ;
+    dcterms:source "Type code 31; ERD group 1"@en ;
+    gias:status "Provisional"@en .
+
+#################################################################
+# Establishment-type taxons — group 2: universities
+#################################################################
+
+gias:HigherEducationInstitution
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Higher education institution"@en ;
+    skos:altLabel "HEI"@en ;
+    skos:broader gias:EstablishmentTypeGroupUniversities ;
+    dcterms:source "Type code 29; ERD group 2"@en ;
+    gias:status "Provisional"@en .
+
+#################################################################
+# Establishment-type taxons — group 6: Welsh establishments
+#################################################################
+
+gias:WelshEstablishment
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Welsh establishment"@en ;
+    skos:broader gias:EstablishmentTypeGroupWelshEstablishments ;
+    dcterms:source "Type code 30; ERD group 6"@en ;
+    gias:status "Provisional"@en .
+
+#################################################################
+# Establishment-type taxons — group 9: other types
+#################################################################
+
+gias:EuropeanSchools
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "European schools"@en ;
+    skos:scopeNote "Archived type. No rows in current extracts."@en ;
+    skos:broader gias:EstablishmentTypeGroupOtherTypes ;
+    dcterms:source "Type code 17; ERD group 9; archived in ERD"@en ;
+    gias:status "Provisional"@en .
+
+gias:EarlyYearsSetting
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Early years setting"@en ;
+    skos:scopeNote "Archived type. No rows in current extracts."@en ;
+    skos:broader gias:EstablishmentTypeGroupOtherTypes ;
+    dcterms:source "Type code 22; ERD group 9; archived in ERD"@en ;
+    gias:status "Provisional"@en .
+
+gias:PlayingForSuccessCentres
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Playing for success centres"@en ;
+    skos:scopeNote "Archived type. No rows in current extracts."@en ;
+    skos:broader gias:EstablishmentTypeGroupOtherTypes ;
+    dcterms:source "Type code 23; ERD group 9; archived in ERD"@en ;
+    gias:status "Provisional"@en .
+
+gias:SecureUnits
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Secure units"@en ;
+    skos:broader gias:EstablishmentTypeGroupOtherTypes ;
+    dcterms:source "Type code 24; ERD group 9"@en ;
+    gias:status "Provisional"@en .
+
+gias:OffshoreSchools
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Offshore schools"@en ;
+    skos:broader gias:EstablishmentTypeGroupOtherTypes ;
+    dcterms:source "Type code 25; ERD group 9"@en ;
+    gias:status "Provisional"@en .
+
+gias:ServiceChildrensEducation
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Service children's education"@en ;
+    skos:broader gias:EstablishmentTypeGroupOtherTypes ;
+    dcterms:source "Type code 26; ERD group 9"@en ;
+    gias:status "Provisional"@en .
+
+gias:MiscellaneousEstablishment
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Miscellaneous"@en ;
+    skos:broader gias:EstablishmentTypeGroupOtherTypes ;
+    dcterms:source "Type code 27; ERD group 9"@en ;
+    gias:status "Provisional"@en .
+
+gias:SpecialPost16Institution
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Special post 16 institution"@en ;
+    skos:broader gias:EstablishmentTypeGroupOtherTypes ;
+    dcterms:source "Type code 32; ERD group 9"@en ;
+    gias:status "Provisional"@en .
+
+gias:BritishSchoolsOverseas
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "British schools overseas"@en ;
+    skos:altLabel "BSO"@en ;
+    skos:broader gias:EstablishmentTypeGroupOtherTypes ;
+    dcterms:source "Type code 37; ERD group 9"@en ;
+    gias:status "Provisional"@en .
+
+gias:InstitutionFundedByOtherGovernmentDepartment
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Institution funded by other government department"@en ;
+    skos:broader gias:EstablishmentTypeGroupOtherTypes ;
+    dcterms:source "Type code 56; ERD group 9"@en ;
+    gias:status "Provisional"@en .
+
+gias:LegacyTypes
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Legacy types"@en ;
+    skos:scopeNote "Archived type. No rows in current extracts."@en ;
+    skos:broader gias:EstablishmentTypeGroupOtherTypes ;
+    dcterms:source "Type code 98; ERD group 9; archived in ERD"@en ;
+    gias:status "Provisional"@en .
+
+#################################################################
+# Establishment-type taxons — group 10: academies
+#################################################################
+
+gias:AcademySponsorLed
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Academy sponsor led"@en ;
+    skos:broader gias:EstablishmentTypeGroupAcademies ;
+    dcterms:source "Type code 28; ERD group 10"@en ;
+    gias:status "Provisional"@en .
+
+gias:AcademySpecialSponsorLed
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Academy special sponsor led"@en ;
+    skos:broader gias:EstablishmentTypeGroupAcademies ;
+    dcterms:source "Type code 33; ERD group 10"@en ;
+    gias:status "Provisional"@en .
+
+gias:AcademyConverter
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Academy converter"@en ;
+    skos:broader gias:EstablishmentTypeGroupAcademies ;
+    dcterms:source "Type code 34; ERD group 10"@en ;
+    gias:status "Provisional"@en .
+
+gias:AcademyAlternativeProvisionConverter
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Academy alternative provision converter"@en ;
+    skos:broader gias:EstablishmentTypeGroupAcademies ;
+    dcterms:source "Type code 42; ERD group 10"@en ;
+    gias:status "Provisional"@en .
+
+gias:AcademyAlternativeProvisionSponsorLed
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Academy alternative provision sponsor led"@en ;
+    skos:broader gias:EstablishmentTypeGroupAcademies ;
+    dcterms:source "Type code 43; ERD group 10"@en ;
+    gias:status "Provisional"@en .
+
+gias:AcademySpecialConverter
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Academy special converter"@en ;
+    skos:broader gias:EstablishmentTypeGroupAcademies ;
+    dcterms:source "Type code 44; ERD group 10"@en ;
+    gias:status "Provisional"@en .
+
+gias:Academy1619Converter
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Academy 16-19 converter"@en ;
+    skos:broader gias:EstablishmentTypeGroupAcademies ;
+    dcterms:source "Type code 45; ERD group 10"@en ;
+    gias:status "Provisional"@en .
+
+gias:Academy16To19SponsorLed
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Academy 16 to 19 sponsor led"@en ;
+    skos:broader gias:EstablishmentTypeGroupAcademies ;
+    dcterms:source "Type code 46; ERD group 10"@en ;
+    gias:status "Provisional"@en .
+
+gias:AcademySecure16To19
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Academy secure 16 to 19"@en ;
+    skos:scopeNote "Secure establishment with a more restricted public Details view than the database field mapping implies. Only 17 fields are publicly visible compared to 30+ mapped in the database."@en ;
+    skos:broader gias:EstablishmentTypeGroupAcademies ;
+    dcterms:source "Type code 57; ERD group 10"@en ;
+    gias:status "Provisional"@en .
+
+#################################################################
+# Establishment-type taxons — group 11: free schools
+#################################################################
+
+gias:FreeSchool
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Free schools"@en ;
+    skos:broader gias:EstablishmentTypeGroupFreeSchools ;
+    dcterms:source "Type code 35; ERD group 11"@en ;
+    gias:status "Provisional"@en .
+
+gias:FreeSchoolSpecial
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Free schools special"@en ;
+    skos:broader gias:EstablishmentTypeGroupFreeSchools ;
+    dcterms:source "Type code 36; ERD group 11"@en ;
+    gias:status "Provisional"@en .
+
+gias:FreeSchoolAlternativeProvision
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Free schools alternative provision"@en ;
+    skos:broader gias:EstablishmentTypeGroupFreeSchools ;
+    dcterms:source "Type code 38; ERD group 11"@en ;
+    gias:status "Provisional"@en .
+
+gias:FreeSchool16To19
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Free schools 16 to 19"@en ;
+    skos:broader gias:EstablishmentTypeGroupFreeSchools ;
+    dcterms:source "Type code 39; ERD group 11"@en ;
+    gias:status "Provisional"@en .
+
+gias:UniversityTechnicalCollege
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "University technical college"@en ;
+    skos:altLabel "UTC"@en ;
+    skos:broader gias:EstablishmentTypeGroupFreeSchools ;
+    dcterms:source "Type code 40; ERD group 11"@en ;
+    gias:status "Provisional"@en .
+
+gias:StudioSchool
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Studio schools"@en ;
+    skos:broader gias:EstablishmentTypeGroupFreeSchools ;
+    dcterms:source "Type code 41; ERD group 11"@en ;
+    gias:status "Provisional"@en .
+
+#################################################################
+# Establishment-type taxons — group 12: children's centres
+#################################################################
+
+gias:ChildrensCentre
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Children's centre"@en ;
+    skos:broader gias:EstablishmentTypeGroupChildrensCentres ;
+    dcterms:source "Type code 47; ERD group 12"@en ;
+    gias:status "Provisional"@en .
+
+gias:ChildrensCentreLinkedSite
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Children's centre linked site"@en ;
+    skos:broader gias:EstablishmentTypeGroupChildrensCentres ;
+    dcterms:source "Type code 48; ERD group 12"@en ;
+    gias:status "Provisional"@en .
+
+#################################################################
+# Establishment-type taxons — group 13: online providers
+#################################################################
+
+gias:OnlineProvider
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Online provider"@en ;
+    skos:scopeNote "Has a distinct Details tab presentation: open date becomes accreditation date, close date becomes accreditation date ended, and an accreditation and quality assurance section replaces several standard school fields."@en ;
+    skos:broader gias:EstablishmentTypeGroupOnlineProviders ;
+    dcterms:source "Type code 49; ERD group 13"@en ;
+    gias:status "Provisional"@en .
+
+#################################################################
+# Education-phase taxons
+#################################################################
+
+gias:NurseryPhase
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Nursery"@en ;
+    skos:broader gias:EducationPhase ;
+    gias:status "Provisional"@en .
+
+gias:PrimaryPhase
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Primary"@en ;
+    skos:broader gias:EducationPhase ;
+    gias:status "Provisional"@en .
+
+gias:MiddlePhase
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Middle deemed primary"@en ;
+    skos:broader gias:EducationPhase ;
+    gias:status "Provisional"@en .
+
+gias:SecondaryPhase
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Secondary"@en ;
+    skos:broader gias:EducationPhase ;
+    gias:status "Provisional"@en .
+
+gias:AllThroughPhase
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "All-through"@en ;
+    skos:broader gias:EducationPhase ;
+    gias:status "Provisional"@en .
+
+gias:SixteenToNineteenPhase
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "16 to 19"@en ;
+    skos:broader gias:EducationPhase ;
+    gias:status "Provisional"@en .
+
+gias:NotApplicableEducationPhase
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Not applicable"@en ;
+    skos:scopeNote "Not applicable specifically within the education-phase facet."@en ;
+    skos:broader gias:EducationPhase ;
+    gias:status "Provisional"@en .
+
+#################################################################
+# Establishment-status taxons
+#################################################################
+
+gias:OpenStatus
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Open"@en ;
+    skos:broader gias:EstablishmentStatus ;
+    gias:status "Provisional"@en .
+
+gias:ClosedStatus
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Closed"@en ;
+    skos:broader gias:EstablishmentStatus ;
+    gias:status "Provisional"@en .
+
+gias:OpenProposedToCloseStatus
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Open, but proposed to close"@en ;
+    skos:broader gias:EstablishmentStatus ;
+    gias:status "Provisional"@en .
+
+gias:ProposedToOpenStatus
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Proposed to open"@en ;
+    skos:broader gias:EstablishmentStatus ;
+    gias:status "Provisional"@en .
+
+#################################################################
+# Admissions-policy taxons
+#################################################################
+
+gias:SelectiveAdmissions
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Selective"@en ;
+    skos:broader gias:AdmissionsPolicy ;
+    gias:status "Provisional"@en .
+
+gias:NonSelectiveAdmissions
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Non-selective"@en ;
+    skos:broader gias:AdmissionsPolicy ;
+    gias:status "Provisional"@en .
+
+gias:NotApplicableAdmissionsPolicy
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Not applicable"@en ;
+    skos:scopeNote "Not applicable specifically within the admissions-policy facet."@en ;
+    skos:broader gias:AdmissionsPolicy ;
+    gias:status "Provisional"@en .
+
+#################################################################
+# Gender-of-entry taxons
+#################################################################
+
+gias:MixedGenderEntry
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Mixed"@en ;
+    skos:broader gias:GenderOfEntry ;
+    gias:status "Provisional"@en .
+
+gias:BoysOnlyGenderEntry
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Boys"@en ;
+    skos:broader gias:GenderOfEntry ;
+    gias:status "Provisional"@en .
+
+gias:GirlsOnlyGenderEntry
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Girls"@en ;
+    skos:broader gias:GenderOfEntry ;
+    gias:status "Provisional"@en .
+
+gias:NotApplicableGenderOfEntry
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Not applicable"@en ;
+    skos:scopeNote "Not applicable specifically within the gender-of-entry facet."@en ;
+    skos:broader gias:GenderOfEntry ;
+    gias:status "Provisional"@en .
+
+#################################################################
+# Boarding-provision taxons
+#################################################################
+
+gias:NoBoarders
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "No boarders"@en ;
+    skos:broader gias:BoardingProvision ;
+    gias:status "Provisional"@en .
+
+gias:HasBoarders
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Has boarders"@en ;
+    skos:broader gias:BoardingProvision ;
+    gias:status "Provisional"@en .
+
+gias:BoardingSchool
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Boarding school"@en ;
+    skos:broader gias:BoardingProvision ;
+    gias:status "Provisional"@en .
+
+#################################################################
+# Nursery-provision taxons
+#################################################################
+
+gias:HasNurseryClasses
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Has nursery classes"@en ;
+    skos:broader gias:NurseryProvision ;
+    gias:status "Provisional"@en .
+
+gias:NoNurseryClasses
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "No nursery classes"@en ;
+    skos:broader gias:NurseryProvision ;
+    gias:status "Provisional"@en .
+
+gias:NotApplicableNurseryProvision
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Not applicable"@en ;
+    skos:scopeNote "Not applicable specifically within the nursery-provision facet."@en ;
+    skos:broader gias:NurseryProvision ;
+    gias:status "Provisional"@en .
+
+#################################################################
+# Sixth-form-provision taxons
+#################################################################
+
+gias:HasSixthForm
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Has a sixth form"@en ;
+    skos:broader gias:SixthFormProvision ;
+    gias:status "Provisional"@en .
+
+gias:NoSixthForm
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Does not have a sixth form"@en ;
+    skos:broader gias:SixthFormProvision ;
+    gias:status "Provisional"@en .
+
+gias:NotApplicableSixthFormProvision
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Not applicable"@en ;
+    skos:scopeNote "Not applicable specifically within the sixth-form-provision facet."@en ;
+    skos:broader gias:SixthFormProvision ;
+    gias:status "Provisional"@en .
+
+#################################################################
+# Special-class-provision taxons
+#################################################################
+
+gias:NoSpecialClasses
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "No special classes"@en ;
+    skos:broader gias:SpecialClassProvision ;
+    gias:status "Provisional"@en .
+
+gias:HasSpecialClasses
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Has special classes"@en ;
+    skos:broader gias:SpecialClassProvision ;
+    gias:status "Provisional"@en .
+
+#################################################################
+# Religious-character taxons
+#################################################################
+
+gias:NotApplicableReligiousCharacter
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Does not apply"@en ;
+    skos:broader gias:ReligiousCharacter ;
+    gias:status "Provisional"@en .
+
+gias:NoReligiousCharacter
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "None"@en ;
+    skos:broader gias:ReligiousCharacter ;
+    gias:status "Provisional"@en .
+
+gias:ChurchOfEnglandCharacter
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Church of England"@en ;
+    skos:broader gias:ReligiousCharacter ;
+    gias:status "Provisional"@en .
+
+gias:RomanCatholicCharacter
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Roman Catholic"@en ;
+    skos:broader gias:ReligiousCharacter ;
+    gias:status "Provisional"@en .
+
+gias:JewishCharacter
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Jewish"@en ;
+    skos:broader gias:ReligiousCharacter ;
+    gias:status "Provisional"@en .
+
+gias:MuslimCharacter
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Muslim"@en ;
+    skos:broader gias:ReligiousCharacter ;
+    gias:status "Provisional"@en .
+
+gias:OtherReligiousCharacter
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Other"@en ;
+    skos:scopeNote "Other religious character values exist in the database; full enumeration requires further extraction."@en ;
+    skos:broader gias:ReligiousCharacter ;
+    gias:status "Provisional"@en .
+
+#################################################################
+# Religious-ethos taxons
+#################################################################
+
+gias:NotApplicableReligiousEthos
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Does not apply"@en ;
+    skos:broader gias:ReligiousEthos ;
+    gias:status "Provisional"@en .
+
+gias:NoReligiousEthos
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "None"@en ;
+    skos:broader gias:ReligiousEthos ;
+    gias:status "Provisional"@en .
+
+gias:ChristianEthos
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Christian"@en ;
+    skos:broader gias:ReligiousEthos ;
+    gias:status "Provisional"@en .
+
+gias:OtherReligiousEthos
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Other"@en ;
+    skos:scopeNote "Other religious-ethos values exist in the database; full enumeration requires further extraction."@en ;
+    skos:broader gias:ReligiousEthos ;
+    gias:status "Provisional"@en .

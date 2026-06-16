@@ -1,0 +1,1229 @@
+@prefix gias: <https://education.gov.uk/gias/vocabulary/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# GIAS 2.0 Establishment Details Vocabulary — full-scope version
+#
+# This is an expanded version of:
+# docs/transformation/data/modelling/establishment-details-vocabulary-skos.ttl
+#
+# Scope: all fields shown on the public Establishment Details tab across all
+# observed establishment types, evidenced by:
+#   docs/data/extract-data/establishment-fields/establishment-details-tab-fields-by-type.md
+#   docs/data/extract-data/establishment-fields/establishment-type-analysis.md
+#
+# The prior version was scoped to three worked examples (academy converter,
+# community school, other independent school). This version covers all 41
+# observed establishment types and adds concept groups for alternative provision,
+# inspection records, and online-provider accreditation.
+#
+# The namespace is a proposed identifier and does not imply a published service.
+# Maintained in: docs/transformation/data/modelling/claude/
+
+gias:status
+    a rdf:Property ;
+    rdfs:label "Vocabulary status"@en ;
+    rdfs:comment "The review status assigned to a concept in the working GIAS 2.0 vocabulary."@en .
+
+gias:establishmentDetailsVocabulary
+    a skos:ConceptScheme ;
+    dcterms:title "GIAS 2.0 Establishment Details Vocabulary"@en ;
+    dcterms:description "Controlled vocabulary for the GIAS 2.0 data-modelling work, scoped to all fields shown on the public Establishment Details tab across all 46 establishment types defined in the GIAS extract."@en ;
+    dcterms:created "2026-06-16"^^xsd:date ;
+    gias:status "Provisional"@en ;
+    skos:hasTopConcept
+        gias:Establishment,
+        gias:EstablishmentIdentity,
+        gias:EstablishmentClassification,
+        gias:EstablishmentAccountability,
+        gias:EstablishmentLifecycle,
+        gias:RecordCurrencyAndStewardship,
+        gias:EstablishmentLocationAndContact,
+        gias:EstablishmentLeadership,
+        gias:EducationAdmissionsAndProvision,
+        gias:CapacityAndPupilMeasures,
+        gias:FaithContext,
+        gias:SenAndResourcedProvision,
+        gias:AlternativeProvisionCharacteristics,
+        gias:InspectionRecord,
+        gias:AccreditationAndQualityAssurance,
+        gias:ExternalReference .
+
+#################################################################
+# Thematic collections
+#################################################################
+
+gias:coreConcepts
+    a skos:Collection ;
+    skos:prefLabel "Core concepts"@en ;
+    skos:member
+        gias:Establishment,
+        gias:EstablishmentDetails,
+        gias:EstablishmentType,
+        gias:EstablishmentTypeGroup,
+        gias:AcademyConverter,
+        gias:CommunitySchool,
+        gias:OtherIndependentSchool .
+
+gias:identityAndIdentifiers
+    a skos:Collection ;
+    skos:prefLabel "Identity and identifiers"@en ;
+    skos:member
+        gias:EstablishmentName,
+        gias:UniqueReferenceNumber,
+        gias:EstablishmentNumber,
+        gias:DfeNumber,
+        gias:Laestab,
+        gias:UkProviderReferenceNumber,
+        gias:FeHeIdentifier .
+
+gias:classificationAndAccountability
+    a skos:Collection ;
+    skos:prefLabel "Classification and accountability"@en ;
+    skos:member
+        gias:EducationPhase,
+        gias:FurtherEducationType,
+        gias:ProviderType,
+        gias:LocalAuthority,
+        gias:MaintainingAuthority,
+        gias:AcademyTrust,
+        gias:SingleAcademyTrust,
+        gias:AcademySponsor,
+        gias:Proprietor .
+
+gias:lifecycle
+    a skos:Collection ;
+    skos:prefLabel "Lifecycle"@en ;
+    skos:member
+        gias:EstablishmentStatus,
+        gias:OpenDate,
+        gias:ReasonEstablishmentOpened,
+        gias:ClosedDate,
+        gias:ReasonEstablishmentClosed .
+
+gias:recordCurrencyAndStewardship
+    a skos:Collection ;
+    skos:prefLabel "Record currency and stewardship"@en ;
+    skos:member
+        gias:DateLastChangedOrConfirmed .
+
+gias:locationAndContact
+    a skos:Collection ;
+    skos:prefLabel "Location and contact"@en ;
+    skos:member
+        gias:MainAddress,
+        gias:Website,
+        gias:TelephoneNumber,
+        gias:UniquePropertyReferenceNumber .
+
+gias:leadership
+    a skos:Collection ;
+    skos:prefLabel "Leadership"@en ;
+    skos:member
+        gias:HeadteacherOrPrincipal,
+        gias:CentreManager,
+        gias:PreferredJobTitle .
+
+gias:educationAdmissionsAndProvision
+    a skos:Collection ;
+    skos:prefLabel "Education, admissions and provision"@en ;
+    skos:member
+        gias:StatutoryAgeRange,
+        gias:GenderOfEntry,
+        gias:AdmissionsPolicy,
+        gias:BoardingProvision,
+        gias:NurseryProvision,
+        gias:SixthFormProvision,
+        gias:SpecialClassProvision,
+        gias:Section41Approval .
+
+gias:capacityAndPupilMeasures
+    a skos:Collection ;
+    skos:prefLabel "Capacity and pupil measures"@en ;
+    skos:member
+        gias:SchoolCapacity,
+        gias:PupilCount,
+        gias:CensusDate,
+        gias:PupilsEligibleForFreeSchoolMeals,
+        gias:PercentagePupilsEligibleForFreeSchoolMeals,
+        gias:SpecialPupilsOnStatementOrEhcPlan,
+        gias:SpecialPupilsNotOnStatementOrEhcPlan .
+
+gias:faithContext
+    a skos:Collection ;
+    skos:prefLabel "Faith context"@en ;
+    skos:member
+        gias:ReligiousCharacter,
+        gias:ReligiousEthos,
+        gias:Diocese .
+
+gias:senAndResourcedProvision
+    a skos:Collection ;
+    skos:prefLabel "SEN and resourced provision"@en ;
+    skos:member
+        gias:TypeOfSenProvision,
+        gias:TypeOfResourcedProvision,
+        gias:ResourcedProvisionPupilCount,
+        gias:ResourcedProvisionCapacity,
+        gias:SenUnitPupilCount,
+        gias:SenUnitCapacity .
+
+gias:alternativeProvisionCharacteristics
+    a skos:Collection ;
+    skos:prefLabel "Alternative provision characteristics"@en ;
+    skos:member
+        gias:TeenageMothersProvision,
+        gias:TeenageMothersPlaces,
+        gias:ChildcareFacilitiesProvision,
+        gias:SenFacilitiesProvision,
+        gias:EbdPupilsProvision,
+        gias:AlternativeProvisionPlaces,
+        gias:FullTimeProvision,
+        gias:PupilsEducatedByOtherProviders .
+
+gias:inspectionRecord
+    a skos:Collection ;
+    skos:prefLabel "Inspection record"@en ;
+    skos:member
+        gias:InspectorateName,
+        gias:InspectorateReport,
+        gias:DateOfLastInspectionVisit,
+        gias:DateOfNextInspectionVisit .
+
+gias:accreditationAndQualityAssurance
+    a skos:Collection ;
+    skos:prefLabel "Accreditation and quality assurance"@en ;
+    skos:member
+        gias:AccreditationDate,
+        gias:AccreditationExpiryDate,
+        gias:AccreditationDateEnded,
+        gias:QualityAssuranceBodyName,
+        gias:QualityAssuranceBodyReport,
+        gias:CompaniesHouseNumber,
+        gias:EstablishmentAccredited .
+
+gias:externalReferences
+    a skos:Collection ;
+    skos:prefLabel "External references"@en ;
+    skos:member
+        gias:InspectionReportReference,
+        gias:ExternalServiceReference .
+
+#################################################################
+# Top concepts
+#################################################################
+
+gias:Establishment
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:topConceptOf gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Establishment"@en ;
+    skos:altLabel "Establishments"@en ;
+    skos:definition "A registered education establishment recorded by GIAS, such as a school, college, children's centre or other education provider."@en ;
+    skos:scopeNote "Do not use school as a universal synonym because GIAS includes non-school establishments."@en ;
+    gias:status "Preferred"@en .
+
+gias:EstablishmentIdentity
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:topConceptOf gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Establishment identity"@en ;
+    skos:definition "The names and identifiers used to distinguish and refer to an establishment."@en ;
+    gias:status "Provisional"@en .
+
+gias:EstablishmentClassification
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:topConceptOf gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Establishment classification"@en ;
+    skos:definition "The controlled classifications used to describe an establishment."@en ;
+    gias:status "Provisional"@en .
+
+gias:EstablishmentAccountability
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:topConceptOf gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Establishment accountability"@en ;
+    skos:definition "The organisations or people responsible for maintaining, operating or being accountable for an establishment."@en ;
+    gias:status "Provisional"@en .
+
+gias:EstablishmentLifecycle
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:topConceptOf gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Establishment lifecycle"@en ;
+    skos:definition "The states, dates and reasons that describe the opening, operation and closure of an establishment."@en ;
+    gias:status "Provisional"@en .
+
+gias:RecordCurrencyAndStewardship
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:topConceptOf gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Record currency and stewardship"@en ;
+    skos:definition "Information describing when an establishment record was changed, reviewed or confirmed as accurate."@en ;
+    gias:status "Provisional"@en .
+
+gias:EstablishmentLocationAndContact
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:topConceptOf gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Establishment location and contact"@en ;
+    skos:definition "The location identifiers, postal address and published contact information for an establishment."@en ;
+    gias:status "Provisional"@en .
+
+gias:EstablishmentLeadership
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:topConceptOf gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Establishment leadership"@en ;
+    skos:definition "The principal education leadership information presented for an establishment."@en ;
+    gias:status "Provisional"@en .
+
+gias:EducationAdmissionsAndProvision
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:topConceptOf gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Education, admissions and provision"@en ;
+    skos:definition "The classifications and characteristics describing the education, admissions arrangements and provision offered by an establishment."@en ;
+    gias:status "Provisional"@en .
+
+gias:CapacityAndPupilMeasures
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:topConceptOf gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Capacity and pupil measures"@en ;
+    skos:definition "Measures describing establishment capacity and pupil populations at an effective date."@en ;
+    gias:status "Provisional"@en .
+
+gias:FaithContext
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:topConceptOf gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Faith context"@en ;
+    skos:definition "The religious-character, ethos and diocesan classifications associated with an establishment."@en ;
+    gias:status "Provisional"@en .
+
+gias:SenAndResourcedProvision
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:topConceptOf gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "SEN and resourced provision"@en ;
+    skos:definition "The special educational needs and resourced-provision classifications and measures associated with an establishment."@en ;
+    gias:status "Provisional"@en .
+
+gias:AlternativeProvisionCharacteristics
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:topConceptOf gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Alternative provision characteristics"@en ;
+    skos:definition "The provision indicators and pupil measures specific to pupil referral units and alternative provision establishments."@en ;
+    skos:scopeNote "Shown on the Details tab for pupil referral units (type 14). Not applicable to mainstream or independent schools."@en ;
+    gias:status "Provisional"@en .
+
+gias:InspectionRecord
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:topConceptOf gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Inspection record"@en ;
+    skos:definition "Information about an establishment's inspectorate, inspection reports and inspection visit dates."@en ;
+    skos:scopeNote "Shown for independent schools (inspectorate name only) and British schools overseas (inspectorate name, report and visit dates). Ofsted links appear under External reference rather than here."@en ;
+    gias:status "Provisional"@en .
+
+gias:AccreditationAndQualityAssurance
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:topConceptOf gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Accreditation and quality assurance"@en ;
+    skos:definition "The accreditation status, dates, quality assurance body details and related legal identifiers for online providers."@en ;
+    skos:scopeNote "Applicable only to online providers (type 49). Accreditation date and accreditation date ended are type-49-specific presentations of the OpenDate and CloseDate fields."@en ;
+    gias:status "Provisional"@en .
+
+gias:ExternalReference
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:topConceptOf gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "External reference"@en ;
+    skos:definition "A reference or link to related information owned and published by another service."@en ;
+    gias:status "Provisional"@en .
+
+#################################################################
+# Core concepts
+#################################################################
+
+gias:EstablishmentDetails
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Establishment details"@en ;
+    skos:definition "The publicly presented descriptive information about an establishment."@en ;
+    skos:scopeNote "A presentation grouping, not necessarily a single target-domain entity or aggregate."@en ;
+    skos:broader gias:Establishment ;
+    gias:status "Provisional"@en .
+
+gias:EstablishmentType
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Establishment type"@en ;
+    skos:altLabel "School type"@en, "Type of Establishment"@en, "EstablishmentType"@en ;
+    skos:definition "The current GIAS classification describing the operational or legal type of an establishment."@en ;
+    skos:scopeNote "School type is too narrow for the wider registry. The current classification mixes several dimensions and requires further taxonomy analysis."@en ;
+    skos:broader gias:EstablishmentClassification ;
+    skos:related gias:EstablishmentTypeGroup ;
+    gias:status "Preferred"@en ;
+    dcterms:source "Database: Establishment.type_code -> EstablishmentType.code"@en .
+
+gias:EstablishmentTypeGroup
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Establishment type group"@en ;
+    skos:altLabel "Establishment Type Group"@en, "EstablishmentTypeGroup"@en ;
+    skos:definition "A broad grouping of establishment types, such as Academies, Local authority maintained schools or Independent schools."@en ;
+    skos:broader gias:EstablishmentClassification ;
+    skos:related gias:EstablishmentType ;
+    gias:status "Preferred"@en .
+
+gias:AcademyConverter
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Academy converter"@en ;
+    skos:definition "An establishment type for a former school that converted to academy status."@en ;
+    skos:scopeNote "An establishment type, not a trust type."@en ;
+    skos:broader gias:EstablishmentType ;
+    skos:related gias:AcademyTrust ;
+    gias:status "Preferred"@en .
+
+gias:CommunitySchool
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Community school"@en ;
+    skos:definition "A local-authority-maintained establishment type where the local authority employs staff, owns land and buildings, and is the admissions authority."@en ;
+    skos:broader gias:EstablishmentType ;
+    skos:related gias:LocalAuthority, gias:MaintainingAuthority ;
+    gias:status "Preferred"@en .
+
+gias:OtherIndependentSchool
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Other independent school"@en ;
+    skos:definition "An independent-school establishment type that is not the separately classified independent school approved for SEN pupils."@en ;
+    skos:broader gias:EstablishmentType ;
+    skos:related gias:Proprietor ;
+    gias:status "Preferred"@en .
+
+#################################################################
+# Identity and identifiers
+#################################################################
+
+gias:EstablishmentName
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Establishment name"@en ;
+    skos:altLabel "Establishment Name"@en ;
+    skos:definition "The registered name by which the establishment is identified and presented."@en ;
+    skos:broader gias:EstablishmentIdentity ;
+    gias:status "Preferred"@en ;
+    dcterms:source "C#: Name / EstablishmentName; Java: Establishment.name; database: Establishment.EstablishmentName"@en .
+
+gias:UniqueReferenceNumber
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Unique Reference Number"@en ;
+    skos:altLabel "URN"@en ;
+    skos:definition "The unique sequential identifier assigned by GIAS when an establishment record is created."@en ;
+    skos:broader gias:EstablishmentIdentity ;
+    gias:status "Preferred"@en ;
+    dcterms:source "C#: Urn; Java: Establishment.urn; database: Establishment.URN"@en .
+
+gias:EstablishmentNumber
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Establishment number"@en ;
+    skos:definition "A four-digit number used with the local-authority number to form the DfE number."@en ;
+    skos:broader gias:EstablishmentIdentity ;
+    skos:related gias:DfeNumber, gias:LocalAuthority ;
+    gias:status "Preferred"@en ;
+    dcterms:source "C#: EstablishmentNumber; Java: establishmentNumber; database: Establishment.EstablishmentNumber"@en .
+
+gias:DfeNumber
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "DfE number"@en ;
+    skos:altLabel "Department for Education number"@en, "LAESTAB"@en ;
+    skos:definition "A seven-digit identifier formed from the three-digit local-authority number and four-digit establishment number."@en ;
+    skos:scopeNote "Derived rather than stored as one physical Establishment column."@en ;
+    skos:broader gias:EstablishmentIdentity ;
+    skos:related gias:EstablishmentNumber, gias:LocalAuthority, gias:Laestab ;
+    gias:status "Preferred"@en .
+
+gias:Laestab
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "LAESTAB"@en ;
+    skos:altLabel "Local authority establishment"@en ;
+    skos:definition "A legacy or common alias for the DfE number, formed from local-authority and establishment-number components."@en ;
+    skos:scopeNote "Not a physical database column and not the preferred target term."@en ;
+    skos:broader gias:EstablishmentIdentity ;
+    skos:related gias:DfeNumber ;
+    gias:status "Legacy alias"@en .
+
+gias:UkProviderReferenceNumber
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "UK Provider Reference Number"@en ;
+    skos:altLabel "UKPRN"@en ;
+    skos:definition "An identifier issued by the UK Register of Learning Providers."@en ;
+    skos:broader gias:EstablishmentIdentity ;
+    gias:status "Preferred"@en ;
+    dcterms:source "C#: UKPRN; Java: ukprn; database: Establishment.UKPRN"@en .
+
+gias:FeHeIdentifier
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "FE/HE identifier"@en ;
+    skos:altLabel "FEHEIdentifier"@en ;
+    skos:definition "A legacy identifier associated with further- or higher-education establishments."@en ;
+    skos:broader gias:EstablishmentIdentity ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Java: feheIdentifier; database: Establishment.FEHEIdentifier"@en .
+
+#################################################################
+# Classification
+#################################################################
+
+gias:EducationPhase
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Education phase"@en ;
+    skos:altLabel "Phase of education"@en, "Phase of Education"@en ;
+    skos:definition "The broad stage of education provided by the establishment, such as primary or secondary."@en ;
+    skos:broader gias:EstablishmentClassification ;
+    gias:status "Preferred"@en ;
+    dcterms:source "C#: EducationPhaseId; Java: educationPhase; database: Establishment.phaseOfEducation_code"@en .
+
+gias:FurtherEducationType
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Further education type"@en ;
+    skos:altLabel "FurtherEducationType"@en ;
+    skos:definition "The classification describing the specific sub-type of further or higher education provision."@en ;
+    skos:scopeNote "Shown on the Details tab for pupil referral units, further education establishments and higher education institutions."@en ;
+    skos:broader gias:EstablishmentClassification ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Database: Establishment.FurtherEducationType_code"@en .
+
+gias:ProviderType
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Provider type"@en ;
+    skos:definition "The classification describing the type of children's centre provider."@en ;
+    skos:scopeNote "Shown on the Details tab for children's centres and children's centre linked sites in place of the school-type label used by other establishment types."@en ;
+    skos:broader gias:EstablishmentClassification ;
+    skos:related gias:EstablishmentType ;
+    gias:status "Provisional"@en .
+
+#################################################################
+# Accountability
+#################################################################
+
+gias:LocalAuthority
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Local authority"@en ;
+    skos:definition "The local government body providing administrative context and, for maintained schools, the maintaining authority."@en ;
+    skos:broader gias:EstablishmentAccountability ;
+    skos:related gias:MaintainingAuthority, gias:CommunitySchool ;
+    gias:status "Preferred"@en ;
+    dcterms:source "C#: LocalAuthorityId; Java: officialGeoInfo.localAuthority; database: Establishment.LA_code -> LocalAuthority.code"@en .
+
+gias:MaintainingAuthority
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Maintaining authority"@en ;
+    skos:definition "The organisation legally responsible for maintaining a maintained school."@en ;
+    skos:broader gias:EstablishmentAccountability ;
+    skos:related gias:LocalAuthority, gias:CommunitySchool ;
+    gias:status "Provisional"@en .
+
+gias:AcademyTrust
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Academy trust"@en ;
+    skos:altLabel "Trust"@en ;
+    skos:definition "The legal organisation responsible for one or more academies."@en ;
+    skos:scopeNote "Trust flag is an extract or implementation term, not the business concept."@en ;
+    skos:broader gias:EstablishmentAccountability ;
+    skos:related gias:AcademyConverter ;
+    gias:status "Preferred"@en ;
+    dcterms:source "Java/database: EstablishmentGroup and GroupLink"@en .
+
+gias:SingleAcademyTrust
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Single-academy trust"@en ;
+    skos:altLabel "Single academy trust"@en, "SAT"@en ;
+    skos:definition "An academy trust responsible for a single academy."@en ;
+    skos:broader gias:AcademyTrust ;
+    gias:status "Preferred"@en .
+
+gias:AcademySponsor
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Academy sponsor"@en ;
+    skos:definition "An organisation or individual approved to sponsor an academy."@en ;
+    skos:scopeNote "Shown on the Details tab for sponsor-led academies and several academy and free school types. Not shown for all academy types."@en ;
+    skos:broader gias:EstablishmentAccountability ;
+    skos:related gias:AcademyTrust ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Database field: SchoolSponsors"@en .
+
+gias:Proprietor
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Proprietor"@en ;
+    skos:altLabel "Proprietor's name"@en ;
+    skos:definition "The person or body that owns or operates an independent school or online provider."@en ;
+    skos:broader gias:EstablishmentAccountability ;
+    skos:related gias:OtherIndependentSchool ;
+    gias:status "Preferred"@en ;
+    dcterms:source "Database: IndependentSchools, EstablishmentProprietors; fields: PropsLastName and related Props* columns"@en .
+
+#################################################################
+# Lifecycle
+#################################################################
+
+gias:EstablishmentStatus
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Establishment status"@en ;
+    skos:definition "The current lifecycle or operating status of an establishment."@en ;
+    skos:broader gias:EstablishmentLifecycle ;
+    gias:status "Preferred"@en ;
+    dcterms:source "C#: StatusId; Java: status; database: Establishment.status_code"@en .
+
+gias:OpenDate
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Open date"@en ;
+    skos:altLabel "Establishment Open Date"@en ;
+    skos:definition "The date on which the establishment opened in its current recorded identity."@en ;
+    skos:scopeNote "For online providers (type 49) this field is relabelled Accreditation date on the Details tab. See AccreditationDate."@en ;
+    skos:broader gias:EstablishmentLifecycle ;
+    skos:related gias:AccreditationDate ;
+    gias:status "Preferred"@en ;
+    dcterms:source "C#: OpenDate; Java: openDate; database: Establishment.OpenDate"@en .
+
+gias:ReasonEstablishmentOpened
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Reason establishment opened"@en ;
+    skos:definition "The classification explaining why the establishment record opened."@en ;
+    skos:broader gias:EstablishmentLifecycle ;
+    gias:status "Preferred"@en ;
+    dcterms:source "C#: ReasonEstablishmentOpenedId; Java: reasonEstablishmentOpened; database: Establishment.reasonEstablishmentOpened_code"@en .
+
+gias:ClosedDate
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Closed date"@en ;
+    skos:altLabel "Establishment Close Date"@en ;
+    skos:definition "The date on which the establishment closed."@en ;
+    skos:scopeNote "For online providers (type 49) this field is relabelled Accreditation date ended on the Details tab. See AccreditationDateEnded."@en ;
+    skos:broader gias:EstablishmentLifecycle ;
+    skos:related gias:AccreditationDateEnded ;
+    gias:status "Preferred"@en ;
+    dcterms:source "C#: CloseDate; Java: closeDate; database: Establishment.CloseDate"@en .
+
+gias:ReasonEstablishmentClosed
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Reason establishment closed"@en ;
+    skos:definition "The classification explaining why the establishment closed."@en ;
+    skos:broader gias:EstablishmentLifecycle ;
+    gias:status "Preferred"@en ;
+    dcterms:source "C#: ReasonEstablishmentClosedId; Java: reasonEstablishmentClosed; database: Establishment.reasonEstablishmentClosed_code"@en .
+
+#################################################################
+# Record currency and stewardship
+#################################################################
+
+gias:DateLastChangedOrConfirmed
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Date last changed or confirmed"@en ;
+    skos:altLabel "Date last changed/confirmed"@en, "Last Changed Date"@en ;
+    skos:definition "The most recent date on which the establishment record was changed or confirmed as accurate."@en ;
+    skos:scopeNote "Describes the currency and confirmation of the GIAS record rather than the lifecycle of the real-world establishment. It may combine two different business events and requires further analysis."@en ;
+    skos:broader gias:RecordCurrencyAndStewardship ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Frontend: Date last changed/confirmed; extract: Last Changed Date; C#: LastChangedDate; Java: lastChangedDate"@en .
+
+#################################################################
+# Location and contact
+#################################################################
+
+gias:MainAddress
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Main address"@en ;
+    skos:altLabel "Address"@en ;
+    skos:definition "The primary postal address presented for the establishment."@en ;
+    skos:broader gias:EstablishmentLocationAndContact ;
+    gias:status "Preferred"@en ;
+    dcterms:source "Extract components: Street, Locality, Address 3, Town, County and Postcode"@en .
+
+gias:Website
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Website"@en ;
+    skos:altLabel "School Website"@en ;
+    skos:definition "The establishment's published website address."@en ;
+    skos:broader gias:EstablishmentLocationAndContact ;
+    gias:status "Preferred"@en .
+
+gias:TelephoneNumber
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Telephone number"@en ;
+    skos:altLabel "Telephone"@en ;
+    skos:definition "The establishment's published contact telephone number."@en ;
+    skos:broader gias:EstablishmentLocationAndContact ;
+    gias:status "Preferred"@en .
+
+gias:UniquePropertyReferenceNumber
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Unique Property Reference Number"@en ;
+    skos:altLabel "UPRN"@en ;
+    skos:definition "The identifier for a geographic property or addressable location."@en ;
+    skos:broader gias:EstablishmentLocationAndContact ;
+    gias:status "Preferred"@en .
+
+#################################################################
+# Leadership
+#################################################################
+
+gias:HeadteacherOrPrincipal
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Headteacher or principal"@en ;
+    skos:altLabel "Headteacher/Principal"@en, "Headteacher/Manager"@en ;
+    skos:definition "The person presented as the establishment's principal education leader."@en ;
+    skos:scopeNote "The UI label varies by establishment type. Schools show Headteacher / Principal. Online providers show Headteacher/Manager. Children's centres use the separate CentreManager concept."@en ;
+    skos:broader gias:EstablishmentLeadership ;
+    gias:status "Preferred"@en ;
+    dcterms:source "C#/database fields: HeadTitle, HeadFirstName, HeadLastName and HeadPreferredJobTitle"@en .
+
+gias:CentreManager
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Centre manager"@en ;
+    skos:altLabel "Manager"@en ;
+    skos:definition "The person presented as the manager of a children's centre."@en ;
+    skos:scopeNote "Children's centres and children's centre linked sites display Manager rather than Headteacher or Principal. The underlying database fields are the same Head* fields used for other establishment types."@en ;
+    skos:broader gias:EstablishmentLeadership ;
+    skos:related gias:HeadteacherOrPrincipal ;
+    gias:status "Provisional"@en .
+
+gias:PreferredJobTitle
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Preferred job title"@en ;
+    skos:altLabel "Headteacher Preferred Job Title"@en ;
+    skos:definition "The title the establishment uses for its headteacher or principal role."@en ;
+    skos:broader gias:EstablishmentLeadership ;
+    skos:related gias:HeadteacherOrPrincipal ;
+    gias:status "Preferred"@en .
+
+#################################################################
+# Education, admissions and provision
+#################################################################
+
+gias:StatutoryAgeRange
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Statutory age range"@en ;
+    skos:altLabel "Age range"@en ;
+    skos:definition "The lowest and highest statutory pupil ages recorded for the establishment."@en ;
+    skos:broader gias:EducationAdmissionsAndProvision ;
+    gias:status "Preferred"@en ;
+    dcterms:source "C#/Java/database: StatutoryLowAge and StatutoryHighAge"@en .
+
+gias:GenderOfEntry
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Gender of entry"@en ;
+    skos:altLabel "Gender"@en ;
+    skos:definition "The classification describing the gender admission arrangement."@en ;
+    skos:broader gias:EducationAdmissionsAndProvision ;
+    gias:status "Preferred"@en ;
+    dcterms:source "C#: GenderId; Java: gender; database: Establishment.gender_code"@en .
+
+gias:AdmissionsPolicy
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Admissions policy"@en ;
+    skos:definition "The classification describing how places are allocated, such as selective or non-selective."@en ;
+    skos:broader gias:EducationAdmissionsAndProvision ;
+    gias:status "Preferred"@en ;
+    dcterms:source "C#: AdmissionsPolicyId; database: Establishment.admissionsPolicy_code"@en .
+
+gias:BoardingProvision
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Boarding provision"@en ;
+    skos:altLabel "Boarders"@en ;
+    skos:definition "The classification describing whether boarding places are offered."@en ;
+    skos:broader gias:EducationAdmissionsAndProvision ;
+    gias:status "Preferred"@en ;
+    dcterms:source "C#: ProvisionBoardingId; database: Establishment.boarding_code"@en .
+
+gias:NurseryProvision
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Nursery provision"@en ;
+    skos:definition "The classification describing whether the establishment offers nursery classes."@en ;
+    skos:broader gias:EducationAdmissionsAndProvision ;
+    gias:status "Preferred"@en ;
+    dcterms:source "C#: ProvisionNurseryId; database: Establishment.nurseryProvision_code"@en .
+
+gias:SixthFormProvision
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Sixth-form provision"@en ;
+    skos:altLabel "Official sixth form"@en, "Sixth Form"@en, "OfficialSixthForm"@en ;
+    skos:definition "The classification describing whether the establishment has a sixth form."@en ;
+    skos:broader gias:EducationAdmissionsAndProvision ;
+    gias:status "Preferred"@en ;
+    dcterms:source "C#: ProvisionOfficialSixthFormId; Java: SpecialIndicators.officialSixthForm; database: Establishment.officialSixthForm_code"@en .
+
+gias:SpecialClassProvision
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Special-class provision"@en ;
+    skos:altLabel "Special classes"@en ;
+    skos:definition "The classification describing whether the establishment has special classes."@en ;
+    skos:broader gias:EducationAdmissionsAndProvision ;
+    gias:status "Preferred"@en .
+
+gias:Section41Approval
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Section 41 approval"@en ;
+    skos:altLabel "Section 41 approved"@en ;
+    skos:definition "Whether an independent or non-maintained special school is approved under section 41 of the Children and Families Act 2014."@en ;
+    skos:broader gias:EducationAdmissionsAndProvision ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Database field: Section41Approved"@en .
+
+#################################################################
+# Capacity and pupil measures
+#################################################################
+
+gias:SchoolCapacity
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "School capacity"@en ;
+    skos:altLabel "Capacity"@en ;
+    skos:definition "The number of pupils the school is organised or planned to provide for."@en ;
+    skos:broader gias:CapacityAndPupilMeasures ;
+    gias:status "Preferred"@en ;
+    dcterms:source "Java: Characteristics.schoolCapacity; database: Establishment.SchoolCapacity"@en .
+
+gias:PupilCount
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Pupil count"@en ;
+    skos:altLabel "Number of pupils"@en, "Number of Pupils"@en ;
+    skos:definition "The number of pupils recorded for the establishment at the stated census date."@en ;
+    skos:scopeNote "The measure is incomplete without its effective or census date."@en ;
+    skos:broader gias:CapacityAndPupilMeasures ;
+    skos:related gias:CensusDate ;
+    gias:status "Preferred"@en .
+
+gias:CensusDate
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Census date"@en ;
+    skos:definition "The effective date for pupil-count and related census measures."@en ;
+    skos:broader gias:CapacityAndPupilMeasures ;
+    skos:related gias:PupilCount, gias:PupilsEligibleForFreeSchoolMeals ;
+    gias:status "Preferred"@en .
+
+gias:PupilsEligibleForFreeSchoolMeals
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Pupils eligible for free school meals"@en ;
+    skos:altLabel "Number of pupils eligible for free school meals"@en ;
+    skos:definition "The number of pupils whose families have claimed eligibility for free school meals."@en ;
+    skos:broader gias:CapacityAndPupilMeasures ;
+    skos:related gias:CensusDate, gias:PercentagePupilsEligibleForFreeSchoolMeals ;
+    gias:status "Preferred"@en .
+
+gias:PercentagePupilsEligibleForFreeSchoolMeals
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Percentage of pupils eligible for free school meals"@en ;
+    skos:altLabel "Percentage of Pupils Receiving FSM"@en, "PercentageFSM"@en ;
+    skos:definition "The proportion of pupils recorded as eligible for free school meals."@en ;
+    skos:scopeNote "Receiving FSM is a misleading legacy alias because the measure concerns eligibility claims, not whether pupils received meals."@en ;
+    skos:broader gias:CapacityAndPupilMeasures ;
+    skos:related gias:CensusDate, gias:PupilsEligibleForFreeSchoolMeals ;
+    gias:status "Preferred"@en .
+
+gias:SpecialPupilsOnStatementOrEhcPlan
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Special pupils on a SEN statement or EHC plan"@en ;
+    skos:altLabel "Number of special pupils under a SEN statement/EHC plan"@en, "SENStat"@en ;
+    skos:definition "The number of special pupils who are the subject of a special educational needs statement or an education, health and care plan."@en ;
+    skos:scopeNote "Shown for independent special schools and online providers in place of the SEN provision type classification used by maintained schools."@en ;
+    skos:broader gias:CapacityAndPupilMeasures ;
+    skos:related gias:SpecialPupilsNotOnStatementOrEhcPlan ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Database field: SENStat"@en .
+
+gias:SpecialPupilsNotOnStatementOrEhcPlan
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Special pupils not on a SEN statement or EHC plan"@en ;
+    skos:altLabel "Number of special pupils not under a SEN statement/EHC plan"@en, "SENNoStat"@en ;
+    skos:definition "The number of special pupils who are not the subject of a special educational needs statement or an education, health and care plan."@en ;
+    skos:broader gias:CapacityAndPupilMeasures ;
+    skos:related gias:SpecialPupilsOnStatementOrEhcPlan ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Database field: SENNoStat"@en .
+
+#################################################################
+# Faith context
+#################################################################
+
+gias:ReligiousCharacter
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Religious character"@en ;
+    skos:altLabel "Designated Religious Character"@en ;
+    skos:definition "A formal religious-character classification designated for the school."@en ;
+    skos:broader gias:FaithContext ;
+    skos:related gias:Diocese, gias:ReligiousEthos ;
+    gias:status "Preferred"@en ;
+    dcterms:source "C#: ReligiousCharacterId; Java: Characteristics.religiousCharacter; database: Establishment.religiousCharacter_code"@en .
+
+gias:ReligiousEthos
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Religious ethos"@en ;
+    skos:definition "The recorded religious ethos associated with the establishment."@en ;
+    skos:broader gias:FaithContext ;
+    skos:related gias:ReligiousCharacter ;
+    gias:status "Provisional"@en .
+
+gias:Diocese
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Diocese"@en ;
+    skos:definition "The area covered by a bishop's jurisdiction, applicable to Catholic and Church of England schools."@en ;
+    skos:scopeNote "Observed on the Details tab for most school types with a religious character. A database-mapping gap exists for non-maintained special schools (type 08); the underlying configuration should be verified."@en ;
+    skos:broader gias:FaithContext ;
+    skos:related gias:ReligiousCharacter ;
+    gias:status "Preferred"@en .
+
+#################################################################
+# SEN and resourced provision
+#################################################################
+
+gias:TypeOfSenProvision
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Type of SEN provision"@en ;
+    skos:altLabel "SEN1"@en, "SEN2"@en, "SEN3"@en, "SEN4"@en ;
+    skos:definition "The types of special educational needs provision recorded for the establishment."@en ;
+    skos:scopeNote "Shown for maintained and academy schools. Independent and non-maintained special schools instead show special pupil counts. The database stores up to four SEN types per establishment."@en ;
+    skos:broader gias:SenAndResourcedProvision ;
+    gias:status "Provisional"@en ;
+    dcterms:source "C#: SEN1Ids to SEN4Ids; Java: senPriority1 to senPriority4; database: EstablishmentToSen1 plus legacy EstablishmentToSen2-4"@en .
+
+gias:TypeOfResourcedProvision
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Type of resourced provision"@en ;
+    skos:altLabel "TypeOfReservedProvision"@en ;
+    skos:definition "The classification describing the establishment's resourced provision."@en ;
+    skos:scopeNote "The database field name uses Reserved rather than Resourced, a legacy naming difference. The UI label uses resourced."@en ;
+    skos:broader gias:SenAndResourcedProvision ;
+    gias:status "Preferred"@en ;
+    dcterms:source "C#: TypeOfResourcedProvisionId; Java: SpecialIndicators.typeOfResourcedProvision; database: Establishment.TypeOfReservedProvision"@en .
+
+gias:ResourcedProvisionPupilCount
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Resourced-provision pupil count"@en ;
+    skos:altLabel "Resourced provision number on roll"@en ;
+    skos:definition "The number of pupils on roll in resourced provision."@en ;
+    skos:broader gias:SenAndResourcedProvision ;
+    skos:related gias:ResourcedProvisionCapacity ;
+    gias:status "Preferred"@en ;
+    dcterms:source "C#: ResourcedProvisionOnRoll; Java: SpecialIndicators.resourcedProvisionOnRoll; database: Establishment.ResourcedProvisionOnRoll"@en .
+
+gias:ResourcedProvisionCapacity
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Resourced-provision capacity"@en ;
+    skos:altLabel "Resourced provision capacity"@en ;
+    skos:definition "The number of places available in resourced provision."@en ;
+    skos:broader gias:SenAndResourcedProvision ;
+    skos:related gias:ResourcedProvisionPupilCount ;
+    gias:status "Preferred"@en ;
+    dcterms:source "C#: ResourcedProvisionCapacity; Java: SpecialIndicators.resourcedProvisionCapacity; database: Establishment.ResourcedProvisionCapacity"@en .
+
+gias:SenUnitPupilCount
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "SEN-unit pupil count"@en ;
+    skos:altLabel "SEN Unit number on roll"@en, "Special Educational Needs (SEN) unit number on roll"@en ;
+    skos:definition "The number of pupils on roll in the establishment's SEN unit."@en ;
+    skos:broader gias:SenAndResourcedProvision ;
+    skos:related gias:SenUnitCapacity ;
+    gias:status "Preferred"@en ;
+    dcterms:source "Database: Establishment.SenUnitOnRoll"@en .
+
+gias:SenUnitCapacity
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "SEN-unit capacity"@en ;
+    skos:altLabel "SEN Unit capacity"@en, "Special Educational Needs (SEN) unit capacity"@en ;
+    skos:definition "The number of places available in the establishment's SEN unit."@en ;
+    skos:broader gias:SenAndResourcedProvision ;
+    skos:related gias:SenUnitPupilCount ;
+    gias:status "Preferred"@en ;
+    dcterms:source "Database: Establishment.SenUnitCapacity"@en .
+
+#################################################################
+# Alternative provision characteristics
+#################################################################
+
+gias:TeenageMothersProvision
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Teenage mothers provision"@en ;
+    skos:altLabel "Teenage mothers"@en ;
+    skos:definition "Whether the pupil referral unit provides for teenage mothers."@en ;
+    skos:broader gias:AlternativeProvisionCharacteristics ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Database field: TeenMoth"@en .
+
+gias:TeenageMothersPlaces
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Teenage mothers places"@en ;
+    skos:definition "The number of places available for teenage mothers in the pupil referral unit."@en ;
+    skos:broader gias:AlternativeProvisionCharacteristics ;
+    skos:related gias:TeenageMothersProvision ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Database field: TeenMothPlaces"@en .
+
+gias:ChildcareFacilitiesProvision
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Childcare facilities provision"@en ;
+    skos:definition "Whether the pupil referral unit provides childcare facilities."@en ;
+    skos:broader gias:AlternativeProvisionCharacteristics ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Database field: CCF"@en .
+
+gias:SenFacilitiesProvision
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "SEN facilities"@en ;
+    skos:definition "Whether the pupil referral unit has SEN facilities."@en ;
+    skos:broader gias:AlternativeProvisionCharacteristics ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Database field: SENPRU"@en .
+
+gias:EbdPupilsProvision
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Pupils with EBD"@en ;
+    skos:altLabel "Emotional, behavioural and social difficulties"@en ;
+    skos:definition "Whether the pupil referral unit admits pupils with emotional, behavioural or social difficulties."@en ;
+    skos:broader gias:AlternativeProvisionCharacteristics ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Database field: EBD"@en .
+
+gias:AlternativeProvisionPlaces
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Number of places"@en ;
+    skos:definition "The number of places at the pupil referral unit."@en ;
+    skos:broader gias:AlternativeProvisionCharacteristics ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Database field: PlacesPRU"@en .
+
+gias:FullTimeProvision
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Full time provision"@en ;
+    skos:definition "Whether the pupil referral unit offers full-time provision."@en ;
+    skos:broader gias:AlternativeProvisionCharacteristics ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Database field: FTProv"@en .
+
+gias:PupilsEducatedByOtherProviders
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Pupils educated by other providers"@en ;
+    skos:definition "Whether pupils at the pupil referral unit are educated by other providers."@en ;
+    skos:broader gias:AlternativeProvisionCharacteristics ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Database field: EdByOther"@en .
+
+#################################################################
+# Inspection record
+#################################################################
+
+gias:InspectorateName
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Inspectorate name"@en ;
+    skos:definition "The name of the body responsible for inspecting the establishment."@en ;
+    skos:scopeNote "Shown for independent schools (database field: Inspectorate) and British schools overseas (database field: InspectorateName). Both appear under the same label on the Details tab."@en ;
+    skos:broader gias:InspectionRecord ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Database fields: Inspectorate (types 08, 10, 11) and InspectorateName (type 37)"@en .
+
+gias:InspectorateReport
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Inspectorate report"@en ;
+    skos:definition "A link or reference to an inspection report published by the named inspectorate."@en ;
+    skos:scopeNote "Shown for British schools overseas. Different from the Ofsted inspection report link held under External reference."@en ;
+    skos:broader gias:InspectionRecord ;
+    skos:related gias:InspectorateName, gias:InspectionReportReference ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Database field: InspectorateReport"@en .
+
+gias:DateOfLastInspectionVisit
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Date of last inspection visit"@en ;
+    skos:altLabel "Date of Last Inspection Visit"@en ;
+    skos:definition "The date of the most recent inspection visit."@en ;
+    skos:scopeNote "Shown for British schools overseas."@en ;
+    skos:broader gias:InspectionRecord ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Database field: DateOfLastInspectionVisit"@en .
+
+gias:DateOfNextInspectionVisit
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Date of next inspection visit"@en ;
+    skos:altLabel "Date of Next Inspection Visit"@en ;
+    skos:definition "The scheduled date of the next inspection visit."@en ;
+    skos:scopeNote "Shown for British schools overseas."@en ;
+    skos:broader gias:InspectionRecord ;
+    skos:related gias:DateOfLastInspectionVisit ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Database field: NextInspectionVisit"@en .
+
+#################################################################
+# Accreditation and quality assurance
+#################################################################
+
+gias:AccreditationDate
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Accreditation date"@en ;
+    skos:definition "The date on which an online provider was accredited."@en ;
+    skos:scopeNote "Online-provider-specific presentation of the OpenDate field. The underlying database field is Establishment.OpenDate."@en ;
+    skos:broader gias:AccreditationAndQualityAssurance ;
+    skos:related gias:OpenDate ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Database field: Establishment.OpenDate (relabelled for type 49)"@en .
+
+gias:AccreditationExpiryDate
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Accreditation expiry date"@en ;
+    skos:definition "The date on which the online provider's accreditation expires."@en ;
+    skos:broader gias:AccreditationAndQualityAssurance ;
+    skos:related gias:AccreditationDate ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Database field: AccreditationExpiryDate"@en .
+
+gias:AccreditationDateEnded
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Accreditation date ended"@en ;
+    skos:definition "The date on which an online provider's accreditation ended."@en ;
+    skos:scopeNote "Online-provider-specific presentation of the CloseDate field. The underlying database field is Establishment.CloseDate."@en ;
+    skos:broader gias:AccreditationAndQualityAssurance ;
+    skos:related gias:ClosedDate ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Database field: Establishment.CloseDate (relabelled for type 49)"@en .
+
+gias:QualityAssuranceBodyName
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Quality assurance body name"@en ;
+    skos:altLabel "QABName"@en ;
+    skos:definition "The name of the quality assurance body responsible for the online provider."@en ;
+    skos:broader gias:AccreditationAndQualityAssurance ;
+    skos:related gias:QualityAssuranceBodyReport ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Database field: QABName"@en .
+
+gias:QualityAssuranceBodyReport
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Quality assurance body report"@en ;
+    skos:altLabel "QABReport"@en ;
+    skos:definition "A link or reference to the quality assurance body's report for the online provider."@en ;
+    skos:broader gias:AccreditationAndQualityAssurance ;
+    skos:related gias:QualityAssuranceBodyName ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Database field: QABReport"@en .
+
+gias:CompaniesHouseNumber
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Companies House number"@en ;
+    skos:altLabel "CHNumber"@en ;
+    skos:definition "The Companies House registration number for the online provider."@en ;
+    skos:broader gias:AccreditationAndQualityAssurance ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Database field: CHNumber"@en .
+
+gias:EstablishmentAccredited
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Establishment accredited"@en ;
+    skos:definition "The classification indicating whether the online provider holds current accreditation."@en ;
+    skos:broader gias:AccreditationAndQualityAssurance ;
+    skos:related gias:AccreditationDate, gias:AccreditationExpiryDate ;
+    gias:status "Provisional"@en ;
+    dcterms:source "Database field: EstablishmentAccredited"@en .
+
+#################################################################
+# External references
+#################################################################
+
+gias:InspectionReportReference
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "Inspection report reference"@en ;
+    skos:altLabel "Ofsted rating and reports"@en ;
+    skos:definition "A link or reference to an Ofsted inspection report owned and published by an external inspection service."@en ;
+    skos:scopeNote "Distinct from InspectorateReport, which is the inspectorate report link for British schools overseas."@en ;
+    skos:broader gias:ExternalReference ;
+    skos:related gias:InspectorateReport ;
+    gias:status "Provisional"@en .
+
+gias:ExternalServiceReference
+    a skos:Concept ;
+    skos:inScheme gias:establishmentDetailsVocabulary ;
+    skos:prefLabel "External service reference"@en ;
+    skos:altLabel "Data from other services"@en ;
+    skos:definition "A link from GIAS to related information owned by another service."@en ;
+    skos:broader gias:ExternalReference ;
+    gias:status "Provisional"@en .
