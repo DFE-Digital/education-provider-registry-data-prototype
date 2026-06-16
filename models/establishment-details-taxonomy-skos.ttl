@@ -5,15 +5,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-# GIAS 2.0 Establishment Details Taxonomy — full-scope version
-#
-# This is an expanded version of:
-# docs/transformation/data/modelling/establishment-details-taxonomy-skos.ttl
-#
-# The prior version was scoped to three worked examples (academy converter,
-# community school, other independent school). This version covers all 46
-# establishment types defined in the ERD, including the five archived types
-# that have no rows in current extracts.
+# GIAS 2.0 Establishment Details Taxonomy
 #
 # All 46 establishment types are represented as taxons under EstablishmentType,
 # with an intermediate type-group level following the ERD group codes.
@@ -21,12 +13,7 @@
 # Facets are represented as top concepts. Taxons are narrower concepts beneath
 # their facet. Dates, identifiers, measures and organisation relationships are
 # excluded because they are not taxonomy classifications.
-#
-# Evidenced by:
-#   docs/data/extract-data/establishment-fields/establishment-type-analysis.md
-#   docs/data/extract-data/establishment-fields/establishment-details-tab-fields-by-type.md
-#
-# Maintained in: docs/transformation/data/modelling/claude/
+
 
 gias:status
     a rdf:Property ;
