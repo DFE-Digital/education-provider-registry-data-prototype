@@ -226,7 +226,6 @@ epr:EstablishmentTypeGroupNonMaintainedSpecialSchools
     skos:broader epr:EstablishmentType ;
     skos:narrower
         epr:NonMaintainedSpecialSchool,
-        epr:IndependentSchoolApprovedForSenPupils,
         epr:OtherIndependentSpecialSchool ;
     epr:status "Provisional"@en .
 
@@ -248,17 +247,13 @@ epr:EstablishmentTypeGroupOtherTypes
     skos:definition "The GIAS establishment type group covering miscellaneous and other establishment types."@en ;
     skos:broader epr:EstablishmentType ;
     skos:narrower
-        epr:EuropeanSchools,
-        epr:EarlyYearsSetting,
-        epr:PlayingForSuccessCentres,
         epr:SecureUnits,
         epr:OffshoreSchools,
         epr:ServiceChildrensEducation,
         epr:MiscellaneousEstablishment,
         epr:SpecialPost16Institution,
         epr:BritishSchoolsOverseas,
-        epr:InstitutionFundedByOtherGovernmentDepartment,
-        epr:LegacyTypes ;
+        epr:InstitutionFundedByOtherGovernmentDepartment ;
     epr:status "Provisional"@en .
 
 epr:EstablishmentTypeGroupAcademies
@@ -395,15 +390,6 @@ epr:NonMaintainedSpecialSchool
     dcterms:source "Type code 08"@en ;
     epr:status "Provisional"@en .
 
-epr:IndependentSchoolApprovedForSenPupils
-    a skos:Concept ;
-    skos:inScheme epr:establishmentDetailsTaxonomy ;
-    skos:prefLabel "Independent school approved for SEN pupils"@en ;
-    skos:scopeNote "Archived type. No rows in current extracts."@en ;
-    skos:broader epr:EstablishmentTypeGroupNonMaintainedSpecialSchools ;
-    dcterms:source "Type code 09; archived"@en ;
-    epr:status "Provisional"@en .
-
 epr:OtherIndependentSpecialSchool
     a skos:Concept ;
     skos:inScheme epr:establishmentDetailsTaxonomy ;
@@ -479,35 +465,8 @@ epr:WelshEstablishment
     epr:status "Provisional"@en .
 
 #################################################################
-# Establishment-type taxons â€” group 9: other types
+# Establishment-type taxons - other types
 #################################################################
-
-epr:EuropeanSchools
-    a skos:Concept ;
-    skos:inScheme epr:establishmentDetailsTaxonomy ;
-    skos:prefLabel "European schools"@en ;
-    skos:scopeNote "Archived type. No rows in current extracts."@en ;
-    skos:broader epr:EstablishmentTypeGroupOtherTypes ;
-    dcterms:source "Type code 17; archived"@en ;
-    epr:status "Provisional"@en .
-
-epr:EarlyYearsSetting
-    a skos:Concept ;
-    skos:inScheme epr:establishmentDetailsTaxonomy ;
-    skos:prefLabel "Early years setting"@en ;
-    skos:scopeNote "Archived type. No rows in current extracts."@en ;
-    skos:broader epr:EstablishmentTypeGroupOtherTypes ;
-    dcterms:source "Type code 22; archived"@en ;
-    epr:status "Provisional"@en .
-
-epr:PlayingForSuccessCentres
-    a skos:Concept ;
-    skos:inScheme epr:establishmentDetailsTaxonomy ;
-    skos:prefLabel "Playing for success centres"@en ;
-    skos:scopeNote "Archived type. No rows in current extracts."@en ;
-    skos:broader epr:EstablishmentTypeGroupOtherTypes ;
-    dcterms:source "Type code 23; archived"@en ;
-    epr:status "Provisional"@en .
 
 epr:SecureUnits
     a skos:Concept ;
@@ -564,15 +523,6 @@ epr:InstitutionFundedByOtherGovernmentDepartment
     skos:prefLabel "Institution funded by other government department"@en ;
     skos:broader epr:EstablishmentTypeGroupOtherTypes ;
     dcterms:source "Type code 56"@en ;
-    epr:status "Provisional"@en .
-
-epr:LegacyTypes
-    a skos:Concept ;
-    skos:inScheme epr:establishmentDetailsTaxonomy ;
-    skos:prefLabel "Legacy types"@en ;
-    skos:scopeNote "Archived type. No rows in current extracts."@en ;
-    skos:broader epr:EstablishmentTypeGroupOtherTypes ;
-    dcterms:source "Type code 98; archived"@en ;
     epr:status "Provisional"@en .
 
 #################################################################
