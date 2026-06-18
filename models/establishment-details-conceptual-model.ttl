@@ -1,0 +1,727 @@
+@prefix epr:     <https://dfe-digital.github.io/education-provider-registry-data/vocabulary/> .
+@prefix epro:    <https://dfe-digital.github.io/education-provider-registry-data/ontology/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+
+# GIAS 2.0 Establishment Details Conceptual Model
+#
+# Scope: this OWL ontology expresses the first conceptual model slice for the
+# Education Provider Registry data prototype. It covers the public GIAS
+# Establishment Details view for the currently modelled establishment examples.
+#
+# It declares classes and object properties that correspond directly to the
+# entities and relationships shown in the Establishment Details ER diagrams.
+# Class IRIs reuse the shared epr: namespace so that vocabulary concepts and
+# ontology classes are the same resolvable URI.
+#
+#
+# It sits alongside the vocabulary and taxonomy:
+#   establishment-details-vocabulary-skos.ttl
+#   establishment-details-taxonomy-skos.ttl
+
+
+#################################################################
+# Ontology declaration
+#################################################################
+
+epro:establishmentDetailsConceptualModel
+    a owl:Ontology ;
+    dcterms:title "GIAS 2.0 Establishment Details Conceptual Model"@en ;
+    dcterms:description "OWL 2 conceptual model for the Establishment Details slice of the Education Provider Registry. Declares classes and object properties for the entities and relationships in the Establishment Details ER diagrams."@en ;
+    dcterms:created "2026-06-18"^^xsd:date ;
+    rdfs:seeAlso epr:establishmentDetailsVocabulary ;
+    rdfs:seeAlso epr:establishmentDetailsTaxonomy ;
+    epr:status "Provisional"@en .
+
+
+#################################################################
+# Classes — core
+#################################################################
+
+epr:Establishment
+    a owl:Class ;
+    rdfs:label "Establishment"@en ;
+    rdfs:comment "The central concept. A single education provider registered with GIAS."@en .
+
+epr:EstablishmentDetails
+    a owl:Class ;
+    rdfs:label "Establishment details"@en ;
+    rdfs:comment "The set of publicly viewable detail fields for an establishment record."@en .
+
+
+#################################################################
+# Classes — identity and identifiers
+#################################################################
+
+epr:EstablishmentIdentity
+    a owl:Class ;
+    rdfs:label "Establishment identity"@en ;
+    rdfs:comment "The stable identity record of an establishment, grouping its persistent identifiers."@en .
+
+epr:UniqueReferenceNumber
+    a owl:Class ;
+    rdfs:label "Unique Reference Number"@en ;
+    rdfs:comment "The primary GIAS identifier for an establishment. Abbreviated URN."@en .
+
+epr:UkProviderReferenceNumber
+    a owl:Class ;
+    rdfs:label "UK Provider Reference Number"@en ;
+    rdfs:comment "An external cross-sector identifier assigned by the UKPRN register. Not the primary establishment key."@en .
+
+epr:UniquePropertyReferenceNumber
+    a owl:Class ;
+    rdfs:label "Unique Property Reference Number"@en ;
+    rdfs:comment "An Ordnance Survey identifier for the addressable property occupied by the establishment."@en .
+
+epr:EstablishmentNumber
+    a owl:Class ;
+    rdfs:label "Establishment number"@en ;
+    rdfs:comment "A locally assigned number used within a local authority area to identify an establishment."@en .
+
+epr:DfeNumber
+    a owl:Class ;
+    rdfs:label "DfE number"@en ;
+    rdfs:comment "A derived identifier combining local authority code and establishment number. Not independently stored."@en .
+
+
+#################################################################
+# Classes — lifecycle
+#################################################################
+
+epr:EstablishmentLifecycle
+    a owl:Class ;
+    rdfs:label "Establishment lifecycle"@en ;
+    rdfs:comment "The lifecycle record of an establishment, grouping its status and significant dates."@en .
+
+epr:EstablishmentStatus
+    a owl:Class ;
+    rdfs:label "Establishment status"@en ;
+    rdfs:comment "The current lifecycle or operating-state classification of an establishment. Values include open, closed, proposed to open and open proposed to close."@en .
+
+epr:OpenDate
+    a owl:Class ;
+    rdfs:label "Open date"@en ;
+    rdfs:comment "The date on which the establishment opened or was first registered."@en .
+
+epr:ReasonEstablishmentOpened
+    a owl:Class ;
+    rdfs:label "Reason establishment opened"@en ;
+    rdfs:comment "The classification describing why the establishment was opened."@en .
+
+epr:ClosedDate
+    a owl:Class ;
+    rdfs:label "Closed date"@en ;
+    rdfs:comment "The date on which the establishment closed."@en .
+
+epr:ReasonEstablishmentClosed
+    a owl:Class ;
+    rdfs:label "Reason establishment closed"@en ;
+    rdfs:comment "The classification describing why the establishment closed."@en .
+
+
+#################################################################
+# Classes — record currency
+#################################################################
+
+epr:RecordCurrencyAndStewardship
+    a owl:Class ;
+    rdfs:label "Record currency and stewardship"@en ;
+    rdfs:comment "Metadata describing the currency and ownership of the GIAS establishment record itself, distinct from the lifecycle of the real-world establishment."@en .
+
+epr:DateLastChangedOrConfirmed
+    a owl:Class ;
+    rdfs:label "Date last changed or confirmed"@en ;
+    rdfs:comment "The date on which the establishment record was last updated or confirmed as current."@en .
+
+
+#################################################################
+# Classes — classification
+#################################################################
+
+epr:EstablishmentClassification
+    a owl:Class ;
+    rdfs:label "Establishment classification"@en ;
+    rdfs:comment "The classification record grouping the establishment type, type group and education phase for an establishment."@en .
+
+epr:EstablishmentType
+    a owl:Class ;
+    rdfs:label "Establishment type"@en ;
+    rdfs:comment "The legal, operational or policy classification recorded as the establishment's type. An overloaded legacy classification."@en .
+
+epr:EstablishmentTypeGroup
+    a owl:Class ;
+    rdfs:label "Establishment type group"@en ;
+    rdfs:comment "A broad grouping of establishment types used for navigation and reporting."@en .
+
+epr:EducationPhase
+    a owl:Class ;
+    rdfs:label "Education phase"@en ;
+    rdfs:comment "The broad stage of education provided by the establishment."@en .
+
+
+#################################################################
+# Classes — accountability
+#################################################################
+
+epr:EstablishmentAccountability
+    a owl:Class ;
+    rdfs:label "Accountability relationship"@en ;
+    rdfs:comment "A relationship between an establishment and the organisation accountable for it. An establishment may have zero or more accountability relationships of different kinds."@en .
+
+epr:LocalAuthority
+    a owl:Class ;
+    rdfs:label "Local authority"@en ;
+    rdfs:comment "A local government body maintaining or otherwise accountable for an establishment."@en .
+
+epr:AcademyTrust
+    a owl:Class ;
+    rdfs:label "Academy trust"@en ;
+    rdfs:comment "A charitable trust that sponsors or converts one or more academies."@en .
+
+epr:SingleAcademyTrust
+    a owl:Class ;
+    rdfs:label "Single academy trust"@en ;
+    rdfs:comment "An academy trust that operates a single academy."@en ;
+    rdfs:subClassOf epr:AcademyTrust .
+
+epr:AcademySponsor
+    a owl:Class ;
+    rdfs:label "Academy sponsor"@en ;
+    rdfs:comment "An approved body that sponsors one or more sponsor-led academies."@en .
+
+epr:Proprietor
+    a owl:Class ;
+    rdfs:label "Proprietor"@en ;
+    rdfs:comment "The person or body that owns or operates an independent school."@en .
+
+
+#################################################################
+# Classes — education, admissions and provision
+#################################################################
+
+epr:EducationAdmissionsAndProvision
+    a owl:Class ;
+    rdfs:label "Education, admissions and provision"@en ;
+    rdfs:comment "The group of classification fields describing how an establishment admits pupils and what provision it offers."@en .
+
+epr:StatutoryAgeRange
+    a owl:Class ;
+    rdfs:label "Statutory age range"@en ;
+    rdfs:comment "The lower and upper statutory ages for which the establishment is registered."@en .
+
+epr:GenderOfEntry
+    a owl:Class ;
+    rdfs:label "Gender of entry"@en ;
+    rdfs:comment "The gender admission classification for the establishment."@en .
+
+epr:AdmissionsPolicy
+    a owl:Class ;
+    rdfs:label "Admissions policy"@en ;
+    rdfs:comment "The classification describing how places are allocated — selective or non-selective."@en .
+
+epr:BoardingProvision
+    a owl:Class ;
+    rdfs:label "Boarding provision"@en ;
+    rdfs:comment "The classification describing whether boarding places are offered."@en .
+
+epr:NurseryProvision
+    a owl:Class ;
+    rdfs:label "Nursery provision"@en ;
+    rdfs:comment "The classification describing whether the establishment offers nursery classes."@en .
+
+epr:SixthFormProvision
+    a owl:Class ;
+    rdfs:label "Sixth-form provision"@en ;
+    rdfs:comment "The classification describing whether the establishment has a sixth form."@en .
+
+epr:SpecialClassProvision
+    a owl:Class ;
+    rdfs:label "Special-class provision"@en ;
+    rdfs:comment "The classification describing whether the establishment has special classes."@en .
+
+
+#################################################################
+# Classes — capacity and pupil measures
+#################################################################
+
+epr:CapacityAndPupilMeasures
+    a owl:Class ;
+    rdfs:label "Capacity and pupil measures"@en ;
+    rdfs:comment "The group of numeric measures describing an establishment's capacity and pupil population."@en .
+
+epr:SchoolCapacity
+    a owl:Class ;
+    rdfs:label "School capacity"@en ;
+    rdfs:comment "The total number of pupil places for which the establishment is registered. The name is a legacy field label — it applies to all establishment types."@en .
+
+epr:PupilCount
+    a owl:Class ;
+    rdfs:label "Pupil count"@en ;
+    rdfs:comment "The number of pupils on roll at the establishment at the census date."@en .
+
+epr:PupilsEligibleForFreeSchoolMeals
+    a owl:Class ;
+    rdfs:label "Free school meal measure"@en ;
+    rdfs:comment "The count and percentage of pupils eligible for free school meals. Includes both epr:PupilsEligibleForFreeSchoolMeals and epr:PercentagePupilsEligibleForFreeSchoolMeals."@en .
+
+
+#################################################################
+# Classes — faith context
+#################################################################
+
+epr:FaithContext
+    a owl:Class ;
+    rdfs:label "Faith context"@en ;
+    rdfs:comment "The group of faith-related classification fields for an establishment."@en .
+
+epr:ReligiousCharacter
+    a owl:Class ;
+    rdfs:label "Religious character"@en ;
+    rdfs:comment "The formal religious-character classification designated for an establishment."@en .
+
+epr:ReligiousEthos
+    a owl:Class ;
+    rdfs:label "Religious ethos"@en ;
+    rdfs:comment "The recorded religious-ethos classification associated with an establishment."@en .
+
+epr:Diocese
+    a owl:Class ;
+    rdfs:label "Diocese"@en ;
+    rdfs:comment "The Church of England or Roman Catholic diocese associated with the establishment."@en .
+
+
+#################################################################
+# Classes — SEN and resourced provision
+#################################################################
+
+epr:SenAndResourcedProvision
+    a owl:Class ;
+    rdfs:label "SEN and resourced provision"@en ;
+    rdfs:comment "The group of fields describing special educational needs provision and resourced-provision arrangements."@en .
+
+epr:TypeOfSenProvision
+    a owl:Class ;
+    rdfs:label "Type of SEN provision"@en ;
+    rdfs:comment "The classification describing the type of special educational needs provision offered."@en .
+
+epr:TypeOfResourcedProvision
+    a owl:Class ;
+    rdfs:label "Type of resourced provision"@en ;
+    rdfs:comment "The classification describing the type of resourced provision offered."@en .
+
+epr:ResourcedProvisionMeasure
+    a owl:Class ;
+    rdfs:label "Resourced provision measure"@en ;
+    rdfs:comment "Numeric measures for resourced provision. Corresponds to epr:ResourcedProvisionCapacity and epr:ResourcedProvisionPupilCount in the vocabulary."@en .
+
+epr:SenUnitMeasure
+    a owl:Class ;
+    rdfs:label "SEN unit measure"@en ;
+    rdfs:comment "Numeric measures for the SEN unit. Corresponds to epr:SenUnitCapacity and epr:SenUnitPupilCount in the vocabulary."@en .
+
+
+#################################################################
+# Classes — external references
+#################################################################
+
+epr:ExternalReference
+    a owl:Class ;
+    rdfs:label "External reference"@en ;
+    rdfs:comment "A link from the establishment record to a resource held in an external system or publication."@en .
+
+epr:InspectionReportReference
+    a owl:Class ;
+    rdfs:label "Inspection report reference"@en ;
+    rdfs:comment "A link to an inspection report published by the relevant inspectorate."@en .
+
+epr:ExternalServiceReference
+    a owl:Class ;
+    rdfs:label "External service reference"@en ;
+    rdfs:comment "A link to a record in an external service such as a companies register or accreditation body."@en .
+
+
+#################################################################
+# Object properties — core structure
+#################################################################
+
+epro:hasEstablishmentDetails
+    a owl:ObjectProperty ;
+    rdfs:label "has establishment details"@en ;
+    rdfs:domain epr:Establishment ;
+    rdfs:range epr:EstablishmentDetails ;
+    rdfs:comment "Cardinality: exactly 1. Every establishment has exactly one set of details in this slice."@en .
+
+
+#################################################################
+# Object properties — identity and lifecycle
+#################################################################
+
+epro:hasEstablishmentIdentity
+    a owl:ObjectProperty ;
+    rdfs:label "has establishment identity"@en ;
+    rdfs:domain epr:Establishment ;
+    rdfs:range epr:EstablishmentIdentity ;
+    rdfs:comment "Cardinality: exactly 1. Every establishment has exactly one identity record."@en .
+
+epro:hasEstablishmentLifecycle
+    a owl:ObjectProperty ;
+    rdfs:label "has establishment lifecycle"@en ;
+    rdfs:domain epr:Establishment ;
+    rdfs:range epr:EstablishmentLifecycle ;
+    rdfs:comment "Cardinality: exactly 1. Every establishment has exactly one lifecycle record."@en .
+
+epro:hasRecordCurrency
+    a owl:ObjectProperty ;
+    rdfs:label "has record currency"@en ;
+    rdfs:domain epr:Establishment ;
+    rdfs:range epr:RecordCurrencyAndStewardship ;
+    rdfs:comment "Cardinality: 0..1. An establishment record may have a record-currency block."@en .
+
+epro:identifiedByUrn
+    a owl:ObjectProperty ;
+    rdfs:label "identified by URN"@en ;
+    rdfs:domain epr:EstablishmentIdentity ;
+    rdfs:range epr:UniqueReferenceNumber ;
+    rdfs:comment "Cardinality: exactly 1. Every establishment identity is identified by exactly one URN."@en .
+
+epro:hasUkprn
+    a owl:ObjectProperty ;
+    rdfs:label "has UKPRN"@en ;
+    rdfs:domain epr:EstablishmentIdentity ;
+    rdfs:range epr:UkProviderReferenceNumber ;
+    rdfs:comment "Cardinality: 0..1. An establishment identity may have a UK provider reference number."@en .
+
+epro:hasUprn
+    a owl:ObjectProperty ;
+    rdfs:label "has UPRN"@en ;
+    rdfs:domain epr:EstablishmentIdentity ;
+    rdfs:range epr:UniquePropertyReferenceNumber ;
+    rdfs:comment "Cardinality: 0..1. An establishment identity may reference a unique property reference number."@en .
+
+epro:hasEstablishmentNumber
+    a owl:ObjectProperty ;
+    rdfs:label "has establishment number"@en ;
+    rdfs:domain epr:EstablishmentIdentity ;
+    rdfs:range epr:EstablishmentNumber ;
+    rdfs:comment "Cardinality: 0..1. An establishment identity may have an establishment number."@en .
+
+epro:derivesDfeNumber
+    a owl:ObjectProperty ;
+    rdfs:label "derives DfE number"@en ;
+    rdfs:domain epr:EstablishmentIdentity ;
+    rdfs:range epr:DfeNumber ;
+    rdfs:comment "Cardinality: 0..1. A DfE number is derived from local-authority code and establishment number, not independently stored."@en .
+
+epro:classifiedByEstablishmentStatus
+    a owl:ObjectProperty ;
+    rdfs:label "classified by establishment status"@en ;
+    rdfs:domain epr:EstablishmentLifecycle ;
+    rdfs:range epr:EstablishmentStatus ;
+    rdfs:comment "Cardinality: exactly 1. Every establishment lifecycle must have an establishment status."@en .
+
+epro:hasOpenDate
+    a owl:ObjectProperty ;
+    rdfs:label "has open date"@en ;
+    rdfs:domain epr:EstablishmentLifecycle ;
+    rdfs:range epr:OpenDate ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+epro:hasReasonEstablishmentOpened
+    a owl:ObjectProperty ;
+    rdfs:label "has reason establishment opened"@en ;
+    rdfs:domain epr:EstablishmentLifecycle ;
+    rdfs:range epr:ReasonEstablishmentOpened ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+epro:hasClosedDate
+    a owl:ObjectProperty ;
+    rdfs:label "has closed date"@en ;
+    rdfs:domain epr:EstablishmentLifecycle ;
+    rdfs:range epr:ClosedDate ;
+    rdfs:comment "Cardinality: 0..1. Only present if establishment status is closed."@en .
+
+epro:hasReasonEstablishmentClosed
+    a owl:ObjectProperty ;
+    rdfs:label "has reason establishment closed"@en ;
+    rdfs:domain epr:EstablishmentLifecycle ;
+    rdfs:range epr:ReasonEstablishmentClosed ;
+    rdfs:comment "Cardinality: 0..1. Only present if establishment status is closed."@en .
+
+epro:recordsDateLastChanged
+    a owl:ObjectProperty ;
+    rdfs:label "records date last changed or confirmed"@en ;
+    rdfs:domain epr:RecordCurrencyAndStewardship ;
+    rdfs:range epr:DateLastChangedOrConfirmed ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+
+#################################################################
+# Object properties — classification and accountability
+#################################################################
+
+epro:hasEstablishmentClassification
+    a owl:ObjectProperty ;
+    rdfs:label "has establishment classification"@en ;
+    rdfs:domain epr:Establishment ;
+    rdfs:range epr:EstablishmentClassification ;
+    rdfs:comment "Cardinality: exactly 1. Every establishment has exactly one classification record."@en .
+
+epro:hasEstablishmentType
+    a owl:ObjectProperty ;
+    rdfs:label "has establishment type"@en ;
+    rdfs:domain epr:EstablishmentClassification ;
+    rdfs:range epr:EstablishmentType ;
+    rdfs:comment "Cardinality: exactly 1. Every classification record must have an establishment type."@en .
+
+epro:hasEstablishmentTypeGroup
+    a owl:ObjectProperty ;
+    rdfs:label "has establishment type group"@en ;
+    rdfs:domain epr:EstablishmentClassification ;
+    rdfs:range epr:EstablishmentTypeGroup ;
+    rdfs:comment "Cardinality: 0..1. An establishment type may belong to a type group."@en .
+
+epro:hasEducationPhase
+    a owl:ObjectProperty ;
+    rdfs:label "has education phase"@en ;
+    rdfs:domain epr:EstablishmentClassification ;
+    rdfs:range epr:EducationPhase ;
+    rdfs:comment "Cardinality: 0..1. Not all establishment types have an education phase."@en .
+
+epro:hasAccountabilityRelationship
+    a owl:ObjectProperty ;
+    rdfs:label "has accountability relationship"@en ;
+    rdfs:domain epr:Establishment ;
+    rdfs:range epr:EstablishmentAccountability ;
+    rdfs:comment "Cardinality: 0..*. An establishment may have zero or more accountability relationships depending on its type."@en .
+
+epro:accountableToLocalAuthority
+    a owl:ObjectProperty ;
+    rdfs:label "accountable to local authority"@en ;
+    rdfs:domain epr:EstablishmentAccountability ;
+    rdfs:range epr:LocalAuthority ;
+    rdfs:comment "Cardinality: 0..1. Present for LA-maintained schools."@en .
+
+epro:accountableToAcademyTrust
+    a owl:ObjectProperty ;
+    rdfs:label "accountable to academy trust"@en ;
+    rdfs:domain epr:EstablishmentAccountability ;
+    rdfs:range epr:AcademyTrust ;
+    rdfs:comment "Cardinality: 0..1. Present for academies and free schools."@en .
+
+epro:accountableToProprietor
+    a owl:ObjectProperty ;
+    rdfs:label "accountable to proprietor"@en ;
+    rdfs:domain epr:EstablishmentAccountability ;
+    rdfs:range epr:Proprietor ;
+    rdfs:comment "Cardinality: 0..1. Present for independent schools."@en .
+
+epro:isSingleAcademyTrust
+    a owl:ObjectProperty ;
+    rdfs:label "is single academy trust"@en ;
+    rdfs:domain epr:AcademyTrust ;
+    rdfs:range epr:SingleAcademyTrust ;
+    rdfs:comment "Cardinality: 0..1. An academy trust may be a single academy trust."@en .
+
+epro:hasAcademySponsor
+    a owl:ObjectProperty ;
+    rdfs:label "has academy sponsor"@en ;
+    rdfs:domain epr:AcademyTrust ;
+    rdfs:range epr:AcademySponsor ;
+    rdfs:comment "Cardinality: 0..1. A sponsor-led academy trust may be associated with an academy sponsor."@en .
+
+
+#################################################################
+# Object properties — education, admissions and provision
+#################################################################
+
+epro:hasEducationAdmissionsAndProvision
+    a owl:ObjectProperty ;
+    rdfs:label "has education, admissions and provision"@en ;
+    rdfs:domain epr:Establishment ;
+    rdfs:range epr:EducationAdmissionsAndProvision ;
+    rdfs:comment "Cardinality: 0..1. Not all establishment types have provision classifications."@en .
+
+epro:hasStatutoryAgeRange
+    a owl:ObjectProperty ;
+    rdfs:label "has statutory age range"@en ;
+    rdfs:domain epr:EducationAdmissionsAndProvision ;
+    rdfs:range epr:StatutoryAgeRange ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+epro:classifiedByGenderOfEntry
+    a owl:ObjectProperty ;
+    rdfs:label "classified by gender of entry"@en ;
+    rdfs:domain epr:EducationAdmissionsAndProvision ;
+    rdfs:range epr:GenderOfEntry ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+epro:classifiedByAdmissionsPolicy
+    a owl:ObjectProperty ;
+    rdfs:label "classified by admissions policy"@en ;
+    rdfs:domain epr:EducationAdmissionsAndProvision ;
+    rdfs:range epr:AdmissionsPolicy ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+epro:classifiedByBoardingProvision
+    a owl:ObjectProperty ;
+    rdfs:label "classified by boarding provision"@en ;
+    rdfs:domain epr:EducationAdmissionsAndProvision ;
+    rdfs:range epr:BoardingProvision ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+epro:classifiedByNurseryProvision
+    a owl:ObjectProperty ;
+    rdfs:label "classified by nursery provision"@en ;
+    rdfs:domain epr:EducationAdmissionsAndProvision ;
+    rdfs:range epr:NurseryProvision ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+epro:classifiedBySixthFormProvision
+    a owl:ObjectProperty ;
+    rdfs:label "classified by sixth-form provision"@en ;
+    rdfs:domain epr:EducationAdmissionsAndProvision ;
+    rdfs:range epr:SixthFormProvision ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+epro:classifiedBySpecialClassProvision
+    a owl:ObjectProperty ;
+    rdfs:label "classified by special-class provision"@en ;
+    rdfs:domain epr:EducationAdmissionsAndProvision ;
+    rdfs:range epr:SpecialClassProvision ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+
+#################################################################
+# Object properties — capacity and pupil measures
+#################################################################
+
+epro:hasCapacityAndPupilMeasures
+    a owl:ObjectProperty ;
+    rdfs:label "has capacity and pupil measures"@en ;
+    rdfs:domain epr:Establishment ;
+    rdfs:range epr:CapacityAndPupilMeasures ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+epro:hasSchoolCapacity
+    a owl:ObjectProperty ;
+    rdfs:label "has school capacity"@en ;
+    rdfs:domain epr:CapacityAndPupilMeasures ;
+    rdfs:range epr:SchoolCapacity ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+epro:hasPupilCount
+    a owl:ObjectProperty ;
+    rdfs:label "has pupil count"@en ;
+    rdfs:domain epr:CapacityAndPupilMeasures ;
+    rdfs:range epr:PupilCount ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+epro:hasFreeSchoolMealMeasure
+    a owl:ObjectProperty ;
+    rdfs:label "has free school meal measure"@en ;
+    rdfs:domain epr:CapacityAndPupilMeasures ;
+    rdfs:range epr:PupilsEligibleForFreeSchoolMeals ;
+    rdfs:comment "Cardinality: 0..1. Covers both count and percentage; see epr:PupilsEligibleForFreeSchoolMeals and epr:PercentagePupilsEligibleForFreeSchoolMeals in the vocabulary."@en .
+
+
+#################################################################
+# Object properties — faith context
+#################################################################
+
+epro:hasFaithContext
+    a owl:ObjectProperty ;
+    rdfs:label "has faith context"@en ;
+    rdfs:domain epr:Establishment ;
+    rdfs:range epr:FaithContext ;
+    rdfs:comment "Cardinality: 0..1. Not all establishment types have faith classifications."@en .
+
+epro:classifiedByReligiousCharacter
+    a owl:ObjectProperty ;
+    rdfs:label "classified by religious character"@en ;
+    rdfs:domain epr:FaithContext ;
+    rdfs:range epr:ReligiousCharacter ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+epro:classifiedByReligiousEthos
+    a owl:ObjectProperty ;
+    rdfs:label "classified by religious ethos"@en ;
+    rdfs:domain epr:FaithContext ;
+    rdfs:range epr:ReligiousEthos ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+epro:associatedWithDiocese
+    a owl:ObjectProperty ;
+    rdfs:label "associated with diocese"@en ;
+    rdfs:domain epr:FaithContext ;
+    rdfs:range epr:Diocese ;
+    rdfs:comment "Cardinality: 0..1. Present for Church of England and Roman Catholic establishments."@en .
+
+
+#################################################################
+# Object properties — SEN and resourced provision
+#################################################################
+
+epro:hasSenAndResourcedProvision
+    a owl:ObjectProperty ;
+    rdfs:label "has SEN and resourced provision"@en ;
+    rdfs:domain epr:Establishment ;
+    rdfs:range epr:SenAndResourcedProvision ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+epro:classifiedByTypeOfSenProvision
+    a owl:ObjectProperty ;
+    rdfs:label "classified by type of SEN provision"@en ;
+    rdfs:domain epr:SenAndResourcedProvision ;
+    rdfs:range epr:TypeOfSenProvision ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+epro:classifiedByTypeOfResourcedProvision
+    a owl:ObjectProperty ;
+    rdfs:label "classified by type of resourced provision"@en ;
+    rdfs:domain epr:SenAndResourcedProvision ;
+    rdfs:range epr:TypeOfResourcedProvision ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+epro:hasResourcedProvisionMeasure
+    a owl:ObjectProperty ;
+    rdfs:label "has resourced provision measure"@en ;
+    rdfs:domain epr:SenAndResourcedProvision ;
+    rdfs:range epr:ResourcedProvisionMeasure ;
+    rdfs:comment "Cardinality: 0..1. Covers epr:ResourcedProvisionCapacity and epr:ResourcedProvisionPupilCount."@en .
+
+epro:hasSenUnitMeasure
+    a owl:ObjectProperty ;
+    rdfs:label "has SEN unit measure"@en ;
+    rdfs:domain epr:SenAndResourcedProvision ;
+    rdfs:range epr:SenUnitMeasure ;
+    rdfs:comment "Cardinality: 0..1. Covers epr:SenUnitCapacity and epr:SenUnitPupilCount."@en .
+
+
+#################################################################
+# Object properties — external references
+#################################################################
+
+epro:hasExternalReference
+    a owl:ObjectProperty ;
+    rdfs:label "has external reference"@en ;
+    rdfs:domain epr:Establishment ;
+    rdfs:range epr:ExternalReference ;
+    rdfs:comment "Cardinality: 0..*. An establishment may have zero or more external references."@en .
+
+epro:referencesInspectionReport
+    a owl:ObjectProperty ;
+    rdfs:label "references inspection report"@en ;
+    rdfs:domain epr:ExternalReference ;
+    rdfs:range epr:InspectionReportReference ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+epro:referencesExternalService
+    a owl:ObjectProperty ;
+    rdfs:label "references external service"@en ;
+    rdfs:domain epr:ExternalReference ;
+    rdfs:range epr:ExternalServiceReference ;
+    rdfs:comment "Cardinality: 0..1."@en .
