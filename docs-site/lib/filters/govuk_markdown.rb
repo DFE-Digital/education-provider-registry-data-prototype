@@ -11,5 +11,5 @@ Nanoc::Filter.define(:govuk_markdown) do |content, _params|
     %(href="#{output_path}#{suffix}")
   end
 
-  html.gsub(/href="((?:\.\.?\/)[^":?#]*\/)"/, 'href="\1index.html"')
+  html
 end
