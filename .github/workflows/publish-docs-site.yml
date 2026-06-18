@@ -28,6 +28,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
       - name: Generate vocabulary pages from Turtle
         shell: pwsh
         run: ./docs-site/scripts/generate-vocabulary-pages.ps1
@@ -46,6 +52,30 @@ jobs:
       - name: Compile Nanoc site
         working-directory: docs-site
         run: bundle exec nanoc compile
+
+      - name: Cache WIDOCO
+        uses: actions/cache@v4
+        with:
+          path: widoco.jar
+          key: widoco-1.4.25
+
+      - name: Download WIDOCO
+        run: |
+          if [ ! -f widoco.jar ]; then
+            curl -L -o widoco.jar \
+              https://github.com/dgarijo/Widoco/releases/download/v1.4.25/widoco-1.4.25-jar-with-dependencies_JDK-17.jar
+          fi
+
+      - name: Generate ontology documentation
+        run: |
+          java -jar widoco.jar \
+            -ontFile education-provider-registry-data/models/establishment-details-conceptual-model.ttl \
+            -outFolder docs-site/output/ontology \
+            -lang en \
+            -includeAnnotationProperties \
+            -webVowl \
+            -noPlaceHolderText \
+            -rewriteAll
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
