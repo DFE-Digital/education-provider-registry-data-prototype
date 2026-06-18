@@ -16,3 +16,4 @@
 /docs-site/vendor/bundle-cache
 /docs-site/vendor/bundle-home
 /.bundle
+/docker-compose.old
