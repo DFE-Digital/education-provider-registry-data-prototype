@@ -76,6 +76,10 @@ jobs:
             -webVowl \
             -noPlaceHolderText \
             -rewriteAll
+          ls -la docs-site/output/ontology/
+          if [ ! -f docs-site/output/ontology/index.html ]; then
+            cp docs-site/output/ontology/index-en.html docs-site/output/ontology/index.html
+          fi
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
