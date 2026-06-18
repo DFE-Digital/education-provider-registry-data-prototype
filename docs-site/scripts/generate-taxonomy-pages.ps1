@@ -58,6 +58,23 @@ function Get-Refs {
         }
 }
 
+function Get-VocabularyRefs {
+    param(
+        [string]$Block,
+        [string]$Predicate
+    )
+
+    $predicateText = Get-PredicateText -Block $Block -Predicate $Predicate
+    if ([string]::IsNullOrWhiteSpace($predicateText)) {
+        return @()
+    }
+
+    return [regex]::Matches($predicateText, 'eprv:([A-Za-z][A-Za-z0-9]*)') |
+        ForEach-Object {
+            $_.Groups[1].Value
+        }
+}
+
 function Escape-MarkdownTableCell {
     param([AllowNull()][string]$Value)
 
@@ -98,6 +115,7 @@ $concepts = foreach ($match in $conceptMatches) {
         Definition = (Get-Literals -Block $block -Predicate "skos:definition" | Select-Object -First 1)
         Status = (Get-Literals -Block $block -Predicate "epr:status" | Select-Object -First 1)
         Broader = @(Get-Refs -Block $block -Predicate "skos:broader")
+        VocabularyMatches = @(Get-VocabularyRefs -Block $block -Predicate "skos:relatedMatch")
         IsTopConcept = $block -match 'skos:topConceptOf\s+epr:establishmentDetailsTaxonomy'
     }
 }
@@ -125,7 +143,14 @@ function New-TaxonomyTreeHtml {
     param([string]$LocalName)
 
     $concept = $conceptLookup[$LocalName]
-    $label = Html-Encode $concept.PreferredLabel
+    $label = if ($concept.VocabularyMatches.Count -gt 0) {
+        $vocabularyLocalName = Html-Encode ($concept.VocabularyMatches | Select-Object -First 1)
+        $vocabularyHref = "../vocabulary/$vocabularyLocalName/"
+        "<a href=""$vocabularyHref"">$((Html-Encode $concept.PreferredLabel))</a>"
+    }
+    else {
+        Html-Encode $concept.PreferredLabel
+    }
     $identifier = Html-Encode "epr:$($concept.LocalName)"
     $hasChildren = $childrenByParent.ContainsKey($LocalName) -and $childrenByParent[$LocalName].Count -gt 0
 
@@ -147,6 +172,18 @@ $($childHtml -join "`n")
   </details>
 </li>
 "@
+}
+
+function Format-VocabularyConceptLinks {
+    param([string[]]$LocalNames)
+
+    if ($null -eq $LocalNames -or $LocalNames.Count -eq 0) {
+        return ""
+    }
+
+    return ($LocalNames | ForEach-Object {
+        "[$_](../vocabulary/$_/)"
+    }) -join "<br>"
 }
 
 $facets = $concepts | Where-Object { $_.IsTopConcept } | Sort-Object PreferredLabel
@@ -175,20 +212,20 @@ $lines += @(
     "",
     "## Facets",
     "",
-    "| Facet | Compact identifier | Definition |",
-    "| --- | --- | --- |"
+    "| Facet | Compact identifier | Vocabulary concept | Definition |",
+    "| --- | --- | --- | --- |"
 )
 
 foreach ($facet in $facets) {
-    $lines += "| $($facet.PreferredLabel) | ``epr:$($facet.LocalName)`` | $(Escape-MarkdownTableCell $facet.Definition) |"
+    $lines += "| $($facet.PreferredLabel) | ``epr:$($facet.LocalName)`` | $(Escape-MarkdownTableCell (Format-VocabularyConceptLinks -LocalNames $facet.VocabularyMatches)) | $(Escape-MarkdownTableCell $facet.Definition) |"
 }
 
 $lines += @(
     "",
     "## Taxons",
     "",
-    "| Taxon | Compact identifier | Broader concept | Status |",
-    "| --- | --- | --- | --- |"
+    "| Taxon | Compact identifier | Vocabulary concept | Broader concept | Status |",
+    "| --- | --- | --- | --- | --- |"
 )
 
 foreach ($taxon in $taxons) {
@@ -201,7 +238,7 @@ foreach ($taxon in $taxons) {
         }
     }) -join "<br>"
 
-    $lines += "| $($taxon.PreferredLabel) | ``epr:$($taxon.LocalName)`` | $(Escape-MarkdownTableCell $broaderLabels) | $(Escape-MarkdownTableCell $taxon.Status) |"
+    $lines += "| $($taxon.PreferredLabel) | ``epr:$($taxon.LocalName)`` | $(Escape-MarkdownTableCell (Format-VocabularyConceptLinks -LocalNames $taxon.VocabularyMatches)) | $(Escape-MarkdownTableCell $broaderLabels) | $(Escape-MarkdownTableCell $taxon.Status) |"
 }
 
 Set-Content -LiteralPath (Join-Path $resolvedOutputRoot "index.md") -Value $lines -Encoding UTF8

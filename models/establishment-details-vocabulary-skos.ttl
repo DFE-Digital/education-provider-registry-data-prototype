@@ -1,4 +1,4 @@
-﻿@prefix epr: <https://education.gov.uk/epr/vocabulary/> .
+﻿@prefix epr: <https://dfe-digital.github.io/education-provider-registry-data/vocabulary/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -17,11 +17,11 @@
 #
 # Canonical concept identifiers are the expanded epr: IRIs, for example
 # epr:EstablishmentLifecycle expands to:
-# https://education.gov.uk/epr/vocabulary/EstablishmentLifecycle
+# https://dfe-digital.github.io/education-provider-registry-data/vocabulary/EstablishmentLifecycle/
 #
 # GitHub file and line links are useful human references, but they are not
 # canonical identifiers because line numbers can change.
-# The namespace is a proposed identifier and does not imply a published service.
+# The namespace is published through the GitHub Pages documentation site and provides persistent, resolvable concept URIs.
 
 epr:status
     a rdf:Property ;
@@ -1227,5 +1227,6 @@ epr:ExternalServiceReference
     skos:definition "A link from GIAS to related information owned by another service."@en ;
     skos:broader epr:ExternalReference ;
     epr:status "Provisional"@en .
+
 
 

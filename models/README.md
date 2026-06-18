@@ -21,7 +21,7 @@ The canonical identifier for a concept is its expanded RDF IRI, not its GitHub l
 For example, in the TTL file:
 
 ```ttl
-@prefix epr: <https://education.gov.uk/epr/vocabulary/> .
+@prefix epr: <https://dfe-digital.github.io/education-provider-registry-data/vocabulary/> .
 
 epr:EstablishmentLifecycle
     a skos:Concept ;
@@ -31,10 +31,12 @@ epr:EstablishmentLifecycle
 The persistent concept identifier is:
 
 ```text
-https://education.gov.uk/epr/vocabulary/EstablishmentLifecycle
+https://dfe-digital.github.io/education-provider-registry-data/vocabulary/EstablishmentLifecycle/
 ```
 
 The GitHub link to a line in `establishment-details-vocabulary-skos.ttl` is useful for review and navigation, but it should not be treated as the canonical identifier because line numbers can change as the file evolves.
+
+The taxonomy file uses `skos:relatedMatch` to link taxonomy concepts to vocabulary concepts when there is a matching published vocabulary concept. Not every taxon has a vocabulary concept, so absence of a link is intentional rather than a publication error.
 
 ## Viewing The Files
 
@@ -43,3 +45,4 @@ The TTL files can be opened as text, but they are easier to inspect graphically 
 Suggested VS Code extension:
 
 <https://marketplace.visualstudio.com/items?itemName=Zazuko.vscode-rdf-sketch>
+
