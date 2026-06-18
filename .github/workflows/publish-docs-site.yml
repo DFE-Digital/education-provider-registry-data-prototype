@@ -9,6 +9,7 @@ on:
       - "docs-site/**"
       - "models/**"
       - "scripts/generate-vocabulary-pages.ps1"
+      - "scripts/generate-taxonomy-pages.ps1"
   workflow_dispatch:
 
 permissions:
@@ -30,6 +31,10 @@ jobs:
       - name: Generate vocabulary pages from Turtle
         shell: pwsh
         run: ./scripts/generate-vocabulary-pages.ps1
+
+      - name: Generate taxonomy page from Turtle
+        shell: pwsh
+        run: ./scripts/generate-taxonomy-pages.ps1
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1

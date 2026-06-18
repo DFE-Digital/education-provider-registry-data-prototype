@@ -10,6 +10,8 @@
 /docs-site/.bundle
 /docs-site/content/vocabulary/*.md
 !/docs-site/content/vocabulary/.gitkeep
+/docs-site/content/taxonomy/*.md
+!/docs-site/content/taxonomy/.gitkeep
 /docs-site/vendor/bundle
 /docs-site/vendor/bundle-cache
 /docs-site/vendor/bundle-home
