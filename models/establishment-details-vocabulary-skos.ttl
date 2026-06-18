@@ -226,6 +226,8 @@ epr:Establishment
     skos:altLabel "Establishments"@en ;
     skos:definition "A registered education establishment recorded by GIAS, such as a school, college, children's centre or other education provider."@en ;
     skos:scopeNote "Do not use school as a universal synonym because GIAS includes non-school establishments."@en ;
+    skos:narrower
+        epr:EstablishmentDetails ;
     epr:status "Preferred"@en .
 
 epr:EstablishmentIdentity
@@ -234,6 +236,14 @@ epr:EstablishmentIdentity
     skos:topConceptOf epr:establishmentDetailsVocabulary ;
     skos:prefLabel "Establishment identity"@en ;
     skos:definition "The names and identifiers used to distinguish and refer to an establishment."@en ;
+    skos:narrower
+        epr:DfeNumber,
+        epr:EstablishmentName,
+        epr:EstablishmentNumber,
+        epr:FeHeIdentifier,
+        epr:Laestab,
+        epr:UkProviderReferenceNumber,
+        epr:UniqueReferenceNumber ;
     epr:status "Provisional"@en .
 
 epr:EstablishmentClassification
@@ -242,6 +252,12 @@ epr:EstablishmentClassification
     skos:topConceptOf epr:establishmentDetailsVocabulary ;
     skos:prefLabel "Establishment classification"@en ;
     skos:definition "The controlled classifications used to describe an establishment."@en ;
+    skos:narrower
+        epr:EducationPhase,
+        epr:EstablishmentType,
+        epr:EstablishmentTypeGroup,
+        epr:FurtherEducationType,
+        epr:ProviderType ;
     epr:status "Provisional"@en .
 
 epr:EstablishmentAccountability
@@ -250,6 +266,12 @@ epr:EstablishmentAccountability
     skos:topConceptOf epr:establishmentDetailsVocabulary ;
     skos:prefLabel "Establishment accountability"@en ;
     skos:definition "The organisations or people responsible for maintaining, operating or being accountable for an establishment."@en ;
+    skos:narrower
+        epr:AcademySponsor,
+        epr:AcademyTrust,
+        epr:LocalAuthority,
+        epr:MaintainingAuthority,
+        epr:Proprietor ;
     epr:status "Provisional"@en .
 
 epr:EstablishmentLifecycle
@@ -258,6 +280,12 @@ epr:EstablishmentLifecycle
     skos:topConceptOf epr:establishmentDetailsVocabulary ;
     skos:prefLabel "Establishment lifecycle"@en ;
     skos:definition "The states, dates and reasons that describe the opening, operation and closure of an establishment."@en ;
+    skos:narrower
+        epr:ClosedDate,
+        epr:EstablishmentStatus,
+        epr:OpenDate,
+        epr:ReasonEstablishmentClosed,
+        epr:ReasonEstablishmentOpened ;
     epr:status "Provisional"@en .
 
 epr:RecordCurrencyAndStewardship
@@ -266,6 +294,8 @@ epr:RecordCurrencyAndStewardship
     skos:topConceptOf epr:establishmentDetailsVocabulary ;
     skos:prefLabel "Record currency and stewardship"@en ;
     skos:definition "Information describing when an establishment record was changed, reviewed or confirmed as accurate."@en ;
+    skos:narrower
+        epr:DateLastChangedOrConfirmed ;
     epr:status "Provisional"@en .
 
 epr:EstablishmentLocationAndContact
@@ -274,6 +304,11 @@ epr:EstablishmentLocationAndContact
     skos:topConceptOf epr:establishmentDetailsVocabulary ;
     skos:prefLabel "Establishment location and contact"@en ;
     skos:definition "The location identifiers, postal address and published contact information for an establishment."@en ;
+    skos:narrower
+        epr:MainAddress,
+        epr:TelephoneNumber,
+        epr:UniquePropertyReferenceNumber,
+        epr:Website ;
     epr:status "Provisional"@en .
 
 epr:EstablishmentLeadership
@@ -282,6 +317,10 @@ epr:EstablishmentLeadership
     skos:topConceptOf epr:establishmentDetailsVocabulary ;
     skos:prefLabel "Establishment leadership"@en ;
     skos:definition "The principal education leadership information presented for an establishment."@en ;
+    skos:narrower
+        epr:CentreManager,
+        epr:HeadteacherOrPrincipal,
+        epr:PreferredJobTitle ;
     epr:status "Provisional"@en .
 
 epr:EducationAdmissionsAndProvision
@@ -290,6 +329,15 @@ epr:EducationAdmissionsAndProvision
     skos:topConceptOf epr:establishmentDetailsVocabulary ;
     skos:prefLabel "Education, admissions and provision"@en ;
     skos:definition "The classifications and characteristics describing the education, admissions arrangements and provision offered by an establishment."@en ;
+    skos:narrower
+        epr:AdmissionsPolicy,
+        epr:BoardingProvision,
+        epr:GenderOfEntry,
+        epr:NurseryProvision,
+        epr:Section41Approval,
+        epr:SixthFormProvision,
+        epr:SpecialClassProvision,
+        epr:StatutoryAgeRange ;
     epr:status "Provisional"@en .
 
 epr:CapacityAndPupilMeasures
@@ -298,6 +346,14 @@ epr:CapacityAndPupilMeasures
     skos:topConceptOf epr:establishmentDetailsVocabulary ;
     skos:prefLabel "Capacity and pupil measures"@en ;
     skos:definition "Measures describing establishment capacity and pupil populations at an effective date."@en ;
+    skos:narrower
+        epr:CensusDate,
+        epr:PercentagePupilsEligibleForFreeSchoolMeals,
+        epr:PupilCount,
+        epr:PupilsEligibleForFreeSchoolMeals,
+        epr:SchoolCapacity,
+        epr:SpecialPupilsNotOnStatementOrEhcPlan,
+        epr:SpecialPupilsOnStatementOrEhcPlan ;
     epr:status "Provisional"@en .
 
 epr:FaithContext
@@ -306,6 +362,10 @@ epr:FaithContext
     skos:topConceptOf epr:establishmentDetailsVocabulary ;
     skos:prefLabel "Faith context"@en ;
     skos:definition "The religious-character, ethos and diocesan classifications associated with an establishment."@en ;
+    skos:narrower
+        epr:Diocese,
+        epr:ReligiousCharacter,
+        epr:ReligiousEthos ;
     epr:status "Provisional"@en .
 
 epr:SenAndResourcedProvision
@@ -314,6 +374,13 @@ epr:SenAndResourcedProvision
     skos:topConceptOf epr:establishmentDetailsVocabulary ;
     skos:prefLabel "SEN and resourced provision"@en ;
     skos:definition "The special educational needs and resourced-provision classifications and measures associated with an establishment."@en ;
+    skos:narrower
+        epr:ResourcedProvisionCapacity,
+        epr:ResourcedProvisionPupilCount,
+        epr:SenUnitCapacity,
+        epr:SenUnitPupilCount,
+        epr:TypeOfResourcedProvision,
+        epr:TypeOfSenProvision ;
     epr:status "Provisional"@en .
 
 epr:AlternativeProvisionCharacteristics
@@ -323,6 +390,15 @@ epr:AlternativeProvisionCharacteristics
     skos:prefLabel "Alternative provision characteristics"@en ;
     skos:definition "The provision indicators and pupil measures specific to pupil referral units and alternative provision establishments."@en ;
     skos:scopeNote "Shown on the Details tab for pupil referral units (type 14). Not applicable to mainstream or independent schools."@en ;
+    skos:narrower
+        epr:AlternativeProvisionPlaces,
+        epr:ChildcareFacilitiesProvision,
+        epr:EbdPupilsProvision,
+        epr:FullTimeProvision,
+        epr:PupilsEducatedByOtherProviders,
+        epr:SenFacilitiesProvision,
+        epr:TeenageMothersPlaces,
+        epr:TeenageMothersProvision ;
     epr:status "Provisional"@en .
 
 epr:InspectionRecord
@@ -332,6 +408,11 @@ epr:InspectionRecord
     skos:prefLabel "Inspection record"@en ;
     skos:definition "Information about an establishment's inspectorate, inspection reports and inspection visit dates."@en ;
     skos:scopeNote "Shown for independent schools (inspectorate name only) and British schools overseas (inspectorate name, report and visit dates). Ofsted links appear under External reference rather than here."@en ;
+    skos:narrower
+        epr:DateOfLastInspectionVisit,
+        epr:DateOfNextInspectionVisit,
+        epr:InspectorateName,
+        epr:InspectorateReport ;
     epr:status "Provisional"@en .
 
 epr:AccreditationAndQualityAssurance
@@ -341,6 +422,14 @@ epr:AccreditationAndQualityAssurance
     skos:prefLabel "Accreditation and quality assurance"@en ;
     skos:definition "The accreditation status, dates, quality assurance body details and related legal identifiers for online providers."@en ;
     skos:scopeNote "Applicable only to online providers (type 49). Accreditation date and accreditation date ended are type-49-specific presentations of the OpenDate and CloseDate fields."@en ;
+    skos:narrower
+        epr:AccreditationDate,
+        epr:AccreditationDateEnded,
+        epr:AccreditationExpiryDate,
+        epr:CompaniesHouseNumber,
+        epr:EstablishmentAccredited,
+        epr:QualityAssuranceBodyName,
+        epr:QualityAssuranceBodyReport ;
     epr:status "Provisional"@en .
 
 epr:ExternalReference
@@ -349,6 +438,9 @@ epr:ExternalReference
     skos:topConceptOf epr:establishmentDetailsVocabulary ;
     skos:prefLabel "External reference"@en ;
     skos:definition "A reference or link to related information owned and published by another service."@en ;
+    skos:narrower
+        epr:ExternalServiceReference,
+        epr:InspectionReportReference ;
     epr:status "Provisional"@en .
 
 #################################################################
@@ -373,6 +465,18 @@ epr:EstablishmentType
     skos:scopeNote "School type is too narrow for the wider registry. The classification mixes legal form, sector and operational model across a single dimension and requires further analysis."@en ;
     skos:broader epr:EstablishmentClassification ;
     skos:related epr:EstablishmentTypeGroup ;
+    skos:narrower
+        epr:EstablishmentTypeGroupAcademies,
+        epr:EstablishmentTypeGroupChildrensCentres,
+        epr:EstablishmentTypeGroupColleges,
+        epr:EstablishmentTypeGroupFreeSchools,
+        epr:EstablishmentTypeGroupIndependentSchools,
+        epr:EstablishmentTypeGroupLaMaintainedSchools,
+        epr:EstablishmentTypeGroupNonMaintainedSpecialSchools,
+        epr:EstablishmentTypeGroupOnlineProviders,
+        epr:EstablishmentTypeGroupOtherTypes,
+        epr:EstablishmentTypeGroupUniversities,
+        epr:EstablishmentTypeGroupWelshEstablishments ;
     epr:status "Preferred"@en ;
     dcterms:source "Database: Establishment.type_code -> EstablishmentType.code"@en .
 
@@ -424,6 +528,16 @@ epr:EstablishmentTypeGroupAcademies
     skos:prefLabel "Academies"@en ;
     skos:definition "The establishment type group for academy establishments."@en ;
     skos:broader epr:EstablishmentType ;
+    skos:narrower
+        epr:Academy1619Converter,
+        epr:Academy16To19SponsorLed,
+        epr:AcademyAlternativeProvisionConverter,
+        epr:AcademyAlternativeProvisionSponsorLed,
+        epr:AcademyConverter,
+        epr:AcademySecure16To19,
+        epr:AcademySpecialConverter,
+        epr:AcademySpecialSponsorLed,
+        epr:AcademySponsorLed ;
     epr:status "Preferred"@en ;
     dcterms:source "Definition provenance: Inferred from `docs/data`"@en .
 
@@ -433,6 +547,9 @@ epr:EstablishmentTypeGroupChildrensCentres
     skos:prefLabel "Children's centres"@en ;
     skos:definition "The establishment type group for children's centre establishments and linked sites."@en ;
     skos:broader epr:EstablishmentType ;
+    skos:narrower
+        epr:ChildrensCentre,
+        epr:ChildrensCentreLinkedSite ;
     epr:status "Preferred"@en ;
     dcterms:source "Definition provenance: Inferred from `docs/data`"@en .
 
@@ -442,15 +559,26 @@ epr:EstablishmentTypeGroupColleges
     skos:prefLabel "Colleges"@en ;
     skos:definition "The establishment type group for further education and sixth-form-centre providers."@en ;
     skos:broader epr:EstablishmentType ;
+    skos:narrower
+        epr:FurtherEducation,
+        epr:SixthFormCentre ;
     epr:status "Preferred"@en ;
     dcterms:source "Definition provenance: Inferred from `docs/data`"@en .
 
 epr:EstablishmentTypeGroupFreeSchools
     a skos:Concept ;
     skos:inScheme epr:establishmentDetailsVocabulary ;
-    skos:prefLabel "Free schools"@en ;
+    skos:prefLabel "Free schools (type group)"@en ;
+    skos:altLabel "Free schools"@en ;
     skos:definition "The establishment type group for free-school and related academy-programme establishments."@en ;
     skos:broader epr:EstablishmentType ;
+    skos:narrower
+        epr:FreeSchool,
+        epr:FreeSchool16To19,
+        epr:FreeSchoolAlternativeProvision,
+        epr:FreeSchoolSpecial,
+        epr:StudioSchool,
+        epr:UniversityTechnicalCollege ;
     epr:status "Preferred"@en ;
     dcterms:source "Definition provenance: Inferred from `docs/data`"@en .
 
@@ -460,6 +588,9 @@ epr:EstablishmentTypeGroupIndependentSchools
     skos:prefLabel "Independent schools"@en ;
     skos:definition "The establishment type group for independent-school establishments."@en ;
     skos:broader epr:EstablishmentType ;
+    skos:narrower
+        epr:CityTechnologyCollege,
+        epr:OtherIndependentSchool ;
     epr:status "Preferred"@en ;
     dcterms:source "Definition provenance: Inferred from `docs/data`"@en .
 
@@ -469,6 +600,15 @@ epr:EstablishmentTypeGroupLaMaintainedSchools
     skos:prefLabel "Local authority maintained schools"@en ;
     skos:definition "The establishment type group for schools maintained by a local authority."@en ;
     skos:broader epr:EstablishmentType ;
+    skos:narrower
+        epr:CommunitySchool,
+        epr:CommunitySpecialSchool,
+        epr:FoundationSchool,
+        epr:FoundationSpecialSchool,
+        epr:LocalAuthorityNurserySchool,
+        epr:PupilReferralUnit,
+        epr:VoluntaryAidedSchool,
+        epr:VoluntaryControlledSchool ;
     epr:status "Preferred"@en ;
     dcterms:source "Definition provenance: Inferred from `docs/data`"@en .
 
@@ -478,6 +618,9 @@ epr:EstablishmentTypeGroupNonMaintainedSpecialSchools
     skos:prefLabel "Non-maintained special schools"@en ;
     skos:definition "The establishment type group covering non-maintained and independent special schools."@en ;
     skos:broader epr:EstablishmentType ;
+    skos:narrower
+        epr:NonMaintainedSpecialSchool,
+        epr:OtherIndependentSpecialSchool ;
     epr:status "Preferred"@en ;
     dcterms:source "Definition provenance: Inferred from `docs/data`"@en .
 
@@ -487,6 +630,8 @@ epr:EstablishmentTypeGroupOnlineProviders
     skos:prefLabel "Online providers"@en ;
     skos:definition "The establishment type group for accredited online education providers."@en ;
     skos:broader epr:EstablishmentType ;
+    skos:narrower
+        epr:OnlineProvider ;
     epr:status "Preferred"@en ;
     dcterms:source "Definition provenance: Inferred from `docs/data`"@en .
 
@@ -496,6 +641,14 @@ epr:EstablishmentTypeGroupOtherTypes
     skos:prefLabel "Other types"@en ;
     skos:definition "The establishment type group for specialist, overseas, secure, service-children and other non-standard provider types."@en ;
     skos:broader epr:EstablishmentType ;
+    skos:narrower
+        epr:BritishSchoolsOverseas,
+        epr:InstitutionFundedByOtherGovernmentDepartment,
+        epr:MiscellaneousEstablishment,
+        epr:OffshoreSchools,
+        epr:SecureUnits,
+        epr:ServiceChildrensEducation,
+        epr:SpecialPost16Institution ;
     epr:status "Preferred"@en ;
     dcterms:source "Definition provenance: Inferred from `docs/data`"@en .
 
@@ -505,6 +658,8 @@ epr:EstablishmentTypeGroupUniversities
     skos:prefLabel "Universities and higher education"@en ;
     skos:definition "The establishment type group for higher education institutions."@en ;
     skos:broader epr:EstablishmentType ;
+    skos:narrower
+        epr:HigherEducationInstitution ;
     epr:status "Preferred"@en ;
     dcterms:source "Definition provenance: Inferred from `docs/data`"@en .
 
@@ -514,6 +669,8 @@ epr:EstablishmentTypeGroupWelshEstablishments
     skos:prefLabel "Welsh establishments"@en ;
     skos:definition "The establishment type group for Welsh establishment records."@en ;
     skos:broader epr:EstablishmentType ;
+    skos:narrower
+        epr:WelshEstablishment ;
     epr:status "Preferred"@en ;
     dcterms:source "Definition provenance: Inferred from `docs/data`"@en .
 
@@ -746,7 +903,7 @@ epr:OffshoreSchools
     a skos:Concept ;
     skos:inScheme epr:establishmentDetailsVocabulary ;
     skos:prefLabel "Offshore schools"@en ;
-    skos:definition "An establishment type for providers outside the normal England and Wales local-authority geography."@en ;
+    skos:definition "An establishment type for providers in Crown Dependencies, British Overseas Territories or similar non-mainland-UK geographies registered with GIAS, distinct from British schools overseas (inspected under the BSO framework) and Welsh establishments."@en ;
     skos:broader epr:EstablishmentTypeGroupOtherTypes ;
     epr:status "Preferred"@en ;
     dcterms:source "Definition provenance: Inferred from local domain notes"@en .
@@ -877,6 +1034,15 @@ epr:MiddlePhase
     epr:status "Preferred"@en ;
     dcterms:source "Definition provenance: Captured public glossary"@en .
 
+epr:MiddleDeemedSecondaryPhase
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsVocabulary ;
+    skos:prefLabel "Middle deemed secondary"@en ;
+    skos:definition "An education phase for a former middle school deemed secondary because most pupils are of secondary age."@en ;
+    skos:broader epr:EducationPhase ;
+    epr:status "Preferred"@en ;
+    dcterms:source "Definition provenance: Captured public glossary"@en .
+
 epr:NurseryPhase
     a skos:Concept ;
     skos:inScheme epr:establishmentDetailsVocabulary ;
@@ -916,7 +1082,8 @@ epr:SixteenToNineteenPhase
 epr:NotApplicableEducationPhase
     a skos:Concept ;
     skos:inScheme epr:establishmentDetailsVocabulary ;
-    skos:prefLabel "Not applicable"@en ;
+    skos:prefLabel "Not applicable (education phase)"@en ;
+    skos:altLabel "Not applicable"@en ;
     skos:definition "A classification value indicating that education phase is not applicable to the establishment record."@en ;
     skos:broader epr:EducationPhase ;
     epr:status "Preferred"@en ;
@@ -943,7 +1110,8 @@ epr:SelectiveAdmissions
 epr:NotApplicableAdmissionsPolicy
     a skos:Concept ;
     skos:inScheme epr:establishmentDetailsVocabulary ;
-    skos:prefLabel "Not applicable"@en ;
+    skos:prefLabel "Not applicable (admissions policy)"@en ;
+    skos:altLabel "Not applicable"@en ;
     skos:definition "A classification value indicating that admissions policy is not applicable to the establishment record."@en ;
     skos:broader epr:AdmissionsPolicy ;
     epr:status "Preferred"@en ;
@@ -1006,7 +1174,8 @@ epr:MixedGenderEntry
 epr:NotApplicableGenderOfEntry
     a skos:Concept ;
     skos:inScheme epr:establishmentDetailsVocabulary ;
-    skos:prefLabel "Not applicable"@en ;
+    skos:prefLabel "Not applicable (gender of entry)"@en ;
+    skos:altLabel "Not applicable"@en ;
     skos:definition "A classification value indicating that gender of entry is not applicable to the establishment record."@en ;
     skos:broader epr:GenderOfEntry ;
     epr:status "Preferred"@en ;
@@ -1033,7 +1202,8 @@ epr:NoNurseryClasses
 epr:NotApplicableNurseryProvision
     a skos:Concept ;
     skos:inScheme epr:establishmentDetailsVocabulary ;
-    skos:prefLabel "Not applicable"@en ;
+    skos:prefLabel "Not applicable (nursery provision)"@en ;
+    skos:altLabel "Not applicable"@en ;
     skos:definition "A classification value indicating that nursery provision is not applicable to the establishment record."@en ;
     skos:broader epr:NurseryProvision ;
     epr:status "Preferred"@en ;
@@ -1060,7 +1230,8 @@ epr:NoSixthForm
 epr:NotApplicableSixthFormProvision
     a skos:Concept ;
     skos:inScheme epr:establishmentDetailsVocabulary ;
-    skos:prefLabel "Not applicable"@en ;
+    skos:prefLabel "Not applicable (sixth-form provision)"@en ;
+    skos:altLabel "Not applicable"@en ;
     skos:definition "A classification value indicating that sixth-form provision is not applicable to the establishment record."@en ;
     skos:broader epr:SixthFormProvision ;
     epr:status "Preferred"@en ;
@@ -1082,6 +1253,17 @@ epr:NoSpecialClasses
     skos:definition "A special-class-provision value indicating that the establishment does not have special classes."@en ;
     skos:broader epr:SpecialClassProvision ;
     epr:status "Preferred"@en ;
+    dcterms:source "Definition provenance: Invented review definition"@en .
+
+epr:NotApplicableSpecialClassProvision
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsVocabulary ;
+    skos:prefLabel "Not applicable (special-class provision)"@en ;
+    skos:altLabel "Not applicable"@en ;
+    skos:definition "A classification value indicating that special-class provision is not applicable to the establishment record."@en ;
+    skos:scopeNote "Confirm the actual recorded value against GIAS data."@en ;
+    skos:broader epr:SpecialClassProvision ;
+    epr:status "Provisional"@en ;
     dcterms:source "Definition provenance: Invented review definition"@en .
 
 epr:ChurchOfEnglandCharacter
@@ -1114,7 +1296,8 @@ epr:MuslimCharacter
 epr:NoReligiousCharacter
     a skos:Concept ;
     skos:inScheme epr:establishmentDetailsVocabulary ;
-    skos:prefLabel "None"@en ;
+    skos:prefLabel "No religious character"@en ;
+    skos:altLabel "None"@en ;
     skos:definition "A religious-character value indicating no recorded religious character."@en ;
     skos:broader epr:ReligiousCharacter ;
     epr:status "Preferred"@en ;
@@ -1123,7 +1306,8 @@ epr:NoReligiousCharacter
 epr:NotApplicableReligiousCharacter
     a skos:Concept ;
     skos:inScheme epr:establishmentDetailsVocabulary ;
-    skos:prefLabel "Does not apply"@en ;
+    skos:prefLabel "Does not apply (religious character)"@en ;
+    skos:altLabel "Does not apply"@en ;
     skos:definition "A religious-character value indicating that religious character does not apply to the establishment record."@en ;
     skos:broader epr:ReligiousCharacter ;
     epr:status "Preferred"@en ;
@@ -1132,7 +1316,8 @@ epr:NotApplicableReligiousCharacter
 epr:OtherReligiousCharacter
     a skos:Concept ;
     skos:inScheme epr:establishmentDetailsVocabulary ;
-    skos:prefLabel "Other"@en ;
+    skos:prefLabel "Other religious character"@en ;
+    skos:altLabel "Other"@en ;
     skos:definition "A religious-character value indicating another religious character not represented by the named values."@en ;
     skos:broader epr:ReligiousCharacter ;
     epr:status "Preferred"@en ;
@@ -1159,7 +1344,8 @@ epr:ChristianEthos
 epr:NoReligiousEthos
     a skos:Concept ;
     skos:inScheme epr:establishmentDetailsVocabulary ;
-    skos:prefLabel "None"@en ;
+    skos:prefLabel "No religious ethos"@en ;
+    skos:altLabel "None"@en ;
     skos:definition "A religious-ethos value indicating no recorded religious ethos."@en ;
     skos:broader epr:ReligiousEthos ;
     epr:status "Preferred"@en ;
@@ -1168,7 +1354,8 @@ epr:NoReligiousEthos
 epr:NotApplicableReligiousEthos
     a skos:Concept ;
     skos:inScheme epr:establishmentDetailsVocabulary ;
-    skos:prefLabel "Does not apply"@en ;
+    skos:prefLabel "Does not apply (religious ethos)"@en ;
+    skos:altLabel "Does not apply"@en ;
     skos:definition "A religious-ethos value indicating that religious ethos does not apply to the establishment record."@en ;
     skos:broader epr:ReligiousEthos ;
     epr:status "Preferred"@en ;
@@ -1177,7 +1364,8 @@ epr:NotApplicableReligiousEthos
 epr:OtherReligiousEthos
     a skos:Concept ;
     skos:inScheme epr:establishmentDetailsVocabulary ;
-    skos:prefLabel "Other"@en ;
+    skos:prefLabel "Other religious ethos"@en ;
+    skos:altLabel "Other"@en ;
     skos:definition "A religious-ethos value indicating another ethos not represented by the named values."@en ;
     skos:broader epr:ReligiousEthos ;
     epr:status "Preferred"@en ;
@@ -1221,7 +1409,7 @@ epr:DfeNumber
     a skos:Concept ;
     skos:inScheme epr:establishmentDetailsVocabulary ;
     skos:prefLabel "DfE number"@en ;
-    skos:altLabel "Department for Education number"@en, "LAESTAB"@en ;
+    skos:altLabel "Department for Education number"@en ;
     skos:definition "A seven-digit identifier formed from the three-digit local-authority number and four-digit establishment number."@en ;
     skos:scopeNote "Derived rather than stored as one physical Establishment column."@en ;
     skos:broader epr:EstablishmentIdentity ;
@@ -1270,6 +1458,15 @@ epr:EducationPhase
     skos:altLabel "Phase of education"@en, "Phase of Education"@en ;
     skos:definition "The broad stage of education provided by an establishment, such as primary or secondary."@en ;
     skos:broader epr:EstablishmentClassification ;
+    skos:narrower
+        epr:AllThroughPhase,
+        epr:MiddleDeemedSecondaryPhase,
+        epr:MiddlePhase,
+        epr:NotApplicableEducationPhase,
+        epr:NurseryPhase,
+        epr:PrimaryPhase,
+        epr:SecondaryPhase,
+        epr:SixteenToNineteenPhase ;
     epr:status "Preferred"@en ;
     dcterms:source "C#: EducationPhaseId; Java: educationPhase; database: Establishment.phaseOfEducation_code"@en .
 
@@ -1326,6 +1523,8 @@ epr:AcademyTrust
     skos:scopeNote "Trust flag is an extract or implementation term, not the business concept."@en ;
     skos:broader epr:EstablishmentAccountability ;
     skos:related epr:AcademyConverter ;
+    skos:narrower
+        epr:SingleAcademyTrust ;
     epr:status "Preferred"@en ;
     dcterms:source "Java/database: EstablishmentGroup and GroupLink"@en .
 
@@ -1370,6 +1569,11 @@ epr:EstablishmentStatus
     skos:prefLabel "Establishment status"@en ;
     skos:definition "The current lifecycle or operating-state classification of an establishment."@en ;
     skos:broader epr:EstablishmentLifecycle ;
+    skos:narrower
+        epr:ClosedStatus,
+        epr:OpenProposedToCloseStatus,
+        epr:OpenStatus,
+        epr:ProposedToOpenStatus ;
     epr:status "Preferred"@en ;
     dcterms:source "C#: StatusId; Java: status; database: Establishment.status_code"@en .
 
@@ -1560,6 +1764,11 @@ epr:GenderOfEntry
     skos:altLabel "Gender"@en ;
     skos:definition "The classification describing the gender admission arrangement."@en ;
     skos:broader epr:EducationAdmissionsAndProvision ;
+    skos:narrower
+        epr:BoysOnlyGenderEntry,
+        epr:GirlsOnlyGenderEntry,
+        epr:MixedGenderEntry,
+        epr:NotApplicableGenderOfEntry ;
     epr:status "Preferred"@en ;
     dcterms:source "C#: GenderId; Java: gender; database: Establishment.gender_code"@en .
 
@@ -1569,6 +1778,10 @@ epr:AdmissionsPolicy
     skos:prefLabel "Admissions policy"@en ;
     skos:definition "The classification describing how places are allocated, such as selective or non-selective."@en ;
     skos:broader epr:EducationAdmissionsAndProvision ;
+    skos:narrower
+        epr:NonSelectiveAdmissions,
+        epr:NotApplicableAdmissionsPolicy,
+        epr:SelectiveAdmissions ;
     epr:status "Preferred"@en ;
     dcterms:source "C#: AdmissionsPolicyId; database: Establishment.admissionsPolicy_code"@en .
 
@@ -1579,6 +1792,10 @@ epr:BoardingProvision
     skos:altLabel "Boarders"@en ;
     skos:definition "The classification describing whether boarding places are offered."@en ;
     skos:broader epr:EducationAdmissionsAndProvision ;
+    skos:narrower
+        epr:BoardingSchool,
+        epr:HasBoarders,
+        epr:NoBoarders ;
     epr:status "Preferred"@en ;
     dcterms:source "C#: ProvisionBoardingId; database: Establishment.boarding_code"@en .
 
@@ -1588,6 +1805,10 @@ epr:NurseryProvision
     skos:prefLabel "Nursery provision"@en ;
     skos:definition "The classification describing whether the establishment offers nursery classes."@en ;
     skos:broader epr:EducationAdmissionsAndProvision ;
+    skos:narrower
+        epr:HasNurseryClasses,
+        epr:NoNurseryClasses,
+        epr:NotApplicableNurseryProvision ;
     epr:status "Preferred"@en ;
     dcterms:source "C#: ProvisionNurseryId; database: Establishment.nurseryProvision_code"@en .
 
@@ -1598,6 +1819,10 @@ epr:SixthFormProvision
     skos:altLabel "Official sixth form"@en, "Sixth Form"@en, "OfficialSixthForm"@en ;
     skos:definition "The classification describing whether the establishment has a sixth form."@en ;
     skos:broader epr:EducationAdmissionsAndProvision ;
+    skos:narrower
+        epr:HasSixthForm,
+        epr:NoSixthForm,
+        epr:NotApplicableSixthFormProvision ;
     epr:status "Preferred"@en ;
     dcterms:source "C#: ProvisionOfficialSixthFormId; Java: SpecialIndicators.officialSixthForm; database: Establishment.officialSixthForm_code"@en .
 
@@ -1608,6 +1833,10 @@ epr:SpecialClassProvision
     skos:altLabel "Special classes"@en ;
     skos:definition "The classification describing whether the establishment has special classes."@en ;
     skos:broader epr:EducationAdmissionsAndProvision ;
+    skos:narrower
+        epr:HasSpecialClasses,
+        epr:NoSpecialClasses,
+        epr:NotApplicableSpecialClassProvision ;
     epr:status "Preferred"@en .
 
 epr:Section41Approval
@@ -1710,6 +1939,14 @@ epr:ReligiousCharacter
     skos:definition "The formal religious-character classification designated for an establishment."@en ;
     skos:broader epr:FaithContext ;
     skos:related epr:Diocese, epr:ReligiousEthos ;
+    skos:narrower
+        epr:ChurchOfEnglandCharacter,
+        epr:JewishCharacter,
+        epr:MuslimCharacter,
+        epr:NoReligiousCharacter,
+        epr:NotApplicableReligiousCharacter,
+        epr:OtherReligiousCharacter,
+        epr:RomanCatholicCharacter ;
     epr:status "Preferred"@en ;
     dcterms:source "C#: ReligiousCharacterId; Java: Characteristics.religiousCharacter; database: Establishment.religiousCharacter_code"@en .
 
@@ -1720,6 +1957,11 @@ epr:ReligiousEthos
     skos:definition "The recorded religious-ethos classification associated with an establishment."@en ;
     skos:broader epr:FaithContext ;
     skos:related epr:ReligiousCharacter ;
+    skos:narrower
+        epr:ChristianEthos,
+        epr:NoReligiousEthos,
+        epr:NotApplicableReligiousEthos,
+        epr:OtherReligiousEthos ;
     epr:status "Provisional"@en .
 
 epr:Diocese
