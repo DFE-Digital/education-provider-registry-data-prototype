@@ -41,8 +41,8 @@ epro:establishmentDetailsConceptualModel
     owl:versionInfo "0.1" ;
     vann:preferredNamespacePrefix "epro" ;
     vann:preferredNamespaceUri "https://dfe-digital.github.io/education-provider-registry-data/ontology/"^^xsd:anyURI ;
-    rdfs:seeAlso epr:establishmentDetailsVocabulary ;
-    rdfs:seeAlso epr:establishmentDetailsTaxonomy ;
+    rdfs:seeAlso <https://dfe-digital.github.io/education-provider-registry-data/vocabulary/> ;
+    rdfs:seeAlso <https://dfe-digital.github.io/education-provider-registry-data/taxonomy/> ;
     epr:status "Provisional"@en .
 
 
