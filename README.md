@@ -36,5 +36,5 @@ bundle exec nanoc compile
 The generated pages resolve under:
 
 ```text
-https://dfe-digital.github.io/education-provider-registry-data-prototype/vocabulary/
+https://dfe-digital.github.io/education-provider-registry-data/vocabulary/
 ```

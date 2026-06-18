@@ -1,4 +1,4 @@
-# Education Provider Registry Data Prototype
+# Education Provider Registry Data
 
 This site publishes generated documentation views over the data-modelling artefacts in this repository.
 

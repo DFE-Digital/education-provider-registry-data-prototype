@@ -136,8 +136,8 @@ function Format-ConceptLinks {
 }
 
 foreach ($concept in $concepts | Sort-Object PreferredLabel, LocalName) {
-    $canonicalUri = "https://dfe-digital.github.io/education-provider-registry-data-prototype/vocabulary/$($concept.LocalName)/"
-    $sourceTtl = "https://github.com/DFE-Digital/education-provider-registry-data-prototype/blob/main/models/establishment-details-vocabulary-skos.ttl"
+    $canonicalUri = "https://dfe-digital.github.io/education-provider-registry-data/vocabulary/$($concept.LocalName)/"
+    $sourceTtl = "https://github.com/DFE-Digital/education-provider-registry-data/blob/main/models/establishment-details-vocabulary-skos.ttl"
 
     $lines = @(
         "# $($concept.PreferredLabel)",
