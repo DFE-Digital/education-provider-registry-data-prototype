@@ -26,11 +26,8 @@ GitHub Pages should be configured to publish from GitHub Actions.
 To build locally:
 
 ```powershell
-.\scripts\generate-vocabulary-pages.ps1
 cd .\docs-site
-bundle config set path vendor/bundle
-bundle install
-bundle exec nanoc compile
+.\scripts\compile-local.ps1
 ```
 
 The generated pages resolve under:

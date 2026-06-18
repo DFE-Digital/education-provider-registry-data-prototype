@@ -1,6 +1,6 @@
 param(
-    [string]$TaxonomyPath = (Join-Path (Join-Path $PSScriptRoot "..") (Join-Path "models" "establishment-details-taxonomy-skos.ttl")),
-    [string]$OutputRoot = (Join-Path (Join-Path (Join-Path $PSScriptRoot "..") "docs-site") (Join-Path "content" "taxonomy"))
+    [string]$TaxonomyPath = (Join-Path (Join-Path $PSScriptRoot "..\..") (Join-Path "models" "establishment-details-taxonomy-skos.ttl")),
+    [string]$OutputRoot = (Join-Path (Join-Path $PSScriptRoot "..") (Join-Path "content" "taxonomy"))
 )
 
 $ErrorActionPreference = "Stop"

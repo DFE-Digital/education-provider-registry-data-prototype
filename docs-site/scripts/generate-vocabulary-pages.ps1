@@ -1,6 +1,6 @@
 param(
-    [string]$VocabularyPath = (Join-Path (Join-Path $PSScriptRoot "..") (Join-Path "models" "establishment-details-vocabulary-skos.ttl")),
-    [string]$OutputRoot = (Join-Path (Join-Path (Join-Path $PSScriptRoot "..") "docs-site") (Join-Path "content" "vocabulary"))
+    [string]$VocabularyPath = (Join-Path (Join-Path $PSScriptRoot "..\..") (Join-Path "models" "establishment-details-vocabulary-skos.ttl")),
+    [string]$OutputRoot = (Join-Path (Join-Path $PSScriptRoot "..") (Join-Path "content" "vocabulary"))
 )
 
 $ErrorActionPreference = "Stop"
