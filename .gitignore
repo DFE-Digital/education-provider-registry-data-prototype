@@ -3,3 +3,14 @@
 ################################################################################
 
 /.vs
+
+# Nanoc build output and local dependency cache.
+/docs-site/output
+/docs-site/tmp
+/docs-site/.bundle
+/docs-site/content/vocabulary/*.md
+!/docs-site/content/vocabulary/.gitkeep
+/docs-site/vendor/bundle
+/docs-site/vendor/bundle-cache
+/docs-site/vendor/bundle-home
+/.bundle

@@ -15,6 +15,12 @@
 # and source notes. It is not a complete provider-domain ontology and does not
 # attempt to model fields outside the Establishment Details table.
 #
+# Canonical concept identifiers are the expanded epr: IRIs, for example
+# epr:EstablishmentLifecycle expands to:
+# https://education.gov.uk/epr/vocabulary/EstablishmentLifecycle
+#
+# GitHub file and line links are useful human references, but they are not
+# canonical identifiers because line numbers can change.
 # The namespace is a proposed identifier and does not imply a published service.
 
 epr:status

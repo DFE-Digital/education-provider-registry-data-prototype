@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Education Provider Registry data prototype</title>
+    <style>
+      body {
+        color: #0b0c0c;
+        font-family: Arial, sans-serif;
+        line-height: 1.5;
+        margin: 0;
+      }
+
+      header {
+        background: #1d70b8;
+        color: #ffffff;
+        padding: 1rem 2rem;
+      }
+
+      header a {
+        color: #ffffff;
+      }
+
+      main {
+        margin: 0 auto;
+        max-width: 960px;
+        padding: 2rem;
+      }
+
+      table {
+        border-collapse: collapse;
+        margin: 1rem 0;
+        width: 100%;
+      }
+
+      th,
+      td {
+        border-bottom: 1px solid #b1b4b6;
+        padding: 0.5rem;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      code {
+        background: #f3f2f1;
+        padding: 0.1rem 0.2rem;
+      }
+
+      .meta {
+        color: #505a5f;
+        font-size: 0.95rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <strong>Education Provider Registry data prototype</strong>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+  </body>
+</html>
