@@ -58,16 +58,6 @@ function Get-Refs {
         }
 }
 
-function Escape-MermaidLabel {
-    param([string]$Value)
-
-    if ([string]::IsNullOrWhiteSpace($Value)) {
-        return ""
-    }
-
-    return $Value.Replace('"', '#quot;')
-}
-
 function Escape-MarkdownTableCell {
     param([AllowNull()][string]$Value)
 
@@ -121,25 +111,40 @@ foreach ($concept in $concepts) {
     }
 }
 
-$mermaid = New-Object System.Collections.Generic.List[string]
-$mermaid.Add("flowchart TD")
+function New-TaxonomyNode {
+    param([string]$LocalName)
 
-foreach ($concept in $concepts | Sort-Object LocalName) {
-    $label = Escape-MermaidLabel $concept.PreferredLabel
-    $mermaid.Add("  $($concept.LocalName)[""$label""]")
-}
+    $concept = $conceptLookup[$LocalName]
+    $node = [ordered]@{
+        id = $concept.LocalName
+        name = $concept.PreferredLabel
+    }
 
-foreach ($parent in ($childrenByParent.Keys | Sort-Object)) {
-    foreach ($child in ($childrenByParent[$parent] | Sort-Object)) {
-        if ($conceptLookup.ContainsKey($parent) -and $conceptLookup.ContainsKey($child)) {
-            $mermaid.Add("  $parent --> $child")
+    if ($childrenByParent.ContainsKey($LocalName)) {
+        $children = @(
+            $childrenByParent[$LocalName] |
+                Sort-Object { $conceptLookup[$_].PreferredLabel } |
+                ForEach-Object { New-TaxonomyNode -LocalName $_ }
+        )
+
+        if ($children.Count -gt 0) {
+            $node.children = $children
         }
     }
+
+    return $node
 }
 
 $facets = $concepts | Where-Object { $_.IsTopConcept } | Sort-Object PreferredLabel
 $taxons = $concepts | Where-Object { -not $_.IsTopConcept } | Sort-Object PreferredLabel
-$markdownFence = "$([char]96)$([char]96)$([char]96)"
+
+$tree = [ordered]@{
+    id = "establishmentDetailsTaxonomy"
+    name = "Establishment Details taxonomy"
+    children = @($facets | ForEach-Object { New-TaxonomyNode -LocalName $_.LocalName })
+}
+
+$treeJson = $tree | ConvertTo-Json -Depth 30
 
 $lines = @(
     "# Establishment Details Taxonomy",
@@ -148,14 +153,17 @@ $lines = @(
     "",
     "The taxonomy is a faceted SKOS taxonomy. Facets are represented as top concepts, and taxons sit beneath those facets using `skos:broader` relationships.",
     "",
-    "## Taxonomy Diagram",
+    "## Taxonomy Tree",
     "",
-    "$($markdownFence)mermaid"
+    "The interactive tree starts with the taxonomy facets. Select a node to expand or collapse its taxons.",
+    "",
+    '<div id="taxonomy-tree-container" class="taxonomy-tree" aria-label="Interactive taxonomy tree"></div>',
+    '<script type="application/json" id="taxonomy-tree-data">'
 )
 
-$lines += $mermaid
+$lines += $treeJson
 $lines += @(
-    $markdownFence,
+    '</script>',
     "",
     "## Facets",
     "",

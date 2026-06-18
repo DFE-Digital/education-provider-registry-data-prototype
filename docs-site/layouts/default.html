@@ -60,6 +60,40 @@
       .mermaid {
         margin: 1.5rem 0;
       }
+
+      .taxonomy-tree {
+        border: 1px solid #b1b4b6;
+        margin: 1.5rem 0;
+        min-height: 540px;
+        overflow: auto;
+        padding: 1rem;
+      }
+
+      .taxonomy-tree svg {
+        display: block;
+        font-family: Arial, sans-serif;
+      }
+
+      .taxonomy-link {
+        fill: none;
+        stroke: #b1b4b6;
+        stroke-width: 1.5px;
+      }
+
+      .taxonomy-node circle {
+        fill: #ffffff;
+        stroke: #1d70b8;
+        stroke-width: 2px;
+      }
+
+      .taxonomy-node text {
+        fill: #0b0c0c;
+        font-size: 14px;
+      }
+
+      .taxonomy-node--collapsed circle {
+        fill: #1d70b8;
+      }
     </style>
   </head>
   <body>
@@ -71,11 +105,128 @@
     </main>
     <script type="module">
       import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.14.0/+esm";
+      import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
       mermaid.initialize({
         startOnLoad: true,
         securityLevel: "loose"
       });
+
+      const treeContainer = document.getElementById("taxonomy-tree-container");
+      const treeDataElement = document.getElementById("taxonomy-tree-data");
+
+      if (treeContainer && treeDataElement) {
+        const data = JSON.parse(treeDataElement.textContent);
+        const width = Math.max(1100, treeContainer.clientWidth - 32);
+        const nodeHeight = 28;
+        const margin = { top: 24, right: 280, bottom: 24, left: 24 };
+        let root = d3.hierarchy(data);
+
+        root.x0 = 0;
+        root.y0 = 0;
+
+        root.descendants().forEach((node, index) => {
+          node.id = index;
+          if (node.depth > 1) {
+            node._children = node.children;
+            node.children = null;
+          }
+        });
+
+        const svg = d3.select(treeContainer)
+          .append("svg")
+          .attr("width", width)
+          .attr("height", 600)
+          .attr("viewBox", [0, 0, width, 600])
+          .attr("role", "img");
+
+        const group = svg.append("g")
+          .attr("transform", `translate(${margin.left},${margin.top})`);
+
+        function update(source) {
+          const nodes = root.descendants();
+          const links = root.links();
+          const height = Math.max(540, nodes.length * nodeHeight + margin.top + margin.bottom);
+
+          svg
+            .attr("height", height)
+            .attr("viewBox", [0, 0, width, height]);
+
+          d3.tree()
+            .nodeSize([nodeHeight, 250])
+            .separation((a, b) => a.parent === b.parent ? 1 : 1.35)(root);
+
+          const link = group.selectAll("path")
+            .data(links, d => d.target.id);
+
+          link.join(
+            enter => enter.append("path")
+              .attr("class", "taxonomy-link")
+              .attr("d", d3.linkHorizontal()
+                .x(() => source.y0)
+                .y(() => source.x0)),
+            update => update,
+            exit => exit.remove()
+          )
+            .transition()
+            .duration(180)
+            .attr("d", d3.linkHorizontal()
+              .x(d => d.y)
+              .y(d => d.x));
+
+          const node = group.selectAll("g.taxonomy-node")
+            .data(nodes, d => d.id);
+
+          const nodeEnter = node.enter()
+            .append("g")
+            .attr("class", "taxonomy-node")
+            .attr("transform", () => `translate(${source.y0},${source.x0})`)
+            .attr("tabindex", "0")
+            .attr("role", "button")
+            .on("click", (_, d) => toggle(d))
+            .on("keydown", (event, d) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                toggle(d);
+              }
+            });
+
+          nodeEnter.append("circle")
+            .attr("r", 6);
+
+          nodeEnter.append("text")
+            .attr("dy", "0.32em")
+            .attr("x", d => d.children || d._children ? -12 : 12)
+            .attr("text-anchor", d => d.children || d._children ? "end" : "start")
+            .text(d => d.data.name);
+
+          node.merge(nodeEnter)
+            .attr("class", d => d._children ? "taxonomy-node taxonomy-node--collapsed" : "taxonomy-node")
+            .transition()
+            .duration(180)
+            .attr("transform", d => `translate(${d.y},${d.x})`);
+
+          node.exit().remove();
+
+          root.descendants().forEach(d => {
+            d.x0 = d.x;
+            d.y0 = d.y;
+          });
+        }
+
+        function toggle(node) {
+          if (node.children) {
+            node._children = node.children;
+            node.children = null;
+          } else {
+            node.children = node._children;
+            node._children = null;
+          }
+          update(node);
+        }
+
+        update(root);
+      }
     </script>
   </body>
 </html>
