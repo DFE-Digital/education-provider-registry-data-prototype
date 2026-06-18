@@ -68,6 +68,16 @@ function Escape-MarkdownTableCell {
     return ($Value -replace '\|', '\|' -replace "`r?`n", "<br>")
 }
 
+function Html-Encode {
+    param([AllowNull()][string]$Value)
+
+    if ([string]::IsNullOrWhiteSpace($Value)) {
+        return ""
+    }
+
+    return [System.Net.WebUtility]::HtmlEncode($Value)
+}
+
 $conceptMatches = [regex]::Matches(
     $ttl,
     "(?ms)^epr:([A-Za-z][A-Za-z0-9]*)\s*\r?\n\s+a\s+skos:Concept\s*;\s*(.*?)(?=^\S|\z)"
@@ -111,40 +121,37 @@ foreach ($concept in $concepts) {
     }
 }
 
-function New-TaxonomyNode {
+function New-TaxonomyTreeHtml {
     param([string]$LocalName)
 
     $concept = $conceptLookup[$LocalName]
-    $node = [ordered]@{
-        id = $concept.LocalName
-        name = $concept.PreferredLabel
+    $label = Html-Encode $concept.PreferredLabel
+    $identifier = Html-Encode "epr:$($concept.LocalName)"
+    $hasChildren = $childrenByParent.ContainsKey($LocalName) -and $childrenByParent[$LocalName].Count -gt 0
+
+    if (-not $hasChildren) {
+        return "<li><span class=""taxonomy-leaf"">$label <code>$identifier</code></span></li>"
     }
 
-    if ($childrenByParent.ContainsKey($LocalName)) {
-        $children = @(
-            $childrenByParent[$LocalName] |
-                Sort-Object { $conceptLookup[$_].PreferredLabel } |
-                ForEach-Object { New-TaxonomyNode -LocalName $_ }
-        )
+    $childHtml = $childrenByParent[$LocalName] |
+        Sort-Object { $conceptLookup[$_].PreferredLabel } |
+        ForEach-Object { New-TaxonomyTreeHtml -LocalName $_ }
 
-        if ($children.Count -gt 0) {
-            $node.children = $children
-        }
-    }
-
-    return $node
+    return @"
+<li>
+  <details>
+    <summary>$label <code>$identifier</code></summary>
+    <ul>
+$($childHtml -join "`n")
+    </ul>
+  </details>
+</li>
+"@
 }
 
 $facets = $concepts | Where-Object { $_.IsTopConcept } | Sort-Object PreferredLabel
 $taxons = $concepts | Where-Object { -not $_.IsTopConcept } | Sort-Object PreferredLabel
-
-$tree = [ordered]@{
-    id = "establishmentDetailsTaxonomy"
-    name = "Establishment Details taxonomy"
-    children = @($facets | ForEach-Object { New-TaxonomyNode -LocalName $_.LocalName })
-}
-
-$treeJson = $tree | ConvertTo-Json -Depth 30
+$treeHtml = $facets | ForEach-Object { New-TaxonomyTreeHtml -LocalName $_.LocalName }
 
 $lines = @(
     "# Establishment Details Taxonomy",
@@ -155,15 +162,16 @@ $lines = @(
     "",
     "## Taxonomy Tree",
     "",
-    "The interactive tree starts with the taxonomy facets. Select a node to expand or collapse its taxons.",
+    "The taxonomy tree starts with the facets. Expand a facet to inspect its taxons.",
     "",
-    '<div id="taxonomy-tree-container" class="taxonomy-tree" aria-label="Interactive taxonomy tree"></div>',
-    '<script type="application/json" id="taxonomy-tree-data">'
+    '<div class="taxonomy-tree" aria-label="Taxonomy tree">',
+    '<ul>'
 )
 
-$lines += $treeJson
+$lines += $treeHtml
 $lines += @(
-    '</script>',
+    '</ul>',
+    '</div>',
     "",
     "## Facets",
     "",
