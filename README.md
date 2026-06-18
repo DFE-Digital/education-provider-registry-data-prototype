@@ -4,7 +4,13 @@ This repository contains early data-modelling artefacts for the Education Provid
 
 ## Documentation Site
 
-The repository includes a Nanoc documentation site under `docs-site`.
+The repository includes a Nanoc technical documentation site under `docs-site`.
+
+The published documentation site is available at:
+
+```text
+https://dfe-digital.github.io/education-provider-registry-data/
+```
 
 The vocabulary pages are generated from:
 
@@ -30,8 +36,14 @@ cd .\docs-site
 .\scripts\compile-local.ps1
 ```
 
-The generated pages resolve under:
+The generated vocabulary pages resolve under:
 
 ```text
 https://dfe-digital.github.io/education-provider-registry-data/vocabulary/
+```
+
+The generated taxonomy page resolves under:
+
+```text
+https://dfe-digital.github.io/education-provider-registry-data/taxonomy/
 ```

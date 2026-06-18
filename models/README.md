@@ -38,11 +38,10 @@ The GitHub link to a line in `establishment-details-vocabulary-skos.ttl` is usef
 
 The taxonomy file uses `skos:relatedMatch` to link taxonomy concepts to vocabulary concepts when there is a matching published vocabulary concept. Not every taxon has a vocabulary concept, so absence of a link is intentional rather than a publication error.
 
-## Viewing The Files
+## Published Model Pages
 
-The TTL files can be opened as text, but they are easier to inspect graphically with an RDF viewer.
+The generated technical documentation site publishes the vocabulary and taxonomy as navigable pages:
 
-Suggested VS Code extension:
-
-<https://marketplace.visualstudio.com/items?itemName=Zazuko.vscode-rdf-sketch>
+- Vocabulary: <https://dfe-digital.github.io/education-provider-registry-data/vocabulary/>
+- Taxonomy: <https://dfe-digital.github.io/education-provider-registry-data/taxonomy/>
 
