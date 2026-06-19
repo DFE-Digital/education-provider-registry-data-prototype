@@ -38,7 +38,7 @@ epro:establishmentDetailsConceptualModel
     dcterms:modified "2026-06-19"^^xsd:date ;
     dcterms:publisher "Department for Education"@en ;
     dcterms:license <https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
-    owl:versionInfo "0.3" ;
+    owl:versionInfo "0.4" ;
     vann:preferredNamespacePrefix "epro" ;
     vann:preferredNamespaceUri "https://dfe-digital.github.io/education-provider-registry-data/ontology/"^^xsd:anyURI ;
     rdfs:seeAlso <https://dfe-digital.github.io/education-provider-registry-data/vocabulary/> ;
@@ -46,6 +46,7 @@ epro:establishmentDetailsConceptualModel
     rdfs:seeAlso <https://dfe-digital.github.io/education-provider-registry-data/shapes/> ;
     rdfs:seeAlso <https://dfe-digital.github.io/education-provider-registry-data/shapes/data-quality/> ;
     rdfs:comment "v0.2: per-type field-applicability rules added as SHACL shapes in establishment-details-shacl.ttl. Accountability relationship rules (which types require LA, academy trust or proprietor) are now expressed in those shapes rather than as open questions."@en ;
+    rdfs:comment "v0.4: field-coverage additions — classes and properties for Ofsted inspection record, PRU operational record, accreditation record (online providers), provider type, manager, academy sponsor SHACL modelling. Ontology already had faith-context classes (ReligiousCharacter, ReligiousEthos, Diocese) and SpecialClassProvision. New additions: OfstedInspectionRecord, PupilReferralUnitOperationalRecord, AccreditationRecord, ProviderType, Manager."@en ;
     epr:status "Provisional"@en .
 
 
@@ -908,3 +909,208 @@ epro:hasSpecialPupilMeasure
     rdfs:domain epr:SenAndResourcedProvision ;
     rdfs:range epr:SpecialPupilMeasure ;
     rdfs:comment "Cardinality: 0..1. Covers the count of pupils with a SEN statement or EHC plan and the count without."@en .
+
+
+#################################################################
+# Classes — Ofsted inspection record (v0.4)
+#################################################################
+
+epr:OfstedInspectionRecord
+    a owl:Class ;
+    rdfs:label "Ofsted inspection record"@en ;
+    rdfs:comment "A record of the establishment's Ofsted inspection rating and associated report link. Distinct from inspection records held by non-Ofsted inspectorates (e.g. ISI, Ofsted independent school inspectorates) which are modelled under InspectionReportReference."@en .
+
+
+#################################################################
+# Classes — PRU operational record (v0.4)
+#################################################################
+
+epr:PupilReferralUnitOperationalRecord
+    a owl:Class ;
+    rdfs:label "Pupil referral unit operational record"@en ;
+    rdfs:comment "The group of operational fields specific to pupil referral units, covering teenage mothers provision, childcare, SEN facilities, EBD pupils and number of places."@en .
+
+
+#################################################################
+# Classes — accreditation record (v0.4, online providers)
+#################################################################
+
+epr:AccreditationRecord
+    a owl:Class ;
+    rdfs:label "Accreditation record"@en ;
+    rdfs:comment "The group of accreditation fields for online providers, including accreditation dates, quality assurance body, companies house number and accreditation status."@en .
+
+
+#################################################################
+# Classes — children's centre specific (v0.4)
+#################################################################
+
+epr:ProviderType
+    a owl:Class ;
+    rdfs:label "Provider type"@en ;
+    rdfs:comment "The classification of provider type for a children's centre establishment."@en .
+
+epr:Manager
+    a owl:Class ;
+    rdfs:label "Manager"@en ;
+    rdfs:comment "The named manager of a children's centre. Distinct from HeadteacherOrPrincipal — children's centres show the Manager role rather than Headteacher/Principal in the GIAS Details view."@en .
+
+
+#################################################################
+# Object properties — Ofsted inspection record (v0.4)
+#################################################################
+
+epro:hasOfstedInspectionRecord
+    a owl:ObjectProperty ;
+    rdfs:label "has Ofsted inspection record"@en ;
+    rdfs:domain epr:Establishment ;
+    rdfs:range epr:OfstedInspectionRecord ;
+    rdfs:comment "Cardinality: 0..1. Present for establishment types that are inspected by Ofsted. Absent for Welsh establishments, BSOs (inspected by other inspectorates), sixth form centres, children's centres and academy secure 16-19."@en .
+
+
+#################################################################
+# Object properties — PRU operational record (v0.4)
+#################################################################
+
+epro:hasPupilReferralUnitOperationalRecord
+    a owl:ObjectProperty ;
+    rdfs:label "has pupil referral unit operational record"@en ;
+    rdfs:domain epr:Establishment ;
+    rdfs:range epr:PupilReferralUnitOperationalRecord ;
+    rdfs:comment "Cardinality: 0..1. Present only for pupil referral units (type 14)."@en .
+
+epro:hasTeenageMothersProvision
+    a owl:ObjectProperty ;
+    rdfs:label "has teenage mothers provision"@en ;
+    rdfs:domain epr:PupilReferralUnitOperationalRecord ;
+    rdfs:range rdfs:Resource ;
+    rdfs:comment "Cardinality: 0..1. Whether the PRU provides for teenage mothers."@en .
+
+epro:hasTeenageMothersPlaces
+    a owl:ObjectProperty ;
+    rdfs:label "has teenage mothers places"@en ;
+    rdfs:domain epr:PupilReferralUnitOperationalRecord ;
+    rdfs:range rdfs:Resource ;
+    rdfs:comment "Cardinality: 0..1. Number of places for teenage mothers."@en .
+
+epro:hasChildcareProvision
+    a owl:ObjectProperty ;
+    rdfs:label "has childcare provision"@en ;
+    rdfs:domain epr:PupilReferralUnitOperationalRecord ;
+    rdfs:range rdfs:Resource ;
+    rdfs:comment "Cardinality: 0..1. Whether the PRU provides childcare facilities."@en .
+
+epro:hasSenFacilities
+    a owl:ObjectProperty ;
+    rdfs:label "has SEN facilities"@en ;
+    rdfs:domain epr:PupilReferralUnitOperationalRecord ;
+    rdfs:range rdfs:Resource ;
+    rdfs:comment "Cardinality: 0..1. Whether the PRU has SEN facilities."@en .
+
+epro:hasPupilsWithEBD
+    a owl:ObjectProperty ;
+    rdfs:label "has pupils with EBD"@en ;
+    rdfs:domain epr:PupilReferralUnitOperationalRecord ;
+    rdfs:range rdfs:Resource ;
+    rdfs:comment "Cardinality: 0..1. Whether the PRU provides for pupils with emotional and behavioural difficulties."@en .
+
+epro:hasNumberOfPlaces
+    a owl:ObjectProperty ;
+    rdfs:label "has number of places"@en ;
+    rdfs:domain epr:PupilReferralUnitOperationalRecord ;
+    rdfs:range rdfs:Resource ;
+    rdfs:comment "Cardinality: 0..1. Total number of places in the PRU."@en .
+
+epro:hasFullTimeProvision
+    a owl:ObjectProperty ;
+    rdfs:label "has full time provision"@en ;
+    rdfs:domain epr:PupilReferralUnitOperationalRecord ;
+    rdfs:range rdfs:Resource ;
+    rdfs:comment "Cardinality: 0..1. Whether the PRU offers full-time provision."@en .
+
+epro:hasPupilsEducatedByOtherProviders
+    a owl:ObjectProperty ;
+    rdfs:label "has pupils educated by other providers"@en ;
+    rdfs:domain epr:PupilReferralUnitOperationalRecord ;
+    rdfs:range rdfs:Resource ;
+    rdfs:comment "Cardinality: 0..1. Whether the PRU has pupils educated by other providers."@en .
+
+
+#################################################################
+# Object properties — accreditation record (v0.4)
+#################################################################
+
+epro:hasAccreditationRecord
+    a owl:ObjectProperty ;
+    rdfs:label "has accreditation record"@en ;
+    rdfs:domain epr:Establishment ;
+    rdfs:range epr:AccreditationRecord ;
+    rdfs:comment "Cardinality: 0..1. Present only for online providers (type 49)."@en .
+
+epro:hasAccreditationDate
+    a owl:ObjectProperty ;
+    rdfs:label "has accreditation date"@en ;
+    rdfs:domain epr:AccreditationRecord ;
+    rdfs:range rdfs:Resource ;
+    rdfs:comment "Cardinality: 0..1. The date the online provider was accredited."@en .
+
+epro:hasAccreditationExpiryDate
+    a owl:ObjectProperty ;
+    rdfs:label "has accreditation expiry date"@en ;
+    rdfs:domain epr:AccreditationRecord ;
+    rdfs:range rdfs:Resource ;
+    rdfs:comment "Cardinality: 0..1. The date the accreditation expires."@en .
+
+epro:hasAccreditationDateEnded
+    a owl:ObjectProperty ;
+    rdfs:label "has accreditation date ended"@en ;
+    rdfs:domain epr:AccreditationRecord ;
+    rdfs:range rdfs:Resource ;
+    rdfs:comment "Cardinality: 0..1. The date the accreditation ended if it was revoked or lapsed."@en .
+
+epro:hasQualityAssuranceBodyName
+    a owl:ObjectProperty ;
+    rdfs:label "has quality assurance body name"@en ;
+    rdfs:domain epr:AccreditationRecord ;
+    rdfs:range rdfs:Resource ;
+    rdfs:comment "Cardinality: 0..1. The name of the quality assurance body for the online provider."@en .
+
+epro:hasQualityAssuranceBodyReport
+    a owl:ObjectProperty ;
+    rdfs:label "has quality assurance body report"@en ;
+    rdfs:domain epr:AccreditationRecord ;
+    rdfs:range rdfs:Resource ;
+    rdfs:comment "Cardinality: 0..1. Reference to the quality assurance body report."@en .
+
+epro:hasCompaniesHouseNumber
+    a owl:ObjectProperty ;
+    rdfs:label "has companies house number"@en ;
+    rdfs:domain epr:AccreditationRecord ;
+    rdfs:range rdfs:Resource ;
+    rdfs:comment "Cardinality: 0..1. The Companies House registration number for the online provider."@en .
+
+epro:isEstablishmentAccredited
+    a owl:ObjectProperty ;
+    rdfs:label "is establishment accredited"@en ;
+    rdfs:domain epr:AccreditationRecord ;
+    rdfs:range rdfs:Resource ;
+    rdfs:comment "Cardinality: 0..1. Whether the online provider is currently accredited."@en .
+
+
+#################################################################
+# Object properties — children's centre specific (v0.4)
+#################################################################
+
+epro:classifiedByProviderType
+    a owl:ObjectProperty ;
+    rdfs:label "classified by provider type"@en ;
+    rdfs:domain epr:EstablishmentClassification ;
+    rdfs:range epr:ProviderType ;
+    rdfs:comment "Cardinality: 0..1. Present for children's centres (types 47 and 48)."@en .
+
+epro:hasManager
+    a owl:ObjectProperty ;
+    rdfs:label "has manager"@en ;
+    rdfs:domain epr:ContactAndLocation ;
+    rdfs:range epr:Manager ;
+    rdfs:comment "Cardinality: 0..1. Present for children's centres (types 47 and 48). Distinct from hasHeadteacherOrPrincipal — children's centres show a manager role."@en .
