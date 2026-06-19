@@ -9,7 +9,7 @@ $resolvedModelsPath = Resolve-Path -LiteralPath $ModelsPath
 $resolvedOutputRoot = New-Item -ItemType Directory -Force -Path $OutputRoot
 
 $markdownFiles = Get-ChildItem -LiteralPath $resolvedModelsPath -Filter "*.md" |
-    Where-Object { $_.Name -ne "README.md" -and $_.Name -ne "index.md" }
+    Where-Object { $_.Name -ne "README.md" -and $_.Name -ne "index.md" -and $_.Name -ne "establishment-type-field-rules.md" }
 
 if ($markdownFiles.Count -eq 0) {
     Write-Warning "No markdown files found to copy in $resolvedModelsPath"
