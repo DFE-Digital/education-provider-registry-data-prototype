@@ -35,14 +35,16 @@ epro:establishmentDetailsConceptualModel
     dcterms:description "OWL 2 conceptual model for the Establishment Details slice of the Education Provider Registry. Declares classes and object properties for the entities and relationships in the Establishment Details ER diagrams."@en ;
     rdfs:comment "This ontology defines the classes and object properties for the Establishment Details slice of the Education Provider Registry (EPR) data model. It covers establishment identity and identifiers, lifecycle, classification, accountability, education provision, capacity measures, faith context, SEN and resourced provision, and external references. Class IRIs are shared with the SKOS vocabulary so that vocabulary concepts and ontology classes resolve to the same URI. Object properties are defined in the /ontology/ namespace."@en ;
     dcterms:created "2026-06-18"^^xsd:date ;
-    dcterms:modified "2026-06-18"^^xsd:date ;
+    dcterms:modified "2026-06-19"^^xsd:date ;
     dcterms:publisher "Department for Education"@en ;
     dcterms:license <https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
-    owl:versionInfo "0.1" ;
+    owl:versionInfo "0.2" ;
     vann:preferredNamespacePrefix "epro" ;
     vann:preferredNamespaceUri "https://dfe-digital.github.io/education-provider-registry-data/ontology/"^^xsd:anyURI ;
     rdfs:seeAlso <https://dfe-digital.github.io/education-provider-registry-data/vocabulary/> ;
     rdfs:seeAlso <https://dfe-digital.github.io/education-provider-registry-data/taxonomy/> ;
+    rdfs:seeAlso <https://dfe-digital.github.io/education-provider-registry-data/shapes/> ;
+    rdfs:comment "v0.2: per-type field-applicability rules added as SHACL shapes in establishment-details-shacl.ttl. Accountability relationship rules (which types require LA, academy trust or proprietor) are now expressed in those shapes rather than as open questions."@en ;
     epr:status "Provisional"@en .
 
 
