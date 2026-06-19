@@ -97,7 +97,7 @@ function Html-Encode {
 
 $conceptMatches = [regex]::Matches(
     $ttl,
-    "(?ms)^epr:([A-Za-z][A-Za-z0-9]*)\s*\r?\n\s+a\s+skos:Concept\s*;\s*(.*?)(?=^\S|\z)"
+    "(?ms)^epr:([A-Za-z][A-Za-z0-9]*)\s*\r?\n\s+a\s+skos:Concept[^\n]*\r?\n(.*?)(?=^\S|\z)"
 )
 
 $concepts = foreach ($match in $conceptMatches) {
