@@ -38,12 +38,13 @@ epro:establishmentDetailsConceptualModel
     dcterms:modified "2026-06-19"^^xsd:date ;
     dcterms:publisher "Department for Education"@en ;
     dcterms:license <https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
-    owl:versionInfo "0.2" ;
+    owl:versionInfo "0.3" ;
     vann:preferredNamespacePrefix "epro" ;
     vann:preferredNamespaceUri "https://dfe-digital.github.io/education-provider-registry-data/ontology/"^^xsd:anyURI ;
     rdfs:seeAlso <https://dfe-digital.github.io/education-provider-registry-data/vocabulary/> ;
     rdfs:seeAlso <https://dfe-digital.github.io/education-provider-registry-data/taxonomy/> ;
     rdfs:seeAlso <https://dfe-digital.github.io/education-provider-registry-data/shapes/> ;
+    rdfs:seeAlso <https://dfe-digital.github.io/education-provider-registry-data/shapes/data-quality/> ;
     rdfs:comment "v0.2: per-type field-applicability rules added as SHACL shapes in establishment-details-shacl.ttl. Accountability relationship rules (which types require LA, academy trust or proprietor) are now expressed in those shapes rather than as open questions."@en ;
     epr:status "Provisional"@en .
 
@@ -735,3 +736,175 @@ epro:referencesExternalService
     rdfs:domain epr:ExternalReference ;
     rdfs:range epr:ExternalServiceReference ;
     rdfs:comment "Cardinality: 0..1."@en .
+
+
+#################################################################
+# Classes — contact and location
+#################################################################
+
+epr:ContactAndLocation
+    a owl:Class ;
+    rdfs:label "Contact and location"@en ;
+    rdfs:comment "The group of fields describing how to contact and locate the establishment physically."@en .
+
+epr:PostalAddress
+    a owl:Class ;
+    rdfs:label "Postal address"@en ;
+    rdfs:comment "The physical or postal address at which the establishment is located."@en .
+
+epr:WebsiteUrl
+    a owl:Class ;
+    rdfs:label "Website"@en ;
+    rdfs:comment "The establishment's public website URL."@en .
+
+epr:TelephoneNumber
+    a owl:Class ;
+    rdfs:label "Telephone number"@en ;
+    rdfs:comment "The establishment's main contact telephone number."@en .
+
+epr:HeadteacherOrPrincipal
+    a owl:Class ;
+    rdfs:label "Headteacher or principal"@en ;
+    rdfs:comment "The named person leading the establishment. The GIAS UI label varies by type: Headteacher / Principal for most schools; Manager for children's centres; Headteacher/Manager for online providers. Treated as a single concept in the EPR model."@en .
+
+
+#################################################################
+# Classes — further education sub-classification and Section 41
+#################################################################
+
+epr:FurtherEducationType
+    a owl:Class ;
+    rdfs:label "Further education type"@en ;
+    rdfs:comment "A sub-classification of further education and pupil referral unit establishments. Observed for FE colleges (type 18), higher education institutions (type 29) and pupil referral units (type 14)."@en .
+
+epr:Section41ApprovalStatus
+    a owl:Class ;
+    rdfs:label "Section 41 approval status"@en ;
+    rdfs:comment "Whether the establishment is approved under Section 41 of the Children and Families Act 2014 to accept placements of pupils with education, health and care plans."@en .
+
+
+#################################################################
+# Classes — inspection detail (non-Ofsted inspectorates and BSO)
+#################################################################
+
+epr:InspectorateName
+    a owl:Class ;
+    rdfs:label "Inspectorate name"@en ;
+    rdfs:comment "The name of the inspectorate body responsible for inspecting the establishment. Used for independent schools and British schools overseas where the inspectorate is not Ofsted."@en .
+
+epr:DateOfLastInspectionVisit
+    a owl:Class ;
+    rdfs:label "Date of last inspection visit"@en ;
+    rdfs:comment "The date of the most recent inspection visit by the named inspectorate. Observed for British schools overseas (type 37) and independent schools."@en .
+
+epr:DateOfNextInspectionVisit
+    a owl:Class ;
+    rdfs:label "Date of next inspection visit"@en ;
+    rdfs:comment "The scheduled date of the next inspection visit. Observed for British schools overseas (type 37)."@en .
+
+
+#################################################################
+# Classes — special pupils SEN measures
+#################################################################
+
+epr:SpecialPupilMeasure
+    a owl:Class ;
+    rdfs:label "Special pupil measure"@en ;
+    rdfs:comment "Numeric measures for pupils with special educational needs. Covers the count of pupils with a SEN statement or education, health and care plan and the count of pupils with SEN needs but without such a plan."@en .
+
+
+#################################################################
+# Object properties — contact and location
+#################################################################
+
+epro:hasContactAndLocation
+    a owl:ObjectProperty ;
+    rdfs:label "has contact and location"@en ;
+    rdfs:domain epr:Establishment ;
+    rdfs:range epr:ContactAndLocation ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+epro:hasPostalAddress
+    a owl:ObjectProperty ;
+    rdfs:label "has postal address"@en ;
+    rdfs:domain epr:ContactAndLocation ;
+    rdfs:range epr:PostalAddress ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+epro:hasWebsiteUrl
+    a owl:ObjectProperty ;
+    rdfs:label "has website URL"@en ;
+    rdfs:domain epr:ContactAndLocation ;
+    rdfs:range epr:WebsiteUrl ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+epro:hasTelephoneNumber
+    a owl:ObjectProperty ;
+    rdfs:label "has telephone number"@en ;
+    rdfs:domain epr:ContactAndLocation ;
+    rdfs:range epr:TelephoneNumber ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+epro:hasHeadteacherOrPrincipal
+    a owl:ObjectProperty ;
+    rdfs:label "has headteacher or principal"@en ;
+    rdfs:domain epr:ContactAndLocation ;
+    rdfs:range epr:HeadteacherOrPrincipal ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+
+#################################################################
+# Object properties — further education sub-classification and Section 41
+#################################################################
+
+epro:classifiedByFurtherEducationType
+    a owl:ObjectProperty ;
+    rdfs:label "classified by further education type"@en ;
+    rdfs:domain epr:EstablishmentClassification ;
+    rdfs:range epr:FurtherEducationType ;
+    rdfs:comment "Cardinality: 0..1. Present for further education (type 18), higher education institutions (type 29) and pupil referral units (type 14)."@en .
+
+epro:classifiedBySection41ApprovalStatus
+    a owl:ObjectProperty ;
+    rdfs:label "classified by Section 41 approval status"@en ;
+    rdfs:domain epr:EstablishmentClassification ;
+    rdfs:range epr:Section41ApprovalStatus ;
+    rdfs:comment "Cardinality: 0..1. Present for non-maintained special schools, independent special schools, and many academy and free school types."@en .
+
+
+#################################################################
+# Object properties — inspection detail
+#################################################################
+
+epro:recordsInspectorateName
+    a owl:ObjectProperty ;
+    rdfs:label "records inspectorate name"@en ;
+    rdfs:domain epr:InspectionReportReference ;
+    rdfs:range epr:InspectorateName ;
+    rdfs:comment "Cardinality: 0..1. Present where the inspectorate is not Ofsted."@en .
+
+epro:recordsDateOfLastInspectionVisit
+    a owl:ObjectProperty ;
+    rdfs:label "records date of last inspection visit"@en ;
+    rdfs:domain epr:InspectionReportReference ;
+    rdfs:range epr:DateOfLastInspectionVisit ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+epro:recordsDateOfNextInspectionVisit
+    a owl:ObjectProperty ;
+    rdfs:label "records date of next inspection visit"@en ;
+    rdfs:domain epr:InspectionReportReference ;
+    rdfs:range epr:DateOfNextInspectionVisit ;
+    rdfs:comment "Cardinality: 0..1. Observed for British schools overseas (type 37)."@en .
+
+
+#################################################################
+# Object properties — special pupils SEN measures
+#################################################################
+
+epro:hasSpecialPupilMeasure
+    a owl:ObjectProperty ;
+    rdfs:label "has special pupil measure"@en ;
+    rdfs:domain epr:SenAndResourcedProvision ;
+    rdfs:range epr:SpecialPupilMeasure ;
+    rdfs:comment "Cardinality: 0..1. Covers the count of pupils with a SEN statement or EHC plan and the count without."@en .

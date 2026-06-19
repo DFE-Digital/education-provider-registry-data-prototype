@@ -36,7 +36,7 @@
     dcterms:modified "2026-06-19"^^xsd:date ;
     dcterms:publisher "Department for Education"@en ;
     dcterms:license <https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
-    owl:versionInfo "0.2" ;
+    owl:versionInfo "0.3" ;
     rdfs:seeAlso <https://dfe-digital.github.io/education-provider-registry-data/ontology/> ;
     rdfs:seeAlso <https://dfe-digital.github.io/education-provider-registry-data/taxonomy/> ;
     epr:status "Provisional"@en .
@@ -103,6 +103,41 @@ epr:EstablishmentUniversalShape
         sh:minCount 1 ; sh:maxCount 1 ;
         sh:name "Establishment type"@en ;
         sh:message "Every establishment classification must carry exactly one establishment type."@en ;
+    ] ;
+
+    sh:property [
+        sh:path epro:hasContactAndLocation ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:name "Contact and location"@en ;
+        sh:message "Every establishment must have exactly one contact and location record."@en ;
+    ] ;
+
+    sh:property [
+        sh:path ( epro:hasContactAndLocation epro:hasPostalAddress ) ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:name "Postal address"@en ;
+        sh:message "Every establishment must have a postal address."@en ;
+    ] ;
+
+    sh:property [
+        sh:path ( epro:hasContactAndLocation epro:hasHeadteacherOrPrincipal ) ;
+        sh:maxCount 1 ;
+        sh:name "Headteacher or principal"@en ;
+        sh:message "An establishment may have at most one headteacher or principal record."@en ;
+    ] ;
+
+    sh:property [
+        sh:path ( epro:hasContactAndLocation epro:hasWebsiteUrl ) ;
+        sh:maxCount 1 ;
+        sh:name "Website"@en ;
+        sh:message "An establishment may have at most one website URL."@en ;
+    ] ;
+
+    sh:property [
+        sh:path ( epro:hasContactAndLocation epro:hasTelephoneNumber ) ;
+        sh:maxCount 1 ;
+        sh:name "Telephone number"@en ;
+        sh:message "An establishment may have at most one telephone number."@en ;
     ] .
 
 

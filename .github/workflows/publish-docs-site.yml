@@ -11,6 +11,7 @@ on:
       - "docs-site/scripts/generate-vocabulary-pages.ps1"
       - "docs-site/scripts/generate-taxonomy-pages.ps1"
       - "docs-site/scripts/generate-shacl-rules-page.ps1"
+      - "docs-site/scripts/generate-data-quality-rules-page.ps1"
       - "docs-site/scripts/copy-model-pages.ps1"
   workflow_dispatch:
 
@@ -47,6 +48,10 @@ jobs:
       - name: Generate field rules page from SHACL
         shell: pwsh
         run: ./docs-site/scripts/generate-shacl-rules-page.ps1
+
+      - name: Generate data quality rules page from SHACL
+        shell: pwsh
+        run: ./docs-site/scripts/generate-data-quality-rules-page.ps1
 
       - name: Copy model markdown pages
         shell: pwsh
