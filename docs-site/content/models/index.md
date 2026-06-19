@@ -18,17 +18,13 @@ The model is split across three layers. The vocabulary and taxonomy define terms
 
 ## How the layers relate
 
-```
-Vocabulary (SKOS)        defines what the terms mean
-      |
-Taxonomy (SKOS)          organises the valid classification values
-      |
-Ontology (OWL)           describes the structure and relationships
-      |
-SHACL shapes             expresses per-type validation rules — what valid data must look like
-      |
-Field rules (Markdown)   the same rules in plain English
-```
+<ul>
+  <li><strong>Vocabulary (SKOS)</strong> — defines what the terms mean</li>
+  <li><strong>Taxonomy (SKOS)</strong> — organises the valid classification values</li>
+  <li><strong>Ontology (OWL)</strong> — describes the structure and relationships</li>
+  <li><strong>SHACL shapes</strong> — expresses per-type validation rules — what valid data must look like</li>
+  <li><strong>Field rules (Markdown)</strong> — the same rules in plain English</li>
+</ul>
 
 All artefacts share the same namespace (`epr:`) so a term defined in the vocabulary is the same term referenced in the ontology and checked in the SHACL shapes.
 
