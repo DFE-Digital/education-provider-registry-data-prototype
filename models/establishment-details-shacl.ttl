@@ -278,6 +278,13 @@ epr:LaMaintainedSchoolGroupShape
         sh:maxCount 1 ;
         sh:name "School capacity"@en ;
         sh:message "An LA maintained school may have at most one school capacity."@en ;
+    ] ;
+
+    sh:property [
+        sh:path ( epro:hasCapacityAndPupilMeasures epro:hasPupilCount ) ;
+        sh:minCount 1 ;
+        sh:name "Number of pupils"@en ;
+        sh:message "LA maintained schools must have a pupil count."@en ;
     ] .
 
 
@@ -444,6 +451,13 @@ epr:PupilReferralUnitShape
         sh:maxCount 0 ;
         sh:name "School capacity (not applicable)"@en ;
         sh:message "School capacity is not applicable for pupil referral units."@en ;
+    ] ;
+
+    sh:property [
+        sh:path ( epro:hasCapacityAndPupilMeasures epro:hasPupilCount ) ;
+        sh:minCount 1 ;
+        sh:name "Number of pupils"@en ;
+        sh:message "Pupil referral units must have a pupil count."@en ;
     ] .
 
 
@@ -485,6 +499,13 @@ epr:LocalAuthorityNurserySchoolShape
         sh:maxCount 0 ;
         sh:name "Sixth-form provision (not applicable)"@en ;
         sh:message "Sixth-form provision is not applicable for LA nursery schools."@en ;
+    ] ;
+
+    sh:property [
+        sh:path ( epro:hasCapacityAndPupilMeasures epro:hasPupilCount ) ;
+        sh:minCount 1 ;
+        sh:name "Number of pupils"@en ;
+        sh:message "LA nursery schools must have a pupil count."@en ;
     ] .
 
 
@@ -568,6 +589,13 @@ epr:NonMaintainedSpecialSchoolGroupShape
         sh:maxCount 1 ;
         sh:name "School capacity"@en ;
         sh:message "A non-maintained special school may have at most one school capacity."@en ;
+    ] ;
+
+    sh:property [
+        sh:path ( epro:hasCapacityAndPupilMeasures epro:hasPupilCount ) ;
+        sh:minCount 1 ;
+        sh:name "Number of pupils"@en ;
+        sh:message "Non-maintained special schools must have a pupil count."@en ;
     ] .
 
 
@@ -664,6 +692,13 @@ epr:IndependentSchoolGroupShape
         sh:maxCount 1 ;
         sh:name "School capacity"@en ;
         sh:message "An independent school may have at most one school capacity."@en ;
+    ] ;
+
+    sh:property [
+        sh:path ( epro:hasCapacityAndPupilMeasures epro:hasPupilCount ) ;
+        sh:minCount 1 ;
+        sh:name "Number of pupils"@en ;
+        sh:message "Independent schools must have a pupil count."@en ;
     ] .
 
 
@@ -774,6 +809,13 @@ epr:MainstreamAcademyGroupShape
         sh:maxCount 1 ;
         sh:name "School capacity"@en ;
         sh:message "A mainstream academy may have at most one school capacity."@en ;
+    ] ;
+
+    sh:property [
+        sh:path ( epro:hasCapacityAndPupilMeasures epro:hasPupilCount ) ;
+        sh:minCount 1 ;
+        sh:name "Number of pupils"@en ;
+        sh:message "Mainstream academies must have a pupil count."@en ;
     ] .
 
 
@@ -835,6 +877,13 @@ epr:AcademySpecialShape
         sh:maxCount 0 ;
         sh:name "Sixth-form provision (not applicable)"@en ;
         sh:message "Sixth-form provision is not applicable for academy special schools."@en ;
+    ] ;
+
+    sh:property [
+        sh:path ( epro:hasCapacityAndPupilMeasures epro:hasPupilCount ) ;
+        sh:minCount 1 ;
+        sh:name "Number of pupils"@en ;
+        sh:message "Academy special schools must have a pupil count."@en ;
     ] .
 
 
@@ -890,6 +939,13 @@ epr:AcademyAlternativeProvisionShape
         sh:maxCount 0 ;
         sh:name "Sixth-form provision (not applicable)"@en ;
         sh:message "Sixth-form provision is not applicable for academy alternative provision establishments."@en ;
+    ] ;
+
+    sh:property [
+        sh:path ( epro:hasCapacityAndPupilMeasures epro:hasPupilCount ) ;
+        sh:minCount 1 ;
+        sh:name "Number of pupils"@en ;
+        sh:message "Academy alternative provision establishments must have a pupil count."@en ;
     ] .
 
 
@@ -944,6 +1000,13 @@ epr:Academy1619Shape
         sh:maxCount 0 ;
         sh:name "Sixth-form provision (not applicable)"@en ;
         sh:message "Sixth-form provision classification is not applicable for academy 16-19 establishments — these establishments are themselves 16-19 provision."@en ;
+    ] ;
+
+    sh:property [
+        sh:path ( epro:hasCapacityAndPupilMeasures epro:hasPupilCount ) ;
+        sh:minCount 1 ;
+        sh:name "Number of pupils"@en ;
+        sh:message "Academy 16-19 establishments must have a pupil count."@en ;
     ] .
 
 
@@ -1006,6 +1069,13 @@ epr:AcademySecure16To19Shape
         sh:maxCount 0 ;
         sh:name "Faith context (not applicable in public view)"@en ;
         sh:message "Faith context is not shown in the restricted public Details view for academy secure 16 to 19."@en ;
+    ] ;
+
+    sh:property [
+        sh:path ( epro:hasCapacityAndPupilMeasures epro:hasPupilCount ) ;
+        sh:minCount 1 ;
+        sh:name "Number of pupils"@en ;
+        sh:message "Academy secure 16 to 19 establishments must have a pupil count."@en ;
     ] .
 
 
@@ -1117,6 +1187,13 @@ epr:MainstreamFreeSchoolGroupShape
         sh:maxCount 1 ;
         sh:name "School capacity"@en ;
         sh:message "A mainstream free school may have at most one school capacity."@en ;
+    ] ;
+
+    sh:property [
+        sh:path ( epro:hasCapacityAndPupilMeasures epro:hasPupilCount ) ;
+        sh:minCount 1 ;
+        sh:name "Number of pupils"@en ;
+        sh:message "Mainstream free schools must have a pupil count."@en ;
     ] .
 
 
@@ -1172,6 +1249,13 @@ epr:FreeSchoolSpecialShape
         sh:maxCount 0 ;
         sh:name "Sixth-form provision (not applicable)"@en ;
         sh:message "Sixth-form provision is not applicable for free school specials."@en ;
+    ] ;
+
+    sh:property [
+        sh:path ( epro:hasCapacityAndPupilMeasures epro:hasPupilCount ) ;
+        sh:minCount 1 ;
+        sh:name "Number of pupils"@en ;
+        sh:message "Free school specials must have a pupil count."@en ;
     ] .
 
 
@@ -1220,6 +1304,13 @@ epr:FreeSchoolAlternativeProvisionShape
         sh:maxCount 0 ;
         sh:name "Sixth-form provision (not applicable)"@en ;
         sh:message "Sixth-form provision is not applicable for free school alternative provision establishments."@en ;
+    ] ;
+
+    sh:property [
+        sh:path ( epro:hasCapacityAndPupilMeasures epro:hasPupilCount ) ;
+        sh:minCount 1 ;
+        sh:name "Number of pupils"@en ;
+        sh:message "Free school alternative provision establishments must have a pupil count."@en ;
     ] .
 
 
@@ -1268,6 +1359,13 @@ epr:FreeSchool16To19Shape
         sh:maxCount 0 ;
         sh:name "Sixth-form provision (not applicable)"@en ;
         sh:message "Sixth-form provision classification is not applicable for free school 16 to 19 establishments — these establishments are themselves 16-19 provision."@en ;
+    ] ;
+
+    sh:property [
+        sh:path ( epro:hasCapacityAndPupilMeasures epro:hasPupilCount ) ;
+        sh:minCount 1 ;
+        sh:name "Number of pupils"@en ;
+        sh:message "Free school 16 to 19 establishments must have a pupil count."@en ;
     ] .
 
 
@@ -1364,6 +1462,13 @@ epr:CollegeGroupShape
         sh:maxCount 0 ;
         sh:name "School capacity (not applicable)"@en ;
         sh:message "School capacity is not applicable for colleges."@en ;
+    ] ;
+
+    sh:property [
+        sh:path ( epro:hasCapacityAndPupilMeasures epro:hasPupilCount ) ;
+        sh:minCount 1 ;
+        sh:name "Number of pupils"@en ;
+        sh:message "Colleges must have a pupil count."@en ;
     ] .
 
 
@@ -1461,6 +1566,13 @@ epr:HigherEducationInstitutionShape
         sh:maxCount 0 ;
         sh:name "School capacity (not applicable)"@en ;
         sh:message "School capacity is not applicable for higher education institutions."@en ;
+    ] ;
+
+    sh:property [
+        sh:path ( epro:hasCapacityAndPupilMeasures epro:hasPupilCount ) ;
+        sh:minCount 1 ;
+        sh:name "Number of pupils"@en ;
+        sh:message "Higher education institutions must have a pupil count."@en ;
     ] .
 
 
@@ -1640,6 +1752,13 @@ epr:OnlineProviderShape
         sh:maxCount 0 ;
         sh:name "School capacity (not applicable)"@en ;
         sh:message "School capacity is not applicable for online providers."@en ;
+    ] ;
+
+    sh:property [
+        sh:path ( epro:hasCapacityAndPupilMeasures epro:hasPupilCount ) ;
+        sh:minCount 1 ;
+        sh:name "Number of pupils"@en ;
+        sh:message "Online providers must have a pupil count."@en ;
     ] .
 
 
@@ -1702,6 +1821,13 @@ epr:WelshEstablishmentShape
         sh:maxCount 0 ;
         sh:name "School capacity (not applicable)"@en ;
         sh:message "School capacity is not applicable for Welsh establishments."@en ;
+    ] ;
+
+    sh:property [
+        sh:path ( epro:hasCapacityAndPupilMeasures epro:hasPupilCount ) ;
+        sh:minCount 1 ;
+        sh:name "Number of pupils"@en ;
+        sh:message "Welsh establishments must have a pupil count."@en ;
     ] .
 
 
@@ -1764,6 +1890,13 @@ epr:SpecialPost16Shape
         sh:maxCount 1 ;
         sh:name "School capacity"@en ;
         sh:message "A special post-16 institution may have at most one school capacity."@en ;
+    ] ;
+
+    sh:property [
+        sh:path ( epro:hasCapacityAndPupilMeasures epro:hasPupilCount ) ;
+        sh:minCount 1 ;
+        sh:name "Number of pupils"@en ;
+        sh:message "Special post-16 institutions must have a pupil count."@en ;
     ] .
 
 
@@ -1833,6 +1966,13 @@ epr:BritishSchoolsOverseasShape
         sh:maxCount 0 ;
         sh:name "School capacity (not applicable)"@en ;
         sh:message "School capacity is not applicable for British schools overseas."@en ;
+    ] ;
+
+    sh:property [
+        sh:path ( epro:hasCapacityAndPupilMeasures epro:hasPupilCount ) ;
+        sh:minCount 1 ;
+        sh:name "Number of pupils"@en ;
+        sh:message "British schools overseas must have a pupil count."@en ;
     ] .
 
 
