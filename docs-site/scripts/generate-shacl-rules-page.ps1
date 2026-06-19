@@ -175,7 +175,7 @@ $lines += '---'
 $lines += ''
 $lines += "Source: [``models/establishment-details-shacl.ttl``](https://github.com/DFE-Digital/education-provider-registry-data/blob/main/models/establishment-details-shacl.ttl)"
 
-$outputDir = Split-Path -LiteralPath $OutputPath -Parent
+$outputDir = Split-Path -Path $OutputPath -Parent
 New-Item -ItemType Directory -Force -Path $outputDir | Out-Null
 Set-Content -LiteralPath $OutputPath -Value $lines -Encoding UTF8
 
