@@ -150,7 +150,6 @@ $lines.Add('| --- | --- |')
 $lines.Add('| Required — exactly one | The field must be present with exactly one value |')
 $lines.Add('| Required — at least one | The field must be present with at least one value |')
 $lines.Add('| Optional | The field may be present but is not required |')
-$lines.Add('| Not applicable | The field must not be present for this establishment type |')
 $lines.Add('')
 
 $typesOutput = 0
