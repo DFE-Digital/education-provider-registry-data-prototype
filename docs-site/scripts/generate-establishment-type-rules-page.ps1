@@ -127,7 +127,7 @@ foreach ($sm in $shapeBlocks) {
         $className = $tcm.Groups[1].Value
         if ($classToTypes.ContainsKey($className)) {
             $targetTypes = $classToTypes[$className]
-        } elseif ($typeMeta.ContainsKey($className)) {
+        } elseif ($typeMeta.Contains($className)) {
             $targetTypes = @($className)
         }
     }
