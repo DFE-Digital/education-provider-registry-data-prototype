@@ -982,59 +982,59 @@ epro:hasPupilReferralUnitOperationalRecord
     rdfs:comment "Cardinality: 0..1. Present only for pupil referral units (type 14)."@en .
 
 epro:hasTeenageMothersProvision
-    a owl:ObjectProperty ;
+    a owl:DatatypeProperty ;
     rdfs:label "has teenage mothers provision"@en ;
     rdfs:domain epr:PupilReferralUnitOperationalRecord ;
-    rdfs:range rdfs:Resource ;
+    rdfs:range xsd:boolean ;
     rdfs:comment "Cardinality: 0..1. Whether the PRU provides for teenage mothers."@en .
 
 epro:hasTeenageMothersPlaces
-    a owl:ObjectProperty ;
+    a owl:DatatypeProperty ;
     rdfs:label "has teenage mothers places"@en ;
     rdfs:domain epr:PupilReferralUnitOperationalRecord ;
-    rdfs:range rdfs:Resource ;
+    rdfs:range xsd:nonNegativeInteger ;
     rdfs:comment "Cardinality: 0..1. Number of places for teenage mothers."@en .
 
 epro:hasChildcareProvision
-    a owl:ObjectProperty ;
+    a owl:DatatypeProperty ;
     rdfs:label "has childcare provision"@en ;
     rdfs:domain epr:PupilReferralUnitOperationalRecord ;
-    rdfs:range rdfs:Resource ;
+    rdfs:range xsd:boolean ;
     rdfs:comment "Cardinality: 0..1. Whether the PRU provides childcare facilities."@en .
 
 epro:hasSenFacilities
-    a owl:ObjectProperty ;
+    a owl:DatatypeProperty ;
     rdfs:label "has SEN facilities"@en ;
     rdfs:domain epr:PupilReferralUnitOperationalRecord ;
-    rdfs:range rdfs:Resource ;
+    rdfs:range xsd:boolean ;
     rdfs:comment "Cardinality: 0..1. Whether the PRU has SEN facilities."@en .
 
 epro:hasPupilsWithEBD
-    a owl:ObjectProperty ;
+    a owl:DatatypeProperty ;
     rdfs:label "has pupils with EBD"@en ;
     rdfs:domain epr:PupilReferralUnitOperationalRecord ;
-    rdfs:range rdfs:Resource ;
+    rdfs:range xsd:boolean ;
     rdfs:comment "Cardinality: 0..1. Whether the PRU provides for pupils with emotional and behavioural difficulties."@en .
 
 epro:hasNumberOfPlaces
-    a owl:ObjectProperty ;
+    a owl:DatatypeProperty ;
     rdfs:label "has number of places"@en ;
     rdfs:domain epr:PupilReferralUnitOperationalRecord ;
-    rdfs:range rdfs:Resource ;
+    rdfs:range xsd:nonNegativeInteger ;
     rdfs:comment "Cardinality: 0..1. Total number of places in the PRU."@en .
 
 epro:hasFullTimeProvision
-    a owl:ObjectProperty ;
+    a owl:DatatypeProperty ;
     rdfs:label "has full time provision"@en ;
     rdfs:domain epr:PupilReferralUnitOperationalRecord ;
-    rdfs:range rdfs:Resource ;
+    rdfs:range xsd:boolean ;
     rdfs:comment "Cardinality: 0..1. Whether the PRU offers full-time provision."@en .
 
 epro:hasPupilsEducatedByOtherProviders
-    a owl:ObjectProperty ;
+    a owl:DatatypeProperty ;
     rdfs:label "has pupils educated by other providers"@en ;
     rdfs:domain epr:PupilReferralUnitOperationalRecord ;
-    rdfs:range rdfs:Resource ;
+    rdfs:range xsd:boolean ;
     rdfs:comment "Cardinality: 0..1. Whether the PRU has pupils educated by other providers."@en .
 
 
@@ -1050,52 +1050,52 @@ epro:hasAccreditationRecord
     rdfs:comment "Cardinality: 0..1. Present only for online providers (type 49)."@en .
 
 epro:hasAccreditationDate
-    a owl:ObjectProperty ;
+    a owl:DatatypeProperty ;
     rdfs:label "has accreditation date"@en ;
     rdfs:domain epr:AccreditationRecord ;
-    rdfs:range rdfs:Resource ;
+    rdfs:range xsd:date ;
     rdfs:comment "Cardinality: 0..1. The date the online provider was accredited."@en .
 
 epro:hasAccreditationExpiryDate
-    a owl:ObjectProperty ;
+    a owl:DatatypeProperty ;
     rdfs:label "has accreditation expiry date"@en ;
     rdfs:domain epr:AccreditationRecord ;
-    rdfs:range rdfs:Resource ;
+    rdfs:range xsd:date ;
     rdfs:comment "Cardinality: 0..1. The date the accreditation expires."@en .
 
 epro:hasAccreditationDateEnded
-    a owl:ObjectProperty ;
+    a owl:DatatypeProperty ;
     rdfs:label "has accreditation date ended"@en ;
     rdfs:domain epr:AccreditationRecord ;
-    rdfs:range rdfs:Resource ;
+    rdfs:range xsd:date ;
     rdfs:comment "Cardinality: 0..1. The date the accreditation ended if it was revoked or lapsed."@en .
 
 epro:hasQualityAssuranceBodyName
-    a owl:ObjectProperty ;
+    a owl:DatatypeProperty ;
     rdfs:label "has quality assurance body name"@en ;
     rdfs:domain epr:AccreditationRecord ;
-    rdfs:range rdfs:Resource ;
+    rdfs:range xsd:string ;
     rdfs:comment "Cardinality: 0..1. The name of the quality assurance body for the online provider."@en .
 
 epro:hasQualityAssuranceBodyReport
-    a owl:ObjectProperty ;
+    a owl:DatatypeProperty ;
     rdfs:label "has quality assurance body report"@en ;
     rdfs:domain epr:AccreditationRecord ;
-    rdfs:range rdfs:Resource ;
-    rdfs:comment "Cardinality: 0..1. Reference to the quality assurance body report."@en .
+    rdfs:range xsd:anyURI ;
+    rdfs:comment "Cardinality: 0..1. URL of the quality assurance body report for the online provider."@en .
 
 epro:hasCompaniesHouseNumber
-    a owl:ObjectProperty ;
+    a owl:DatatypeProperty ;
     rdfs:label "has companies house number"@en ;
     rdfs:domain epr:AccreditationRecord ;
-    rdfs:range rdfs:Resource ;
+    rdfs:range xsd:string ;
     rdfs:comment "Cardinality: 0..1. The Companies House registration number for the online provider."@en .
 
 epro:isEstablishmentAccredited
-    a owl:ObjectProperty ;
+    a owl:DatatypeProperty ;
     rdfs:label "is establishment accredited"@en ;
     rdfs:domain epr:AccreditationRecord ;
-    rdfs:range rdfs:Resource ;
+    rdfs:range xsd:boolean ;
     rdfs:comment "Cardinality: 0..1. Whether the online provider is currently accredited."@en .
 
 
