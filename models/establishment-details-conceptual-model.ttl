@@ -38,7 +38,7 @@ epro:establishmentDetailsConceptualModel
     dcterms:modified "2026-06-21"^^xsd:date ;
     dcterms:publisher "Department for Education"@en ;
     dcterms:license <https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
-    owl:versionInfo "0.6" ;
+    owl:versionInfo "0.7" ;
     vann:preferredNamespacePrefix "epro" ;
     vann:preferredNamespaceUri "https://dfe-digital.github.io/education-provider-registry-data/ontology/"^^xsd:anyURI ;
     rdfs:seeAlso <https://dfe-digital.github.io/education-provider-registry-data/vocabulary/> ;
@@ -48,6 +48,7 @@ epro:establishmentDetailsConceptualModel
     rdfs:comment "v0.2: per-type field-applicability rules added as SHACL shapes in establishment-details-shacl.ttl. Accountability relationship rules (which types require LA, academy trust or proprietor) are now expressed in those shapes rather than as open questions."@en ;
     rdfs:comment "v0.4: field-coverage additions — classes and properties for Ofsted inspection record, PRU operational record, accreditation record (online providers), provider type, manager, academy sponsor SHACL modelling. Ontology already had faith-context classes (ReligiousCharacter, ReligiousEthos, Diocese) and SpecialClassProvision. New additions: OfstedInspectionRecord, PupilReferralUnitOperationalRecord, AccreditationRecord, ProviderType, Manager."@en ;
     rdfs:comment "v0.5: establishment type class hierarchy added. Each GIAS establishment type is now an OWL class subtype of epr:Establishment, via intermediate group classes (LaMaintainedSchool, Academy, FreeSchoolEstablishment etc.). Intermediate classes defined here; leaf type classes enriched with owl:Class and rdfs:subClassOf in the taxonomy TTL using OWL 2 punning."@en ;
+    rdfs:comment "v0.7: leaf type OWL class declarations moved from the taxonomy TTL into this ontology TTL. The taxonomy TTL is now pure SKOS (skos:Concept, skos:broader etc.). OWL punning is preserved — the same epr: URIs remain valid SKOS concepts in the taxonomy. WIDOCO now receives only this ontology TTL, eliminating the skos:Concept hub node from the WebVOWL graph."@en ;
     rdfs:comment "v0.6: ontology class local names aligned with vocabulary source of truth. Renames: ContactAndLocation→EstablishmentLocationAndContact, PostalAddress→MainAddress, WebsiteUrl→Website, Manager→CentreManager, Section41ApprovalStatus→Section41Approval. Vocabulary entries added for all 14 intermediate OWL classes and for grouping container classes (ResourcedProvisionMeasure, SenUnitMeasure, SpecialPupilMeasure, OfstedInspectionRecord, AccreditationRecord, PupilReferralUnitOperationalRecord)."@en ;
     epr:status "Provisional"@en .
 
@@ -1123,8 +1124,7 @@ epro:hasCentreManager
 #
 # Intermediate OWL classes grouping establishment types by their
 # SHACL shape family. Leaf type classes (CommunitySchool etc.)
-# are defined in establishment-details-taxonomy-skos.ttl and
-# enriched there with a owl:Class and rdfs:subClassOf assertions.
+# are declared below in their own section.
 #################################################################
 
 epr:LaMaintainedSchool
@@ -1210,3 +1210,190 @@ epr:ChildrensCentreEstablishment
     rdfs:subClassOf epr:Establishment ;
     rdfs:label "Children's centre establishment"@en ;
     rdfs:comment "Children's centres and children's centre linked sites."@en .
+
+
+#################################################################
+# Classes — establishment type leaf classes (v0.7)
+#
+# OWL class declarations for the 41 GIAS leaf establishment types,
+# moved here from the taxonomy TTL. The taxonomy TTL retains the
+# skos:Concept declarations and SKOS hierarchy (skos:broader).
+# OWL 2 punning is preserved across both files.
+#################################################################
+
+# LA maintained mainstream schools
+epr:CommunitySchool
+    a owl:Class ;
+    rdfs:subClassOf epr:LaMainstreamSchool .
+
+epr:VoluntaryAidedSchool
+    a owl:Class ;
+    rdfs:subClassOf epr:LaMainstreamSchool .
+
+epr:VoluntaryControlledSchool
+    a owl:Class ;
+    rdfs:subClassOf epr:LaMainstreamSchool .
+
+epr:FoundationSchool
+    a owl:Class ;
+    rdfs:subClassOf epr:LaMainstreamSchool .
+
+# LA maintained special schools
+epr:CommunitySpecialSchool
+    a owl:Class ;
+    rdfs:subClassOf epr:LaMaintainedSpecialSchool .
+
+epr:FoundationSpecialSchool
+    a owl:Class ;
+    rdfs:subClassOf epr:LaMaintainedSpecialSchool .
+
+# LA maintained — other
+epr:PupilReferralUnit
+    a owl:Class ;
+    rdfs:subClassOf epr:LaMaintainedSchool .
+
+epr:LocalAuthorityNurserySchool
+    a owl:Class ;
+    rdfs:subClassOf epr:LaMaintainedSchool .
+
+# Non-maintained and independent special schools
+epr:NonMaintainedSpecialSchool
+    a owl:Class ;
+    rdfs:subClassOf epr:NonMaintainedAndIndependentSpecialSchool .
+
+epr:OtherIndependentSpecialSchool
+    a owl:Class ;
+    rdfs:subClassOf epr:NonMaintainedAndIndependentSpecialSchool .
+
+# Independent schools
+epr:CityTechnologyCollege
+    a owl:Class ;
+    rdfs:subClassOf epr:IndependentSchool .
+
+epr:OtherIndependentSchool
+    a owl:Class ;
+    rdfs:subClassOf epr:IndependentSchool .
+
+# Colleges
+epr:FurtherEducation
+    a owl:Class ;
+    rdfs:subClassOf epr:College .
+
+epr:SixthFormCentre
+    a owl:Class ;
+    rdfs:subClassOf epr:College .
+
+# Universities and higher education
+epr:HigherEducationInstitution
+    a owl:Class ;
+    rdfs:subClassOf epr:Establishment .
+
+# Welsh establishments
+epr:WelshEstablishment
+    a owl:Class ;
+    rdfs:subClassOf epr:Establishment .
+
+# Other types
+epr:SecureUnits
+    a owl:Class ;
+    rdfs:subClassOf epr:Establishment .
+
+epr:OffshoreSchools
+    a owl:Class ;
+    rdfs:subClassOf epr:Establishment .
+
+epr:ServiceChildrensEducation
+    a owl:Class ;
+    rdfs:subClassOf epr:Establishment .
+
+epr:MiscellaneousEstablishment
+    a owl:Class ;
+    rdfs:subClassOf epr:Establishment .
+
+epr:SpecialPost16Institution
+    a owl:Class ;
+    rdfs:subClassOf epr:Establishment .
+
+epr:BritishSchoolsOverseas
+    a owl:Class ;
+    rdfs:subClassOf epr:Establishment .
+
+epr:InstitutionFundedByOtherGovernmentDepartment
+    a owl:Class ;
+    rdfs:subClassOf epr:Establishment .
+
+# Academies
+epr:AcademySponsorLed
+    a owl:Class ;
+    rdfs:subClassOf epr:MainstreamAcademy .
+
+epr:AcademySpecialSponsorLed
+    a owl:Class ;
+    rdfs:subClassOf epr:AcademySpecial .
+
+epr:AcademyConverter
+    a owl:Class ;
+    rdfs:subClassOf epr:MainstreamAcademy .
+
+epr:AcademyAlternativeProvisionConverter
+    a owl:Class ;
+    rdfs:subClassOf epr:AcademyAlternativeProvision .
+
+epr:AcademyAlternativeProvisionSponsorLed
+    a owl:Class ;
+    rdfs:subClassOf epr:AcademyAlternativeProvision .
+
+epr:AcademySpecialConverter
+    a owl:Class ;
+    rdfs:subClassOf epr:AcademySpecial .
+
+epr:Academy1619Converter
+    a owl:Class ;
+    rdfs:subClassOf epr:Academy1619 .
+
+epr:Academy16To19SponsorLed
+    a owl:Class ;
+    rdfs:subClassOf epr:Academy1619 .
+
+epr:AcademySecure16To19
+    a owl:Class ;
+    rdfs:subClassOf epr:Academy .
+
+# Free schools
+epr:FreeSchool
+    a owl:Class ;
+    rdfs:subClassOf epr:MainstreamFreeSchool .
+
+epr:FreeSchoolSpecial
+    a owl:Class ;
+    rdfs:subClassOf epr:FreeSchoolEstablishment .
+
+epr:FreeSchoolAlternativeProvision
+    a owl:Class ;
+    rdfs:subClassOf epr:FreeSchoolEstablishment .
+
+epr:FreeSchool16To19
+    a owl:Class ;
+    rdfs:subClassOf epr:FreeSchoolEstablishment .
+
+epr:UniversityTechnicalCollege
+    a owl:Class ;
+    rdfs:subClassOf epr:MainstreamFreeSchool .
+
+epr:StudioSchool
+    a owl:Class ;
+    rdfs:subClassOf epr:MainstreamFreeSchool .
+
+# Children's centres
+epr:ChildrensCentre
+    a owl:Class ;
+    rdfs:subClassOf epr:ChildrensCentreEstablishment .
+
+epr:ChildrensCentreLinkedSite
+    a owl:Class ;
+    rdfs:subClassOf epr:ChildrensCentreEstablishment .
+
+# Online providers
+epr:OnlineProvider
+    a owl:Class ;
+    rdfs:subClassOf epr:Establishment .
