@@ -6,7 +6,7 @@ This folder contains machine-readable semantic model files for the Education Pro
 
 - `establishment-details-vocabulary-skos.ttl` - a SKOS vocabulary for Establishment Details concepts, including preferred labels, alternative labels, definitions, relationships, statuses and source notes.
 - `establishment-details-taxonomy-skos.ttl` - a SKOS taxonomy for Establishment Details classifications, expressed as facets and narrower taxons evidenced by the current modelling work.
-- `establishment-details-conceptual-model.md` - a Markdown conceptual model for the Establishment Details submodel, using several Mermaid diagrams split by business concern.
+- `establishment-details-conceptual-model.ttl` - an OWL 2 ontology defining the classes, properties and named individuals for the Establishment Details model. WIDOCO generates browsable documentation and a WebVOWL graph from this file.
 
 ## SKOS
 
