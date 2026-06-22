@@ -16,7 +16,8 @@ function Get-PredicateText {
     )
 
     $escapedPredicate = [regex]::Escape($Predicate)
-    $match = [regex]::Match($Block, "(?ms)$escapedPredicate\s+(.*?)(?:\s*;\s*|\s*\.\s*(?:\r?\n|$))")
+    $pattern = "(?ms)$escapedPredicate" + '\s+((?:"(?:[^"\\]|\\.)*"(?:@[a-zA-Z-]+|\^\^\S+)?|[^;".]+)+)\s*(?:;|\.\s*(?:\r?\n|$))'
+    $match = [regex]::Match($Block, $pattern)
     if ($match.Success) {
         return $match.Groups[1].Value.Trim()
     }
