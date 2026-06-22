@@ -14,7 +14,7 @@ An establishment group is an organisation or governance structure that sits arou
 
 It is not the establishment itself. It is the wider body, relationship or governance arrangement that explains how establishments are connected, governed, sponsored or managed together.
 
-In GIAS business language, establishment groups include:
+Establishment groups include:
 
 - Academy trusts.
 - Multi-academy trusts.
@@ -50,7 +50,7 @@ Other responsibilities sit at group level. For example, an academy trust has a b
 
 Some relationships sit between establishments. For example, maintained schools may federate under one governing body while remaining separate schools.
 
-GIAS needs to understand both levels:
+It is useful to understand both levels:
 
 - The individual establishment.
 - The group or organisation around it.
@@ -61,9 +61,9 @@ Without establishment groups, it is difficult to answer questions such as:
 - Is this school part of a federation?
 - Which establishments are associated with this sponsor?
 - Which children's centres belong to this group or collaboration?
-- Which governance people are recorded at trust or group level?
-- Is a group open, closed or created in error?
-- Which UKPRN, Companies House number or group identifier applies to the group rather than to a school?
+- Which governance people act at trust or group level?
+- Is a group currently active or has it closed?
+- Which organisation-level identifiers apply to the group rather than to a school?
 
 ## Academy Trusts
 
@@ -114,7 +114,7 @@ Linked establishments:
 - River Secondary Academy
 - River Studio School
 
-Each academy has its own establishment record.
+Each academy is its own establishment.
 The MAT is the group organisation around them.
 ```
 
@@ -138,7 +138,7 @@ This distinction is important. A single-academy trust is not the same thing as t
 
 A secure single-academy trust is a specialised form of single-academy trust associated with secure 16 to 19 academy provision.
 
-For business modelling, it should be treated as:
+In business terms, it should be treated as:
 
 - A trust-style group organisation.
 - A specialised SAT subtype.
@@ -194,7 +194,7 @@ Member establishments:
 - South Road Primary School
 
 The schools remain separate establishments.
-The federation records the shared maintained-school governance arrangement.
+The federation represents the shared maintained-school governance arrangement.
 ```
 
 Academies do not normally join maintained-school federations. Academy group structures are handled through academy trusts.
@@ -214,7 +214,7 @@ The practical distinction is:
 | Academy trust | The legal organisation accountable for one or more academies. |
 | School sponsor | A sponsoring body associated with support, sponsorship or improvement of one or more schools or academies. |
 
-In some real-world cases the sponsor and trust may be closely related. For modelling and business explanation, it is still useful to keep the concepts separate because they answer different questions.
+In some real-world cases the sponsor and trust may be closely related. For business explanation, it is still useful to keep the concepts separate because they answer different questions.
 
 ## Children's Centre Groups And Collaborations
 
@@ -224,7 +224,7 @@ A children's centre group is best understood as an operational grouping of child
 
 A children's centre collaboration is best understood as a collaboration arrangement between children's centres or groups.
 
-These concepts are more GIAS-specific than academy trusts and maintained-school federations. The GOV.UK sources listed above do not define these group types in the same way they define academy trusts or federations. They should therefore be treated as service-domain concepts that need business-owner confirmation when the target model is baselined.
+The GOV.UK sources listed above do not define these group types in the same way they define academy trusts or federations. They should therefore be treated as locally defined business concepts unless a stronger national definition is agreed.
 
 The important business point is still clear:
 
@@ -235,11 +235,11 @@ The group or collaboration is the relationship around one or more children's cen
 
 ## Generic Trusts
 
-GIAS also has a generic trust-style group type.
+There may also be generic trust-style group arrangements.
 
 This should not be confused with an academy trust. In business explanation, use "generic trust" or "legacy trust group" where possible, because simply saying "trust" can mislead readers into assuming an academy trust.
 
-This concept should be retained where legacy records or current GIAS data still use it, but it needs careful wording in future models.
+This concept needs careful wording because "trust" can mean different things in different education contexts.
 
 ## Establishment Groups Are Not Establishment Type Groups
 
@@ -275,7 +275,7 @@ These are all useful facts, but they are not the same fact.
 
 ## Group Membership
 
-Group membership records the link between an establishment and an establishment group.
+Group membership describes the link between an establishment and an establishment group.
 
 In business terms:
 
@@ -290,7 +290,7 @@ The membership may need its own facts, such as:
 - Whether the group relationship has a special role, such as lead centre.
 - Whether the link has changed because of conversion, closure, reorganisation or trust change.
 
-This is why group membership should be treated as a relationship in its own right, not just as a text field on the establishment.
+This is why group membership should be treated as a relationship in its own right, not just as a descriptive label on the establishment.
 
 ## Group Relationships
 
@@ -306,25 +306,25 @@ Group relationships preserve history between group organisations.
 
 This is important for understanding trust changes over time, not just the current group membership.
 
-## What GIAS Needs To Know About Establishment Groups
+## Information About Establishment Groups
 
-For business purposes, GIAS may need to record:
+For business purposes, it may be useful to know:
 
 - The group name.
 - The group type.
-- Whether the group is open, closed or created in error.
-- The group's identifiers, such as UID, group ID, UKPRN or Companies House number.
+- Whether the group is active or closed.
+- The group's organisation-level identifiers.
 - The establishments linked to the group.
 - The dates when establishments joined or left the group.
 - Group-to-group relationships, especially where trust structures change.
 - Governance people associated with the group.
 - Group contact and address information.
 
-This does not mean every establishment group has every field. It means the group is a first-class business object, separate from the establishments it links together.
+This does not mean every establishment group has every item of information. It means the group is a distinct business concept, separate from the establishments it links together.
 
 ## Business Rules And Boundaries
 
-The following boundaries should guide future modelling and service design:
+The following boundaries are important:
 
 - An establishment group is not itself an establishment.
 - An academy trust is both an accountable body and an establishment group.
@@ -333,14 +333,14 @@ The following boundaries should guide future modelling and service design:
 - A federation applies to maintained schools, not academies.
 - A federation does not merge its member schools into one establishment.
 - A school sponsor should not be treated as identical to the academy trust unless the business evidence says it is the same organisation in a particular case.
-- Children's centre groups and collaborations should be treated as GIAS business concepts that need clear business-owner definitions.
+- Children's centre groups and collaborations need clear business definitions.
 - Establishment type group and establishment group type must remain separate concepts.
 
 ## Plain-English Glossary
 
 | Term | Plain-English Meaning |
 | --- | --- |
-| Establishment | The individual school, academy, college, children's centre or provider record. |
+| Establishment | The individual school, academy, college, children's centre or provider. |
 | Establishment group | An organisation or governance structure around one or more establishments. |
 | Academy trust | The legal organisation accountable for one or more academies. |
 | MAT | One academy-trust legal entity accountable for multiple academies. |
@@ -354,28 +354,14 @@ The following boundaries should guide future modelling and service design:
 
 ## Business Implication
 
-The target business view should treat establishment groups as first-class business objects.
+Establishment groups should be recognised as important business concepts in their own right.
 
 That means:
 
-- Do not store group meaning only as a label on an establishment.
+- Do not treat group meaning only as a label on an establishment.
 - Do not confuse provider type with group membership.
 - Do not treat all groups as if they were academy trusts.
 - Keep the establishment, the group, and the membership relationship distinct.
 - Preserve group history where it explains trust changes, federation changes or children's-centre group changes.
 
-The clean business model is:
-
-```text
-Establishment
-  has a type
-  may be linked to one or more establishment groups
-
-Establishment group
-  has a group type
-  may have identifiers and lifecycle information
-  may be linked to one or more establishments
-  may have relationships with other groups
-```
-
-This gives GIAS a clearer way to represent the real education landscape: individual establishments, the organisations around them, and the relationships between the two.
+This gives a clearer way to describe the real education landscape: individual establishments, the organisations around them, and the relationships between the two.
