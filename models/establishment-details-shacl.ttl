@@ -67,6 +67,20 @@ epr:EstablishmentUniversalShape
     ] ;
 
     sh:property [
+        sh:path ( epro:hasEstablishmentIdentity epro:hasUkprn ) ;
+        sh:maxCount 1 ;
+        sh:name "UKPRN"@en ;
+        sh:message "An establishment identity may have at most one UKPRN."@en ;
+    ] ;
+
+    sh:property [
+        sh:path ( epro:hasEstablishmentIdentity epro:hasLocalAuthorityScopedEstablishmentNumber ) ;
+        sh:maxCount 2 ;
+        sh:name "Local-authority-scoped establishment number"@en ;
+        sh:message "An establishment identity may have at most one current and one previous scoped establishment number."@en ;
+    ] ;
+
+    sh:property [
         sh:path epro:hasEstablishmentLifecycle ;
         sh:minCount 1 ; sh:maxCount 1 ;
         sh:name "Establishment lifecycle"@en ;

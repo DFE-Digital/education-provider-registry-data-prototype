@@ -93,6 +93,28 @@ epr:UkprnValueShape
 
 
 #################################################################
+# Identity — establishment number
+#################################################################
+
+epr:EstablishmentNumberValueShape
+    a sh:NodeShape ;
+    sh:targetClass epr:EstablishmentNumber ;
+    rdfs:label "Establishment number value shape"@en ;
+    rdfs:comment "An establishment number must carry exactly one value, a positive integer between 1 and 9999. The four-digit zero-padded display form belongs to DfE number / LAESTAB rendering, not the stored value."@en ;
+
+    sh:property [
+        sh:path rdf:value ;
+        sh:datatype xsd:positiveInteger ;
+        sh:minInclusive 1 ;
+        sh:maxInclusive 9999 ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "Establishment number value"@en ;
+        sh:message "Establishment number must be a positive integer between 1 and 9999."@en ;
+    ] .
+
+
+#################################################################
 # Lifecycle — dates
 #################################################################
 

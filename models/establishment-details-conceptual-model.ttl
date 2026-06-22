@@ -38,7 +38,7 @@ epro:establishmentDetailsConceptualModel
     dcterms:modified "2026-06-21"^^xsd:date ;
     dcterms:publisher "Department for Education"@en ;
     dcterms:license <https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
-    owl:versionInfo "0.9" ;
+    owl:versionInfo "1.0" ;
     vann:preferredNamespacePrefix "epro" ;
     vann:preferredNamespaceUri "https://dfe-digital.github.io/education-provider-registry-data/ontology/"^^xsd:anyURI ;
     rdfs:seeAlso <https://dfe-digital.github.io/education-provider-registry-data/vocabulary/> ;
@@ -51,6 +51,7 @@ epro:establishmentDetailsConceptualModel
     rdfs:comment "v0.7: leaf type OWL class declarations moved from the taxonomy TTL into this ontology TTL. The taxonomy TTL is now pure SKOS (skos:Concept, skos:broader etc.). OWL punning is preserved — the same epr: URIs remain valid SKOS concepts in the taxonomy. WIDOCO now receives only this ontology TTL, eliminating the skos:Concept hub node from the WebVOWL graph."@en ;
     rdfs:comment "v0.8: owl:NamedIndividual declarations added for 8 closed enumerations (31 individuals total): EstablishmentStatus, EducationPhase, AdmissionsPolicy, GenderOfEntry, BoardingProvision, NurseryProvision, SixthFormProvision, SpecialClassProvision. Open-ended value sets (ReligiousCharacter, ReligiousEthos, TypeOfSenProvision) remain as skos:Concept in the vocabulary TTL only."@en ;
     rdfs:comment "v0.9: PupilReferralUnitOperationalRecord and AccreditationRecord property declarations converted from owl:DatatypeProperty (xsd:boolean/integer/date/string/anyURI ranges) to owl:ObjectProperty with named epr: range classes (15 new classes). Ontology is now entirely ObjectProperty — no DatatypeProperty declarations remain."@en ;
+    rdfs:comment "v1.0: Identifier modelling tightened. (1) hasUprn domain moved from EstablishmentIdentity to MainAddress. (2) FeHeIdentifier added as OWL class with hasFeHeIdentifier property. (3) hasEstablishmentNumber replaced by LocalAuthorityScopedEstablishmentNumber with hasLocalAuthorityContext, hasEstablishmentNumberValue and hasIdentifierRole components. (4) IdentifierRole added with CurrentIdentifierRole and PreviousIdentifierRole named individuals. (5) EstablishmentNumber value SHACL (1–9999) and UKPRN structural max-1 added."@en ;
     rdfs:comment "v0.6: ontology class local names aligned with vocabulary source of truth. Renames: ContactAndLocation→EstablishmentLocationAndContact, PostalAddress→MainAddress, WebsiteUrl→Website, Manager→CentreManager, Section41ApprovalStatus→Section41Approval. Vocabulary entries added for all 14 intermediate OWL classes and for grouping container classes (ResourcedProvisionMeasure, SenUnitMeasure, SpecialPupilMeasure, OfstedInspectionRecord, AccreditationRecord, PupilReferralUnitOperationalRecord)."@en ;
     epr:status "Provisional"@en .
 
@@ -103,6 +104,21 @@ epr:DfeNumber
     a owl:Class ;
     rdfs:label "DfE number"@en ;
     rdfs:comment "A derived identifier combining local authority code and establishment number. Not independently stored."@en .
+
+epr:FeHeIdentifier
+    a owl:Class ;
+    rdfs:label "FE/HE identifier"@en ;
+    rdfs:comment "An optional identifier for further and higher education providers, recorded in GIAS for FE colleges, sixth form centres and HEIs. Separate from UKPRN."@en .
+
+epr:LocalAuthorityScopedEstablishmentNumber
+    a owl:Class ;
+    rdfs:label "Local-authority-scoped establishment number"@en ;
+    rdfs:comment "The establishment number together with the local authority context that makes it meaningful. Not globally unique without the LA code. Carries a role to distinguish current from previous identity."@en .
+
+epr:IdentifierRole
+    a owl:Class ;
+    rdfs:label "Identifier role"@en ;
+    rdfs:comment "The temporal role of a local-authority-scoped establishment number, distinguishing current from previous LAESTAB-style identity."@en .
 
 
 #################################################################
@@ -415,16 +431,44 @@ epro:hasUkprn
 epro:hasUprn
     a owl:ObjectProperty ;
     rdfs:label "has UPRN"@en ;
-    rdfs:domain epr:EstablishmentIdentity ;
+    rdfs:domain epr:MainAddress ;
     rdfs:range epr:UniquePropertyReferenceNumber ;
-    rdfs:comment "Cardinality: 0..1. An establishment identity may reference a unique property reference number."@en .
+    rdfs:comment "Cardinality: 0..1. An address may carry a unique property reference number. UPRN identifies a property, not an establishment — domain moved from EstablishmentIdentity to MainAddress (v1.0)."@en .
 
-epro:hasEstablishmentNumber
+epro:hasLocalAuthorityScopedEstablishmentNumber
     a owl:ObjectProperty ;
-    rdfs:label "has establishment number"@en ;
+    rdfs:label "has local-authority-scoped establishment number"@en ;
     rdfs:domain epr:EstablishmentIdentity ;
+    rdfs:range epr:LocalAuthorityScopedEstablishmentNumber ;
+    rdfs:comment "Cardinality: 0..2. An identity may have a current and/or previous scoped establishment number. Replaces bare epro:hasEstablishmentNumber (v1.0) — establishment number is not globally unique without its LA context."@en .
+
+epro:hasLocalAuthorityContext
+    a owl:ObjectProperty ;
+    rdfs:label "has local authority context"@en ;
+    rdfs:domain epr:LocalAuthorityScopedEstablishmentNumber ;
+    rdfs:range epr:LocalAuthority ;
+    rdfs:comment "Cardinality: exactly 1. Every scoped establishment number must carry exactly one local authority context."@en .
+
+epro:hasEstablishmentNumberValue
+    a owl:ObjectProperty ;
+    rdfs:label "has establishment number value"@en ;
+    rdfs:domain epr:LocalAuthorityScopedEstablishmentNumber ;
     rdfs:range epr:EstablishmentNumber ;
-    rdfs:comment "Cardinality: 0..1. An establishment identity may have an establishment number."@en .
+    rdfs:comment "Cardinality: exactly 1. Every scoped establishment number carries the one-to-four digit establishment number value."@en .
+
+epro:hasIdentifierRole
+    a owl:ObjectProperty ;
+    rdfs:label "has identifier role"@en ;
+    rdfs:domain epr:LocalAuthorityScopedEstablishmentNumber ;
+    rdfs:range epr:IdentifierRole ;
+    rdfs:comment "Cardinality: exactly 1. Distinguishes current from previous LAESTAB-style identity."@en .
+
+epro:hasFeHeIdentifier
+    a owl:ObjectProperty ;
+    rdfs:label "has FE/HE identifier"@en ;
+    rdfs:domain epr:EstablishmentIdentity ;
+    rdfs:range epr:FeHeIdentifier ;
+    rdfs:comment "Cardinality: 0..1. Present only for further education colleges, sixth form centres and higher education institutions."@en .
 
 epro:derivesDfeNumber
     a owl:ObjectProperty ;
@@ -1477,7 +1521,7 @@ epr:OnlineProvider
 
 
 #################################################################
-# Named individuals — closed enumeration values (v0.8)
+# Named individuals — closed enumeration values (v0.8, v1.0)
 #
 # Classification values for closed, stable enumerations that
 # carry semantic weight. Declared as owl:NamedIndividual so they
@@ -1487,6 +1531,15 @@ epr:OnlineProvider
 # TypeOfSenProvision, establishment type codes) remain as
 # skos:Concept in the vocabulary TTL only.
 #
+
+# Identifier role (2 values, v1.0)
+epr:CurrentIdentifierRole
+    a owl:NamedIndividual, epr:IdentifierRole ;
+    rdfs:label "Current"@en .
+
+epr:PreviousIdentifierRole
+    a owl:NamedIndividual, epr:IdentifierRole ;
+    rdfs:label "Previous"@en .
 # The same epr: URIs also carry skos:Concept in the vocabulary
 # TTL — valid OWL 2 punning.
 #################################################################

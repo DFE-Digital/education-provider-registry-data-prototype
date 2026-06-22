@@ -1467,7 +1467,7 @@ epr:EstablishmentNumber
     a skos:Concept ;
     skos:inScheme epr:establishmentDetailsVocabulary ;
     skos:prefLabel "Establishment number"@en ;
-    skos:definition "A four-digit number assigned by the local authority to an establishment within its area. Combined with the three-digit LA number it forms the DfE number (written as \"123/4567\") and the LAESTAB (written without the slash as \"1234567\")."@en ;
+    skos:definition "A one-to-four digit number assigned by the local authority to an establishment within its area. It is not globally unique — it is only meaningful together with the three-digit LA number. When combined with the LA number it forms the DfE number (written as \"123/4567\") and the LAESTAB (written without the slash as \"1234567\"), where the establishment number is zero-padded to four digits for display."@en ;
     skos:broader epr:EstablishmentIdentity ;
     skos:related epr:DfeNumber, epr:LocalAuthority ;
     epr:status "Preferred"@en ;
@@ -1478,7 +1478,7 @@ epr:DfeNumber
     skos:inScheme epr:establishmentDetailsVocabulary ;
     skos:prefLabel "DfE number"@en ;
     skos:altLabel "Department for Education number"@en ;
-    skos:definition "A composite identifier formed by concatenating the three-digit LA number and the four-digit establishment number, conventionally written with a slash separator (e.g. \"123/4567\"). Used in DfE correspondence, grant letters and official returns to identify a school within its local authority."@en ;
+    skos:definition "A composite identifier formed by concatenating the three-digit LA number and the establishment number (zero-padded to four digits), conventionally written with a slash separator (e.g. \"123/4567\"). Used in DfE correspondence, grant letters and official returns to identify a school within its local authority."@en ;
     skos:scopeNote "The DfE number is derived from its two component fields rather than stored as a single physical column in the Establishment table."@en ;
     skos:broader epr:EstablishmentIdentity ;
     skos:related epr:EstablishmentNumber, epr:LocalAuthority, epr:Laestab ;
@@ -1490,10 +1490,10 @@ epr:Laestab
     skos:prefLabel "LAESTAB"@en ;
     skos:altLabel "Local authority establishment"@en ;
     skos:definition "An alternative rendering of the DfE number in which the LA number and establishment number are concatenated without a separator to produce a seven-digit string (e.g. \"1234567\"). Encountered in payroll systems, some data returns and legacy DfE publications."@en ;
-    skos:scopeNote "LAESTAB represents the same composite identifier as DfE number but uses a different format convention. It is not a physical database column and DfeNumber is the preferred target concept."@en ;
+    skos:scopeNote "LAESTAB represents the same composite identifier as DfE number but uses a different format convention. It is not a physical database column and DfeNumber is the preferred target concept. Although LAESTAB is not the preferred concept, it remains a live user-facing search and display identifier in GIAS and should not be treated as obsolete."@en ;
     skos:broader epr:EstablishmentIdentity ;
     skos:related epr:DfeNumber ;
-    epr:status "Legacy alias"@en .
+    epr:status "Provisional"@en .
 
 epr:UkProviderReferenceNumber
     a skos:Concept ;
@@ -1515,6 +1515,42 @@ epr:FeHeIdentifier
     skos:broader epr:EstablishmentIdentity ;
     epr:status "Provisional"@en ;
     dcterms:source "Java: feheIdentifier; database: Establishment.FEHEIdentifier"@en .
+
+epr:LocalAuthorityScopedEstablishmentNumber
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsVocabulary ;
+    skos:prefLabel "Local-authority-scoped establishment number"@en ;
+    skos:definition "The pairing of a local authority code with an establishment number that together form a meaningful local identifier. Neither component is globally unique in isolation."@en ;
+    skos:scopeNote "A single establishment identity may carry both a current and a previous scoped establishment number, distinguished by an identifier role. This models academy conversion, rebanding and other scenarios where an establishment acquires a new LA context or number."@en ;
+    skos:broader epr:EstablishmentIdentity ;
+    skos:related epr:EstablishmentNumber, epr:LocalAuthority, epr:DfeNumber ;
+    epr:status "Provisional"@en .
+
+epr:IdentifierRole
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsVocabulary ;
+    skos:prefLabel "Identifier role"@en ;
+    skos:definition "The temporal role of a local-authority-scoped establishment number, indicating whether it is the current active identity or a previous identity retained for search continuity and lifecycle traceability."@en ;
+    skos:broader epr:EstablishmentIdentity ;
+    skos:narrower epr:CurrentIdentifierRole, epr:PreviousIdentifierRole ;
+    skos:related epr:LocalAuthorityScopedEstablishmentNumber ;
+    epr:status "Provisional"@en .
+
+epr:CurrentIdentifierRole
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsVocabulary ;
+    skos:prefLabel "Current"@en ;
+    skos:definition "The scoped establishment number is the establishment's active current identity."@en ;
+    skos:broader epr:IdentifierRole ;
+    epr:status "Provisional"@en .
+
+epr:PreviousIdentifierRole
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsVocabulary ;
+    skos:prefLabel "Previous"@en ;
+    skos:definition "The scoped establishment number is a previous identity, retained for search continuity and lifecycle traceability."@en ;
+    skos:broader epr:IdentifierRole ;
+    epr:status "Provisional"@en .
 
 #################################################################
 # Classification
