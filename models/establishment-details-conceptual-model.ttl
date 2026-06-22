@@ -215,12 +215,12 @@ epr:AcademyTrust
     a owl:Class ;
     rdfs:subClassOf epr:EstablishmentGroup ;
     rdfs:label "Academy trust"@en ;
-    rdfs:comment "A charitable trust that sponsors or converts one or more academies. An academy trust is both an accountability body (it holds the funding agreement with the Secretary of State) and an establishment group (the organisational structure containing its academies). Dual rdfs:subClassOf: EstablishmentGroup (v1.1)."@en .
+    rdfs:comment "A charitable company limited by guarantee that enters into a funding agreement with the Secretary of State under the Academies Act 2010 to operate one or more academies or free schools. The trust is accountable for educational standards, financial management and employment of staff at its academies. An academy trust is simultaneously an accountability body (holding the funding agreement) and an establishment group (the organisational structure containing its academies)."@en .
 
 epr:SingleAcademyTrust
     a owl:Class ;
     rdfs:label "Single academy trust"@en ;
-    rdfs:comment "An academy trust that operates a single academy."@en ;
+    rdfs:comment "An academy trust constituted under the Academies Act 2010 that holds a funding agreement for exactly one academy. Distinguished from a multi-academy trust, which holds funding agreements for two or more academies. A SAT can expand into a MAT by taking on a second academy."@en ;
     rdfs:subClassOf epr:AcademyTrust .
 
 epr:AcademySponsor
@@ -1602,13 +1602,13 @@ epr:SecureSingleAcademyTrust
     a owl:Class ;
     rdfs:subClassOf epr:SingleAcademyTrust ;
     rdfs:label "Secure single-academy trust"@en ;
-    rdfs:comment "A single-academy trust operating a secure 16-to-19 academy providing education within secure residential accommodation."@en .
+    rdfs:comment "A single-academy trust operating a secure 16-to-19 academy providing education within secure residential accommodation for young people aged 16 to 19 subject to a custodial sentence or secure order."@en .
 
 epr:Federation
     a owl:Class ;
     rdfs:subClassOf epr:EstablishmentGroup ;
     rdfs:label "Federation"@en ;
-    rdfs:comment "A statutory arrangement in which two or more maintained schools share a single federated governing body. Each member school retains its own URN, establishment number, budget, admissions arrangements and Ofsted inspection identity. Applicable only to maintained schools. Source: School Governance (Federations) Regulations 2012."@en .
+    rdfs:comment "A statutory arrangement in which two or more maintained schools, including maintained nursery schools, share a single federated governing body. Each member school retains its own URN, establishment number, admissions arrangements and Ofsted inspection identity. Some governance and funding arrangements may be shared or pooled under federation rules. Applicable only to maintained schools. Source: School Governance (Federations) Regulations 2012."@en .
 
 epr:SchoolSponsor
     a owl:Class ;
