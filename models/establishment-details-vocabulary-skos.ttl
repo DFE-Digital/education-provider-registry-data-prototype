@@ -502,7 +502,7 @@ epr:MultiAcademyTrust
     skos:inScheme epr:establishmentDetailsVocabulary ;
     skos:prefLabel "Multi-academy trust"@en ;
     skos:altLabel "MAT"@en ;
-    skos:definition "A charitable company incorporated under the Companies Act 2006 that enters a single funding agreement with the Secretary of State to operate two or more academies or free schools. Governed by a board of trustees. Source: Academies Act 2010."@en ;
+    skos:definition "A single legal academy-trust entity incorporated under the Companies Act 2006 that operates two or more academies, free schools, UTCs or studio schools. It has a master funding agreement with the Secretary of State and a supplemental funding agreement for each individual academy. Governed by a board of trustees. Source: GOV.UK academy trust governance guide."@en ;
     skos:scopeNote "An academy trust operating two or more academies. Distinct from a single-academy trust, which operates exactly one academy. A SAT can convert to a MAT by adding an academy."@en ;
     skos:broader epr:AcademyTrust ;
     skos:related epr:SingleAcademyTrust ;
@@ -520,7 +520,7 @@ epr:Federation
     a skos:Concept ;
     skos:inScheme epr:establishmentDetailsVocabulary ;
     skos:prefLabel "Federation"@en ;
-    skos:definition "A formal statutory arrangement in which two or more maintained schools are governed by a single federated governing body. Each member school retains its own URN, establishment number, budget, admissions arrangements and Ofsted inspection identity. Applicable only to maintained schools; academy grouping uses the trust model. Source: School Governance (Federations) Regulations 2012."@en ;
+    skos:definition "A formal statutory arrangement in which two or more maintained schools are governed by a single federated governing body. Each member school retains its own URN, establishment number, admissions arrangements and Ofsted inspection identity. Some governance and funding arrangements may be shared or pooled under federation rules. Applicable only to maintained schools, including maintained nursery schools; academy grouping uses the trust model. Source: School Governance (Federations) Regulations 2012."@en ;
     skos:scopeNote "Federations apply only to maintained schools. An academy cannot join a federation — academies are grouped through the trust model instead. This distinction is confirmed as a business rule."@en ;
     skos:broader epr:EstablishmentGroup ;
     epr:status "Provisional"@en .
@@ -609,6 +609,7 @@ epr:GroupId
     skos:inScheme epr:establishmentDetailsVocabulary ;
     skos:prefLabel "Group identifier"@en ;
     skos:definition "The business-facing GIAS group identifier assigned to an establishment group. Distinct from the internal surrogate key used in the GIAS database."@en ;
+    skos:scopeNote "Group ID is conditionally populated by group type. School sponsors use an SP-prefixed identifier (e.g. SP01153). Multi-academy trusts and single-academy trusts use a TR-prefixed identifier (e.g. TR00261). Group ID is absent for secure single-academy trusts, federations, trust (code 02), children's centre groups and children's centre collaborations."@en ;
     skos:broader epr:EstablishmentGroupMembership ;
     epr:status "Provisional"@en .
 
