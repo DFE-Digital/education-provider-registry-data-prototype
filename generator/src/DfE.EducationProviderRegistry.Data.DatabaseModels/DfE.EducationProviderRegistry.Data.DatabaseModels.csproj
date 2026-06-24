@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+	<LangVersion>Latest</LangVersion>
+	<Nullable>enable</Nullable>
+	<ImplicitUsings>enable</ImplicitUsings>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>DfE.EducationProviderRegistry.Data.DatabaseModels</PackageId>
+	<Description>EF Core models generated from Education Provider Registry schema</Description>
+	<RepositoryUrl>https://github.com/Dfe-digital/your-repo</RepositoryUrl>
+	<PackageTags>efcore;postgres;database;models;educationproviderregistry</PackageTags>
+	  <Authors>DfE</Authors>
+
+    <!-- Version overridden in pipeline -->
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.8" >
+		<PrivateAssets>all</PrivateAssets>
+	  </PackageReference>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.2" />
+  </ItemGroup>
+
+</Project>

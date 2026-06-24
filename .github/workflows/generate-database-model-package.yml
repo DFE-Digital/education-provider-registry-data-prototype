@@ -1,0 +1,123 @@
+name: Publish Database models NuGet package
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'db/init/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: efcore
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U postgres"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    env:
+      CONNECTION_STRING: Host=localhost;Database=efcore;Username=postgres;Password=postgres
+      DB_HOST: localhost
+      DB_NAME: efcore
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+
+      - name: Restore tools
+        working-directory: generator
+        run: dotnet tool restore
+
+      - name: Restore project dependencies
+        working-directory: generator
+        run: dotnet restore
+  
+      - name: Build
+        working-directory: generator
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Install psql
+        run: sudo apt-get update && sudo apt-get install -y postgresql-client
+
+      - name: Apply SQL scripts
+        run: |
+          set -e
+
+          echo "Applying SQL scripts from db/init..."
+          
+          FILES=$(find db/init -name "*.sql" | sort -V)
+
+          for file in $FILES; do
+            echo "Running $file"
+
+          PGPASSWORD=$DB_PASSWORD psql \
+            -h $DB_HOST \
+            -U $DB_USER \
+            -d $DB_NAME \
+            -v ON_ERROR_STOP=1 \
+            -f "$file"
+
+          done
+
+      - name: Verify tables
+        run: |
+          PGPASSWORD=$DB_PASSWORD psql \
+            -h $DB_HOST \
+            -U $DB_USER \
+            -d $DB_NAME \
+            -c "\dt"
+
+      - name: Scaffold EF Core models
+        working-directory: generator
+        run: |
+          dotnet ef dbcontext scaffold \
+            "$CONNECTION_STRING" \
+            Npgsql.EntityFrameworkCore.PostgreSQL \
+            --project src/DfE.EducationProviderRegistry.Data.DatabaseModels \
+            --output-dir Models \
+            --context-dir Context \
+            --context EducationProviderRegistryDbContext \
+            --no-pluralize \
+            --no-onconfiguring \
+            --force
+
+      - name: Detect changes
+        id: diff
+        run: |
+          git diff --exit-code || echo "changed=true" >> $GITHUB_ENV
+
+      - name: Set package version
+        run: |
+          VERSION=1.0.${{ github.run_number }}
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: NuGet Package Database Models
+        run: |
+          dotnet pack generator/src/DfE.EducationProviderRegistry.Data.DatabaseModels \
+            -c Release \
+            -o ./nupkg \
+            /p:PackageVersion=${{ env.VERSION }}
+        
+      - name: Publish package
+        
+        if: env.changed == 'true'
+        run: |
+          dotnet nuget push "./nupkg/*.nupkg" \
+            --api-key ${{ secrets.GITHUB_TOKEN }} \
+            --source "https://nuget.pkg.github.com/Dfe-digital/index.json" \
+            --skip-duplicate
