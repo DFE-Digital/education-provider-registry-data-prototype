@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace DfE.EducationProviderRegistry.Data.DatabaseModels.Models;
 
-public partial class Establishmentstatus
+public partial class Title
 {
-    public int Id { get; set; }
+    public long TitleId { get; set; }
 
     public string Name { get; set; } = null!;
 
-    public virtual ICollection<Establishment> Establishment { get; set; } = new List<Establishment>();
+    public virtual ICollection<Person> Person { get; set; } = new List<Person>();
 }
