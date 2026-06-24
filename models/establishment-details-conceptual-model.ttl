@@ -35,10 +35,10 @@ epro:establishmentDetailsConceptualModel
     dcterms:description "OWL 2 conceptual model for the Establishment Details slice of the Education Provider Registry. Declares classes and object properties for the entities and relationships in the Establishment Details ER diagrams."@en ;
     rdfs:comment "This ontology defines the classes and object properties for the Establishment Details slice of the Education Provider Registry (EPR) data model. It covers establishment identity and identifiers, lifecycle, classification, accountability, education provision, capacity measures, faith context, SEN and resourced provision, and external references. Class IRIs are shared with the SKOS vocabulary so that vocabulary concepts and ontology classes resolve to the same URI. Object properties are defined in the /ontology/ namespace."@en ;
     dcterms:created "2026-06-18"^^xsd:date ;
-    dcterms:modified "2026-06-22"^^xsd:date ;
+    dcterms:modified "2026-06-24"^^xsd:date ;
     dcterms:publisher "Department for Education"@en ;
     dcterms:license <https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
-    owl:versionInfo "1.1" ;
+    owl:versionInfo "1.2" ;
     vann:preferredNamespacePrefix "epro" ;
     vann:preferredNamespaceUri "https://dfe-digital.github.io/education-provider-registry-data/ontology/"^^xsd:anyURI ;
     rdfs:seeAlso <https://dfe-digital.github.io/education-provider-registry-data/vocabulary/> ;
@@ -53,6 +53,7 @@ epro:establishmentDetailsConceptualModel
     rdfs:comment "v0.9: PupilReferralUnitOperationalRecord and AccreditationRecord property declarations converted from owl:DatatypeProperty (xsd:boolean/integer/date/string/anyURI ranges) to owl:ObjectProperty with named epr: range classes (15 new classes). Ontology is now entirely ObjectProperty — no DatatypeProperty declarations remain."@en ;
     rdfs:comment "v1.0: Identifier modelling tightened. (1) hasUprn domain moved from EstablishmentIdentity to MainAddress. (2) FeHeIdentifier added as OWL class with hasFeHeIdentifier property. (3) hasEstablishmentNumber replaced by LocalAuthorityScopedEstablishmentNumber with hasLocalAuthorityContext, hasEstablishmentNumberValue and hasIdentifierRole components. (4) IdentifierRole added with CurrentIdentifierRole and PreviousIdentifierRole named individuals. (5) EstablishmentNumber value SHACL (1–9999) and UKPRN structural max-1 added."@en ;
     rdfs:comment "v1.1: Establishment group model added. New abstract group superclass EstablishmentGroup; MultiAcademyTrust (subClassOf AcademyTrust), SecureSingleAcademyTrust (subClassOf SingleAcademyTrust), Federation, SchoolSponsor, ChildrensCentreGroup, ChildrensCentreCollaboration, GenericTrust (group org classes); GroupMembership, GroupRelationship, GroupRelationshipType, GroupId, GroupUkprn. AcademyTrust gains dual inheritance: rdfs:subClassOf EstablishmentGroup in addition to existing accountability hierarchy. Named individuals SuccessorMultiAcademyTrust and PredecessorSingleAcademyTrust added for GroupRelationshipType."@en ;
+    rdfs:comment "v1.2: Governance model added. 8 new OWL classes: GovernanceAppointment, GovernanceIdentifier, GovernanceRoleType, GovernanceAppointmentDate, GovernanceTermEndDate, GovernanceAppointingBody, GovernancePerson, GovernancePersonIdentifier. 9 new object properties: hasGovernanceAppointment (domain Establishment), hasGroupGovernanceAppointment (domain AcademyTrust), hasGovernanceIdentifier, hasGovernanceRoleType, hasGovernanceAppointmentDate, hasGovernanceTermEndDate, hasGovernanceAppointingBody, appointmentOf, hasGovernancePersonIdentifier. 22 named individuals for GovernanceRoleType; 18 for GovernanceAppointingBody. GovernanceAppointment and GovernancePerson annotated with dcterms:accessRights as personal-data-carrying classes."@en ;
     rdfs:comment "v0.6: ontology class local names aligned with vocabulary source of truth. Renames: ContactAndLocation→EstablishmentLocationAndContact, PostalAddress→MainAddress, WebsiteUrl→Website, Manager→CentreManager, Section41ApprovalStatus→Section41Approval. Vocabulary entries added for all 14 intermediate OWL classes and for grouping container classes (ResourcedProvisionMeasure, SenUnitMeasure, SpecialPupilMeasure, OfstedInspectionRecord, AccreditationRecord, PupilReferralUnitOperationalRecord)."@en ;
     epr:status "Provisional"@en .
 
@@ -1304,6 +1305,74 @@ epro:classifiedByGroupRelationshipType
 
 
 #################################################################
+# Object properties — governance (v1.2)
+#################################################################
+
+epro:hasGovernanceAppointment
+    a owl:ObjectProperty ;
+    rdfs:label "has governance appointment"@en ;
+    rdfs:domain epr:Establishment ;
+    rdfs:range epr:GovernanceAppointment ;
+    rdfs:comment "Cardinality: 0..*. An establishment may have zero or more governance appointment records."@en .
+
+epro:hasGroupGovernanceAppointment
+    a owl:ObjectProperty ;
+    rdfs:label "has group governance appointment"@en ;
+    rdfs:domain epr:AcademyTrust ;
+    rdfs:range epr:GovernanceAppointment ;
+    rdfs:comment "Cardinality: 0..*. Domain restricted to AcademyTrust — all 28,692 UID-based group governance rows are MAT type. No other EstablishmentGroup type produces group-scoped governance rows in the GIAS data."@en .
+
+epro:hasGovernanceIdentifier
+    a owl:ObjectProperty ;
+    rdfs:label "has governance identifier"@en ;
+    rdfs:domain epr:GovernanceAppointment ;
+    rdfs:range epr:GovernanceIdentifier ;
+    rdfs:comment "Cardinality: exactly 1. Every governance appointment has exactly one GID."@en .
+
+epro:hasGovernanceRoleType
+    a owl:ObjectProperty ;
+    rdfs:label "has governance role type"@en ;
+    rdfs:domain epr:GovernanceAppointment ;
+    rdfs:range epr:GovernanceRoleType ;
+    rdfs:comment "Cardinality: exactly 1."@en .
+
+epro:hasGovernanceAppointmentDate
+    a owl:ObjectProperty ;
+    rdfs:label "has appointment date"@en ;
+    rdfs:domain epr:GovernanceAppointment ;
+    rdfs:range epr:GovernanceAppointmentDate ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+epro:hasGovernanceTermEndDate
+    a owl:ObjectProperty ;
+    rdfs:label "has term end date"@en ;
+    rdfs:domain epr:GovernanceAppointment ;
+    rdfs:range epr:GovernanceTermEndDate ;
+    rdfs:comment "Cardinality: 0..1."@en .
+
+epro:hasGovernanceAppointingBody
+    a owl:ObjectProperty ;
+    rdfs:label "has appointing body"@en ;
+    rdfs:domain epr:GovernanceAppointment ;
+    rdfs:range epr:GovernanceAppointingBody ;
+    rdfs:comment "Cardinality: 0..1. Not typically populated for Accounting Officer and Chief Financial Officer roles."@en .
+
+epro:appointmentOf
+    a owl:ObjectProperty ;
+    rdfs:label "appointment of"@en ;
+    rdfs:domain epr:GovernanceAppointment ;
+    rdfs:range epr:GovernancePerson ;
+    rdfs:comment "Cardinality: 0..1. Links to the GovernancePerson when person matching has been completed. Absent for unmatched appointment stubs."@en .
+
+epro:hasGovernancePersonIdentifier
+    a owl:ObjectProperty ;
+    rdfs:label "has governance person identifier"@en ;
+    rdfs:domain epr:GovernancePerson ;
+    rdfs:range epr:GovernancePersonIdentifier ;
+    rdfs:comment "Cardinality: 0..*. May have multiple identifiers where previous-surname alias hashes are generated."@en .
+
+
+#################################################################
 # Classes — establishment type hierarchy
 #
 # Intermediate OWL classes grouping establishment types by their
@@ -1741,6 +1810,54 @@ epr:GroupUkprn
     rdfs:label "Group UKPRN"@en ;
     rdfs:comment "A UKRLP provider reference number assigned to the group organisation. Sourced from UKRLP by matching on Companies House number."@en .
 
+
+#################################################################
+# Classes — governance (v1.2)
+#################################################################
+
+epr:GovernanceAppointment
+    a owl:Class ;
+    rdfs:label "Governance appointment"@en ;
+    rdfs:comment "A record of one named person holding one governance role at one establishment or group during a defined period. Identified by the GIAS Governance Identifier (GID). Carries the role type, appointment date, optional term-end date and appointing body. Personal-data-carrying class: contains person-name fields (Title, Forename 1, Forename 2, Surname)."@en ;
+    dcterms:accessRights "Personal data — access controls required. Person-name fields are encrypted at the logical model layer."@en .
+
+epr:GovernanceIdentifier
+    a owl:Class ;
+    rdfs:label "Governance identifier (GID)"@en ;
+    rdfs:comment "The GIAS-assigned identifier for a governance appointment record. Unique per governance row. Not a person identifier — one physical person may have multiple GIDs across different roles and establishments."@en .
+
+epr:GovernanceRoleType
+    a owl:Class ;
+    rdfs:label "Governance role type"@en ;
+    rdfs:comment "The classification of the governance role held. Closed enumeration of 22 values: 20 from the GIAS governance extract, plus headteacher ex-officio governor (SI 2012/1034) and associate member (SI 2013/1624) from the maintained schools governance guide."@en .
+
+epr:GovernanceAppointmentDate
+    a owl:Class ;
+    rdfs:label "Appointment date"@en ;
+    rdfs:comment "The date on which the governance appointment took effect."@en .
+
+epr:GovernanceTermEndDate
+    a owl:Class ;
+    rdfs:label "Term end date"@en ;
+    rdfs:comment "The date on which the governance appointment ended or is due to end. Optional — absence does not confirm a current appointment without business-rule validation. Structural absence for Member role is expected."@en .
+
+epr:GovernanceAppointingBody
+    a owl:Class ;
+    rdfs:label "Appointing body"@en ;
+    rdfs:comment "The body or mechanism responsible for appointing the governor, trustee or member. Closed enumeration of 18 values derived from the GIAS governance extract Appointing body field. RSC value retired."@en .
+
+epr:GovernancePerson
+    a owl:Class ;
+    rdfs:label "Governance person"@en ;
+    rdfs:comment "A named individual who holds or has held a formal governance role at an establishment, establishment group or trust. Covers governors, trustees, members, local governors, accounting officers, chief financial officers and governance professionals. One GovernancePerson may be linked from multiple GovernanceAppointment records. Personal-data-carrying class — requires access-control annotation."@en ;
+    dcterms:accessRights "Personal data — access controls required. Contains GovernancePersonIdentifier (pseudonymous hash derived from date of birth, surname and forename1). Raw date of birth not stored in EPR."@en .
+
+epr:GovernancePersonIdentifier
+    a owl:Class ;
+    rdfs:label "Governance person identifier"@en ;
+    rdfs:comment "A pseudonymous identifier for a GovernancePerson, derived by hashing normalised date of birth, surname and forename1. Deterministic but not reversible to recover the raw date of birth. Previous-surname alias hashes generated where StaffRecordEnc.prevSurname is populated. Pseudonymous personal data under UK GDPR."@en .
+
+
 #################################################################
 # Named individuals — closed enumeration values (v0.8, v1.0)
 #
@@ -1940,3 +2057,205 @@ epr:NotApplicableSpecialClassProvision
     a owl:NamedIndividual, epr:SpecialClassProvision ;
     rdfs:label "Not applicable (special-class provision)"@en ;
     rdfs:comment "A classification value indicating that a special-class provision classification does not apply to this type of establishment."@en .
+
+# Governance role type (22 values, v1.2)
+epr:GovernorRole
+    a owl:NamedIndividual, epr:GovernanceRoleType ;
+    rdfs:label "Governor"@en ;
+    rdfs:comment "A governance role in a maintained school governing body."@en .
+
+epr:ChairOfGovernorsRole
+    a owl:NamedIndividual, epr:GovernanceRoleType ;
+    rdfs:label "Chair of governors"@en ;
+    rdfs:comment "The chair of a maintained school governing body."@en .
+
+epr:HeadteacherExOfficioGovernorRole
+    a owl:NamedIndividual, epr:GovernanceRoleType ;
+    rdfs:label "Headteacher (ex-officio governor)"@en ;
+    rdfs:comment "Headteacher of a maintained school holding a governor role by virtue of their office, as defined in the School Governance (Constitution) (England) Regulations 2012 (SI 2012/1034). Modelled from the maintained schools governance guide; not separately enumerated in the GIAS governance extract."@en .
+
+epr:AssociateMemberRole
+    a owl:NamedIndividual, epr:GovernanceRoleType ;
+    rdfs:label "Associate member"@en ;
+    rdfs:comment "A non-voting participant in a maintained school governing body or committee, as defined in the School Governance (Roles, Procedures and Allowances) (England) Regulations 2013 (SI 2013/1624)."@en .
+
+epr:LocalGovernorRole
+    a owl:NamedIndividual, epr:GovernanceRoleType ;
+    rdfs:label "Local governor"@en ;
+    rdfs:comment "A member of a local governing body for an individual academy within a multi-academy trust."@en .
+
+epr:ChairOfLocalGoverningBodyRole
+    a owl:NamedIndividual, epr:GovernanceRoleType ;
+    rdfs:label "Chair of local governing body"@en ;
+    rdfs:comment "The chair of a local governing body for an individual academy within a multi-academy trust."@en .
+
+epr:TrusteeRole
+    a owl:NamedIndividual, epr:GovernanceRoleType ;
+    rdfs:label "Trustee"@en ;
+    rdfs:comment "A trustee of an academy trust board."@en .
+
+epr:ChairOfTrusteesRole
+    a owl:NamedIndividual, epr:GovernanceRoleType ;
+    rdfs:label "Chair of trustees"@en ;
+    rdfs:comment "The chair of an academy trust board of trustees."@en .
+
+epr:MemberRole
+    a owl:NamedIndividual, epr:GovernanceRoleType ;
+    rdfs:label "Member"@en ;
+    rdfs:comment "A member of an academy trust, holding a constitutional oversight role above the trustee board. Absence of term-end date is structurally expected for this role."@en .
+
+epr:AccountingOfficerRole
+    a owl:NamedIndividual, epr:GovernanceRoleType ;
+    rdfs:label "Accounting officer"@en ;
+    rdfs:comment "The accounting officer of an academy trust, responsible to Parliament for the regularity and propriety of public expenditure."@en .
+
+epr:ChiefFinancialOfficerRole
+    a owl:NamedIndividual, epr:GovernanceRoleType ;
+    rdfs:label "Chief financial officer"@en ;
+    rdfs:comment "The chief financial officer of an academy trust."@en .
+
+epr:SharedLocalGovernorEstablishmentRole
+    a owl:NamedIndividual, epr:GovernanceRoleType ;
+    rdfs:label "Shared local governor (establishment)"@en ;
+    rdfs:comment "A local governor exercising a shared governance role recorded at establishment level in the GIAS governance extract. Modelled as group-scoped in EPR."@en .
+
+epr:SharedLocalGovernorGroupRole
+    a owl:NamedIndividual, epr:GovernanceRoleType ;
+    rdfs:label "Shared local governor (group)"@en ;
+    rdfs:comment "A local governor exercising a shared governance role recorded at group level in the GIAS governance extract."@en .
+
+epr:SharedChairOfLocalGoverningBodyEstablishmentRole
+    a owl:NamedIndividual, epr:GovernanceRoleType ;
+    rdfs:label "Shared chair of local governing body (establishment)"@en ;
+    rdfs:comment "A shared chair of local governing body recorded at establishment level in the GIAS governance extract. Modelled as group-scoped in EPR."@en .
+
+epr:SharedChairOfLocalGoverningBodyGroupRole
+    a owl:NamedIndividual, epr:GovernanceRoleType ;
+    rdfs:label "Shared chair of local governing body (group)"@en ;
+    rdfs:comment "A shared chair of local governing body recorded at group level in the GIAS governance extract."@en .
+
+epr:GovernanceProfessionalLaMaintainedSchoolRole
+    a owl:NamedIndividual, epr:GovernanceRoleType ;
+    rdfs:label "Governance professional — local authority maintained school"@en ;
+    rdfs:comment "A governance professional supporting a local authority maintained school governing body."@en .
+
+epr:LocalGovernanceProfessionalIndividualAcademyRole
+    a owl:NamedIndividual, epr:GovernanceRoleType ;
+    rdfs:label "Local governance professional — individual academy or free school"@en ;
+    rdfs:comment "A governance professional supporting the local governing body of an individual academy or free school."@en .
+
+epr:GovernanceProfessionalSatRole
+    a owl:NamedIndividual, epr:GovernanceRoleType ;
+    rdfs:label "Governance professional — single-academy trust (SAT)"@en ;
+    rdfs:comment "A governance professional supporting a single-academy trust board."@en .
+
+epr:GovernanceProfessionalMatRole
+    a owl:NamedIndividual, epr:GovernanceRoleType ;
+    rdfs:label "Governance professional — multi-academy trust (MAT)"@en ;
+    rdfs:comment "A governance professional supporting a multi-academy trust board."@en .
+
+epr:GovernanceProfessionalFederationRole
+    a owl:NamedIndividual, epr:GovernanceRoleType ;
+    rdfs:label "Governance professional — federation"@en ;
+    rdfs:comment "A governance professional supporting a federated governing body."@en .
+
+epr:SharedGovernanceProfessionalEstablishmentRole
+    a owl:NamedIndividual, epr:GovernanceRoleType ;
+    rdfs:label "Shared governance professional (establishment)"@en ;
+    rdfs:comment "A shared governance professional recorded at establishment level in the GIAS governance extract. Modelled as group-scoped in EPR."@en .
+
+epr:SharedGovernanceProfessionalGroupRole
+    a owl:NamedIndividual, epr:GovernanceRoleType ;
+    rdfs:label "Shared governance professional (group)"@en ;
+    rdfs:comment "A shared governance professional recorded at group level in the GIAS governance extract."@en .
+
+# Governance appointing body (18 values, v1.2)
+epr:AppointedByGoverningBoard
+    a owl:NamedIndividual, epr:GovernanceAppointingBody ;
+    rdfs:label "Appointed by GB/board"@en ;
+    rdfs:comment "Appointed by the governing board."@en .
+
+epr:AppointedByFoundationOrTrust
+    a owl:NamedIndividual, epr:GovernanceAppointingBody ;
+    rdfs:label "Appointed by foundation/Trust"@en ;
+    rdfs:comment "Appointed by a foundation body or trust."@en .
+
+epr:ElectedByParents
+    a owl:NamedIndividual, epr:GovernanceAppointingBody ;
+    rdfs:label "Elected by parents"@en ;
+    rdfs:comment "Elected by the parent body under the School Governance (Constitution) (England) Regulations 2012."@en .
+
+epr:ElectedBySchoolStaff
+    a owl:NamedIndividual, epr:GovernanceAppointingBody ;
+    rdfs:label "Elected by school staff"@en ;
+    rdfs:comment "Elected by school staff under the School Governance (Constitution) (England) Regulations 2012."@en .
+
+epr:ExOfficioHeadteacher
+    a owl:NamedIndividual, epr:GovernanceAppointingBody ;
+    rdfs:label "Ex-officio by virtue of office as headteacher/principal"@en ;
+    rdfs:comment "Appointed ex-officio by virtue of holding the headteacher or principal role."@en .
+
+epr:AppointedByAcademyMembers
+    a owl:NamedIndividual, epr:GovernanceAppointingBody ;
+    rdfs:label "Appointed by academy members"@en ;
+    rdfs:comment "Appointed by the academy trust members."@en .
+
+epr:AppointingBodyNotApplicable
+    a owl:NamedIndividual, epr:GovernanceAppointingBody ;
+    rdfs:label "N/A"@en ;
+    rdfs:comment "Appointing body is not applicable for this governance role."@en .
+
+epr:ParentAppointedByGbDueToNoElection
+    a owl:NamedIndividual, epr:GovernanceAppointingBody ;
+    rdfs:label "Parent appointed by GB/board due to no election candidates"@en ;
+    rdfs:comment "Parent governor appointed by the governing board due to insufficient election candidates."@en .
+
+epr:FoundationOrSponsorMembers
+    a owl:NamedIndividual, epr:GovernanceAppointingBody ;
+    rdfs:label "Foundation/sponsor members"@en ;
+    rdfs:comment "Foundation or sponsor members of the governing body."@en .
+
+epr:NominatedByLaAppointedByGb
+    a owl:NamedIndividual, epr:GovernanceAppointingBody ;
+    rdfs:label "Nominated by LA and appointed by GB"@en ;
+    rdfs:comment "Nominated by the local authority and appointed by the governing board."@en .
+
+epr:ExOfficioFoundationGovernor
+    a owl:NamedIndividual, epr:GovernanceAppointingBody ;
+    rdfs:label "Ex-officio foundation governor (appointed by foundation by virtue of the office they hold)"@en ;
+    rdfs:comment "Foundation governor appointed ex-officio by virtue of another office held within the foundation body."@en .
+
+epr:AppointedByTrustees
+    a owl:NamedIndividual, epr:GovernanceAppointingBody ;
+    rdfs:label "Appointed by trustees"@en ;
+    rdfs:comment "Appointed by the board of trustees."@en .
+
+epr:AppointedByLa
+    a owl:NamedIndividual, epr:GovernanceAppointingBody ;
+    rdfs:label "Appointed by LA"@en ;
+    rdfs:comment "Appointed by the local authority."@en .
+
+epr:PersonsAppointedByFoundationOrSponsor
+    a owl:NamedIndividual, epr:GovernanceAppointingBody ;
+    rdfs:label "Persons who are appointed by the foundation body or sponsor (if applicable)"@en ;
+    rdfs:comment "Persons appointed by the foundation body or sponsor."@en .
+
+epr:OriginalSignatoryMembers
+    a owl:NamedIndividual, epr:GovernanceAppointingBody ;
+    rdfs:label "Original (signatory) members"@en ;
+    rdfs:comment "Original signatory members of the academy trust per the model articles of association."@en .
+
+epr:NominatedByOtherBodyAppointedByGb
+    a owl:NamedIndividual, epr:GovernanceAppointingBody ;
+    rdfs:label "Nominated by other body and appointed by GB"@en ;
+    rdfs:comment "Nominated by another body and appointed by the governing board."@en .
+
+epr:AdditionalMembersAppointedByMembers
+    a owl:NamedIndividual, epr:GovernanceAppointingBody ;
+    rdfs:label "Any additional members appointed by the members of the academy trust"@en ;
+    rdfs:comment "Additional members appointed by existing members of the academy trust."@en .
+
+epr:InterimExecutiveBoard
+    a owl:NamedIndividual, epr:GovernanceAppointingBody ;
+    rdfs:label "Interim Executive Board"@en ;
+    rdfs:comment "An Interim Executive Board appointed by the Regional Schools Commissioner or successor body."@en .

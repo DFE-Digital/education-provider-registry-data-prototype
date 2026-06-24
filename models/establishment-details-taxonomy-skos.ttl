@@ -23,7 +23,7 @@ epr:establishmentDetailsTaxonomy
     dcterms:title "GIAS 2.0 Establishment Details Taxonomy"@en ;
     dcterms:description "Faceted taxonomy containing classifications used by the fields shown in the Establishment Details table in the public establishment record view."@en ;
     dcterms:created "2026-06-16"^^xsd:date ;
-    dcterms:modified "2026-06-22"^^xsd:date ;
+    dcterms:modified "2026-06-24"^^xsd:date ;
     epr:status "Provisional"@en ;
     skos:hasTopConcept
         epr:EstablishmentType,
@@ -38,7 +38,9 @@ epr:establishmentDetailsTaxonomy
         epr:ReligiousCharacter,
         epr:ReligiousEthos,
         epr:EstablishmentGroupType,
-        epr:GroupRelationshipType .
+        epr:GroupRelationshipType,
+        epr:GovernanceRoleType,
+        epr:GovernanceAppointingBody .
 
 #################################################################
 # Facet collection
@@ -60,7 +62,9 @@ epr:establishmentDetailsTaxonomyFacets
         epr:ReligiousCharacter,
         epr:ReligiousEthos,
         epr:EstablishmentGroupType,
-        epr:GroupRelationshipType .
+        epr:GroupRelationshipType,
+        epr:GovernanceRoleType,
+        epr:GovernanceAppointingBody .
 
 #################################################################
 # Type-group collection
@@ -1238,5 +1242,353 @@ epr:PredecessorSingleAcademyTrust
     skos:inScheme epr:establishmentDetailsTaxonomy ;
     skos:prefLabel "Predecessor SAT"@en ;
     skos:broader epr:GroupRelationshipType ;
+    epr:status "Provisional"@en .
+
+#################################################################
+# Governance-role-type facet (v1.2)
+#################################################################
+
+epr:GovernanceRoleType
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:topConceptOf epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Governance role type"@en ;
+    skos:definition "The classification of the governance role held. 22 values: 20 from the GIAS governance extract, plus headteacher ex-officio governor (SI 2012/1034) and associate member (SI 2013/1624)."@en ;
+    skos:scopeNote "Three structural groups: maintained-school roles; academy establishment-level roles; trust/MAT roles."@en ;
+    skos:narrower
+        epr:GovernorRole,
+        epr:ChairOfGovernorsRole,
+        epr:HeadteacherExOfficioGovernorRole,
+        epr:AssociateMemberRole,
+        epr:LocalGovernorRole,
+        epr:ChairOfLocalGoverningBodyRole,
+        epr:TrusteeRole,
+        epr:ChairOfTrusteesRole,
+        epr:MemberRole,
+        epr:AccountingOfficerRole,
+        epr:ChiefFinancialOfficerRole,
+        epr:SharedLocalGovernorEstablishmentRole,
+        epr:SharedLocalGovernorGroupRole,
+        epr:SharedChairOfLocalGoverningBodyEstablishmentRole,
+        epr:SharedChairOfLocalGoverningBodyGroupRole,
+        epr:GovernanceProfessionalLaMaintainedSchoolRole,
+        epr:LocalGovernanceProfessionalIndividualAcademyRole,
+        epr:GovernanceProfessionalSatRole,
+        epr:GovernanceProfessionalMatRole,
+        epr:GovernanceProfessionalFederationRole,
+        epr:SharedGovernanceProfessionalEstablishmentRole,
+        epr:SharedGovernanceProfessionalGroupRole ;
+    epr:status "Provisional"@en .
+
+epr:GovernorRole
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Governor"@en ;
+    skos:broader epr:GovernanceRoleType ;
+    epr:status "Provisional"@en .
+
+epr:ChairOfGovernorsRole
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Chair of governors"@en ;
+    skos:broader epr:GovernanceRoleType ;
+    epr:status "Provisional"@en .
+
+epr:HeadteacherExOfficioGovernorRole
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Headteacher (ex-officio governor)"@en ;
+    skos:broader epr:GovernanceRoleType ;
+    epr:status "Provisional"@en .
+
+epr:AssociateMemberRole
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Associate member"@en ;
+    skos:broader epr:GovernanceRoleType ;
+    epr:status "Provisional"@en .
+
+epr:LocalGovernorRole
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Local governor"@en ;
+    skos:broader epr:GovernanceRoleType ;
+    epr:status "Provisional"@en .
+
+epr:ChairOfLocalGoverningBodyRole
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Chair of local governing body"@en ;
+    skos:broader epr:GovernanceRoleType ;
+    epr:status "Provisional"@en .
+
+epr:TrusteeRole
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Trustee"@en ;
+    skos:broader epr:GovernanceRoleType ;
+    epr:status "Provisional"@en .
+
+epr:ChairOfTrusteesRole
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Chair of trustees"@en ;
+    skos:broader epr:GovernanceRoleType ;
+    epr:status "Provisional"@en .
+
+epr:MemberRole
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Member"@en ;
+    skos:broader epr:GovernanceRoleType ;
+    epr:status "Provisional"@en .
+
+epr:AccountingOfficerRole
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Accounting officer"@en ;
+    skos:broader epr:GovernanceRoleType ;
+    epr:status "Provisional"@en .
+
+epr:ChiefFinancialOfficerRole
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Chief financial officer"@en ;
+    skos:broader epr:GovernanceRoleType ;
+    epr:status "Provisional"@en .
+
+epr:SharedLocalGovernorEstablishmentRole
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Shared local governor (establishment)"@en ;
+    skos:broader epr:GovernanceRoleType ;
+    epr:status "Provisional"@en .
+
+epr:SharedLocalGovernorGroupRole
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Shared local governor (group)"@en ;
+    skos:broader epr:GovernanceRoleType ;
+    epr:status "Provisional"@en .
+
+epr:SharedChairOfLocalGoverningBodyEstablishmentRole
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Shared chair of local governing body (establishment)"@en ;
+    skos:broader epr:GovernanceRoleType ;
+    epr:status "Provisional"@en .
+
+epr:SharedChairOfLocalGoverningBodyGroupRole
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Shared chair of local governing body (group)"@en ;
+    skos:broader epr:GovernanceRoleType ;
+    epr:status "Provisional"@en .
+
+epr:GovernanceProfessionalLaMaintainedSchoolRole
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Governance professional — local authority maintained school"@en ;
+    skos:broader epr:GovernanceRoleType ;
+    epr:status "Provisional"@en .
+
+epr:LocalGovernanceProfessionalIndividualAcademyRole
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Local governance professional — individual academy or free school"@en ;
+    skos:broader epr:GovernanceRoleType ;
+    epr:status "Provisional"@en .
+
+epr:GovernanceProfessionalSatRole
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Governance professional — single-academy trust (SAT)"@en ;
+    skos:broader epr:GovernanceRoleType ;
+    epr:status "Provisional"@en .
+
+epr:GovernanceProfessionalMatRole
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Governance professional — multi-academy trust (MAT)"@en ;
+    skos:broader epr:GovernanceRoleType ;
+    epr:status "Provisional"@en .
+
+epr:GovernanceProfessionalFederationRole
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Governance professional — federation"@en ;
+    skos:broader epr:GovernanceRoleType ;
+    epr:status "Provisional"@en .
+
+epr:SharedGovernanceProfessionalEstablishmentRole
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Shared governance professional (establishment)"@en ;
+    skos:broader epr:GovernanceRoleType ;
+    epr:status "Provisional"@en .
+
+epr:SharedGovernanceProfessionalGroupRole
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Shared governance professional (group)"@en ;
+    skos:broader epr:GovernanceRoleType ;
+    epr:status "Provisional"@en .
+
+#################################################################
+# Governance-appointing-body facet (v1.2)
+#################################################################
+
+epr:GovernanceAppointingBody
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:topConceptOf epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Governance appointing body"@en ;
+    skos:definition "The body or mechanism responsible for making the governance appointment. 18 active values derived from the GIAS governance extract. RSC value retired."@en ;
+    skos:scopeNote "Accounting Officer and Chief Financial Officer roles do not typically carry an appointing body value."@en ;
+    skos:narrower
+        epr:AppointedByGoverningBoard,
+        epr:AppointedByFoundationOrTrust,
+        epr:ElectedByParents,
+        epr:ElectedBySchoolStaff,
+        epr:ExOfficioHeadteacher,
+        epr:AppointedByAcademyMembers,
+        epr:AppointingBodyNotApplicable,
+        epr:ParentAppointedByGbDueToNoElection,
+        epr:FoundationOrSponsorMembers,
+        epr:NominatedByLaAppointedByGb,
+        epr:ExOfficioFoundationGovernor,
+        epr:AppointedByTrustees,
+        epr:AppointedByLa,
+        epr:PersonsAppointedByFoundationOrSponsor,
+        epr:OriginalSignatoryMembers,
+        epr:NominatedByOtherBodyAppointedByGb,
+        epr:AdditionalMembersAppointedByMembers,
+        epr:InterimExecutiveBoard ;
+    epr:status "Provisional"@en .
+
+epr:AppointedByGoverningBoard
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Appointed by GB/board"@en ;
+    skos:broader epr:GovernanceAppointingBody ;
+    epr:status "Provisional"@en .
+
+epr:AppointedByFoundationOrTrust
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Appointed by foundation/Trust"@en ;
+    skos:broader epr:GovernanceAppointingBody ;
+    epr:status "Provisional"@en .
+
+epr:ElectedByParents
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Elected by parents"@en ;
+    skos:broader epr:GovernanceAppointingBody ;
+    epr:status "Provisional"@en .
+
+epr:ElectedBySchoolStaff
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Elected by school staff"@en ;
+    skos:broader epr:GovernanceAppointingBody ;
+    epr:status "Provisional"@en .
+
+epr:ExOfficioHeadteacher
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Ex-officio by virtue of office as headteacher/principal"@en ;
+    skos:broader epr:GovernanceAppointingBody ;
+    epr:status "Provisional"@en .
+
+epr:AppointedByAcademyMembers
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Appointed by academy members"@en ;
+    skos:broader epr:GovernanceAppointingBody ;
+    epr:status "Provisional"@en .
+
+epr:AppointingBodyNotApplicable
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "N/A"@en ;
+    skos:broader epr:GovernanceAppointingBody ;
+    epr:status "Provisional"@en .
+
+epr:ParentAppointedByGbDueToNoElection
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Parent appointed by GB/board due to no election candidates"@en ;
+    skos:broader epr:GovernanceAppointingBody ;
+    epr:status "Provisional"@en .
+
+epr:FoundationOrSponsorMembers
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Foundation/sponsor members"@en ;
+    skos:broader epr:GovernanceAppointingBody ;
+    epr:status "Provisional"@en .
+
+epr:NominatedByLaAppointedByGb
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Nominated by LA and appointed by GB"@en ;
+    skos:broader epr:GovernanceAppointingBody ;
+    epr:status "Provisional"@en .
+
+epr:ExOfficioFoundationGovernor
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Ex-officio foundation governor (appointed by foundation by virtue of the office they hold)"@en ;
+    skos:broader epr:GovernanceAppointingBody ;
+    epr:status "Provisional"@en .
+
+epr:AppointedByTrustees
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Appointed by trustees"@en ;
+    skos:broader epr:GovernanceAppointingBody ;
+    epr:status "Provisional"@en .
+
+epr:AppointedByLa
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Appointed by LA"@en ;
+    skos:broader epr:GovernanceAppointingBody ;
+    epr:status "Provisional"@en .
+
+epr:PersonsAppointedByFoundationOrSponsor
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Persons who are appointed by the foundation body or sponsor (if applicable)"@en ;
+    skos:broader epr:GovernanceAppointingBody ;
+    epr:status "Provisional"@en .
+
+epr:OriginalSignatoryMembers
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Original (signatory) members"@en ;
+    skos:broader epr:GovernanceAppointingBody ;
+    epr:status "Provisional"@en .
+
+epr:NominatedByOtherBodyAppointedByGb
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Nominated by other body and appointed by GB"@en ;
+    skos:broader epr:GovernanceAppointingBody ;
+    epr:status "Provisional"@en .
+
+epr:AdditionalMembersAppointedByMembers
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Any additional members appointed by the members of the academy trust"@en ;
+    skos:broader epr:GovernanceAppointingBody ;
+    epr:status "Provisional"@en .
+
+epr:InterimExecutiveBoard
+    a skos:Concept ;
+    skos:inScheme epr:establishmentDetailsTaxonomy ;
+    skos:prefLabel "Interim Executive Board"@en ;
+    skos:broader epr:GovernanceAppointingBody ;
     epr:status "Provisional"@en .
 
