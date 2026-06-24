@@ -76,7 +76,11 @@ jobs:
 
       - name: Verify tables
         run: |
-          psql "$CONNECTION_STRING" -c "\dt"
+          PGPASSWORD=$DB_PASSWORD psql \
+            -h $DB_HOST \
+            -U $DB_USER \
+            -d $DB_NAME \
+            -c "\dt"
 
       - name: Scaffold EF Core models
         run: |
