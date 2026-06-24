@@ -21,13 +21,13 @@
 
 Governance describes how an education provider, school, academy trust, federation or college is overseen, held to account and directed.
 
-It is about the people and bodies responsible for strategic oversight, compliance, stewardship and accountability. It is not the same as day-to-day management, teaching, inspection, funding or establishment classification.
+It is about the people and bodies responsible for strategic oversight, compliance, stewardship and accountability. It is not the same as day-to-day management, teaching, inspection, funding or provider classification.
 
 Governance includes:
 
 - The accountable body, such as a governing body or trust board.
 - The people who hold governance roles, such as governors, trustees and members.
-- The governance structure around one or more establishments.
+- The governance structure around one or more providers.
 - Appointment, term and role information.
 - Public accountability information.
 - Legal or policy documents that define governance responsibilities.
@@ -43,7 +43,7 @@ That is different from:
 ```text
 Who manages the provider day to day?
 What type of provider is this?
-Which establishment group is it linked to?
+Which provider organisation is it linked to?
 ```
 
 Governance can sit at different levels. Some governance sits directly around a maintained school. Some sits around a federation of maintained schools. Some sits at academy trust level, with local governance delegated to committees or local governing bodies.
@@ -59,7 +59,7 @@ Good governance explains:
 - Who is appointed to governance roles.
 - How long people serve in those roles.
 - Which body appointed them.
-- Whether governance is local to one establishment or shared across several.
+- Whether governance is local to one provider or shared across several.
 - Which information must be published for transparency.
 - Which information is collected but not published.
 
@@ -122,12 +122,12 @@ Maintained school governance can include:
 
 Maintained school categories include community schools, foundation schools, voluntary schools, maintained nursery schools and maintained special schools.
 
-The maintained schools governance guide says it does not apply directly to pupil referral units, sixth-form colleges or general further education colleges, although they may find its principles helpful. That is an important business caveat: not every establishment that is publicly funded should automatically be treated as having the same maintained-school governance model.
+The maintained schools governance guide says it does not apply directly to pupil referral units, sixth-form colleges or general further education colleges, although they may find its principles helpful. That is an important business caveat: not every publicly funded provider should automatically be treated as having the same maintained-school governance model.
 
 In business terms:
 
 ```text
-The maintained school is the establishment.
+The maintained school is the provider.
 The governing body is the accountable governance body.
 Governors are people appointed to that governing body.
 ```
@@ -140,7 +140,7 @@ GOV.UK federation guidance defines a federation as two or more maintained school
 
 In a federation:
 
-- The schools remain separate establishments.
+- The schools remain separate schools.
 - The federation has one shared governing body.
 - The governing body governs the federated schools.
 - The federation does not create a single merged school.
@@ -152,7 +152,7 @@ In business terms:
 ```text
 A federation is shared maintained-school governance.
 It is not an academy trust.
-It is not a new establishment replacing the member schools.
+It is not a new school replacing the member schools.
 ```
 
 Example:
@@ -161,7 +161,7 @@ Example:
 Federation:
 North and South Primary Federation
 
-Member establishments:
+Member schools:
 - North Street Primary School
 - South Road Primary School
 
@@ -194,7 +194,7 @@ The Academy Trust Handbook provides the financial management and control framewo
 In business terms:
 
 ```text
-The academy is the establishment.
+The academy is the provider.
 The academy trust is the legal organisation accountable for it.
 The trust board governs the trust.
 The trustees sit on the trust board.
@@ -206,13 +206,13 @@ A multi-academy trust, or MAT, is an academy trust responsible for more than one
 
 GOV.UK describes a MAT as a single legal entity. It is accountable for all academies in the trust.
 
-This is important because a MAT is not a loose federation of academy establishments. It is one legal trust organisation. The individual academies remain separate establishments, but they sit inside the same accountable trust.
+This is important because a MAT is not a loose federation of separate academy companies. It is one legal trust organisation. The individual academies remain separate schools or providers, but they sit inside the same accountable trust.
 
 In business terms:
 
 ```text
 A MAT is one academy trust.
-It operates multiple academy establishments.
+It operates multiple academies.
 The trust board is accountable for the trust as a whole.
 ```
 
@@ -227,7 +227,7 @@ Academies in the trust:
 - River Secondary Academy
 - River Studio School
 
-Each academy is an establishment.
+Each academy is a provider.
 The MAT is the legal trust organisation around them.
 ```
 
@@ -241,7 +241,7 @@ In business terms:
 
 ```text
 A SAT is the trust.
-The academy is the establishment.
+The academy is the provider.
 The SAT and the academy should not be treated as the same business thing.
 ```
 
@@ -270,7 +270,7 @@ Trustees can be associated with:
 
 - A multi-academy trust.
 - A single-academy trust.
-- A trust that operates free schools, studio schools, UTCs or other academy establishments.
+- A trust that operates free schools, studio schools, UTCs or other academy providers.
 
 The chair of trustees leads the trust board.
 
@@ -431,15 +431,15 @@ In business terms:
 Religious-character governance may need additional appointing-body context.
 ```
 
-## Governance And Establishment Groups
+## Governance And Provider Organisations
 
-Governance and establishment groups are related, but they are not the same concept.
+Governance and provider organisations are related, but they are not the same concept.
 
-An establishment group is the organisation or governance structure around one or more establishments. Governance describes who is responsible for governing that organisation, structure or establishment.
+A provider organisation is the organisation or governance structure around one or more providers. Governance describes who is responsible for governing that organisation, structure or provider.
 
 For example:
 
-| Establishment or group concept | Governance concept |
+| Provider or organisation concept | Governance concept |
 | --- | --- |
 | Community school | Governing body, governors, chair of governors. |
 | Federation | Shared governing body across the federated schools. |
@@ -450,7 +450,7 @@ For example:
 In business terms:
 
 ```text
-The group is the organisation or arrangement.
+The provider organisation is the organisation or arrangement.
 Governance is the accountability structure around it.
 ```
 
@@ -459,7 +459,7 @@ Governance is the accountability structure around it.
 The following boundaries are important:
 
 - Governance is not the same as provider type.
-- Governance is not the same as establishment group membership.
+- Governance is not the same as provider-organisation membership or relationship.
 - A maintained school has a governing body.
 - A federation is a shared governing body across maintained schools.
 - A MAT is one legal trust entity accountable for multiple academies.
@@ -468,7 +468,7 @@ The following boundaries are important:
 - Trustees are not the same as local governors.
 - Local governance in a MAT is delegated from the trust board.
 - Accounting officer and chief financial officer are academy trust accountability roles.
-- Governance professionals support governance bodies and should not be treated as ordinary establishment contacts.
+- Governance professionals support governance bodies and should not be treated as ordinary provider contacts.
 - Appointment dates, term dates and appointing bodies are part of the governance appointment.
 - Public governance information is not the whole governance record.
 - Further education governance should not be assumed to use the same role structure as school and academy governance.
@@ -509,6 +509,6 @@ That means:
 - Keep members, trustees, governors, local governors and governance professionals distinct.
 - Keep the person, the role and the appointment period distinct.
 - Keep public governance information separate from restricted governance information.
-- Treat establishment groups and governance as related but separate business concepts.
+- Treat provider organisations and governance as related but separate business concepts.
 
-This gives a clearer way to describe how education providers are overseen: the provider or group being governed, the body that governs it, the people appointed to governance roles, and the accountability rules around those appointments.
+This gives a clearer way to describe how education providers are overseen: the provider or organisation being governed, the body that governs it, the people appointed to governance roles, and the accountability rules around those appointments.
