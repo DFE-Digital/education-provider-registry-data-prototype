@@ -8,9 +8,7 @@ The repository includes a Nanoc technical documentation site under `docs-site`.
 
 The published documentation site is available at:
 
-```text
-https://dfe-digital.github.io/education-provider-registry-data/
-```
+[https://dfe-digital.github.io/education-provider-registry-data/](https://dfe-digital.github.io/education-provider-registry-data/)
 
 The vocabulary pages are generated from:
 
