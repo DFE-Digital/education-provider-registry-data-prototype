@@ -49,6 +49,9 @@ jobs:
 
       - name: Restore project dependencies
         run: dotnet restore
+  
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
 
       - name: Install psql
         run: sudo apt-get update && sudo apt-get install -y postgresql-client
