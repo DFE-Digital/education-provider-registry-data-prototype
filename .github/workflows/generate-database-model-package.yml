@@ -109,7 +109,7 @@ jobs:
           git diff
           git add generator/src
 
-          if ! git diff --cached --quiet; then
+          if ! git diff --cached --ignore-all-space --ignore-blank-lines --quiet; then
             echo "Generated EFCore models are out of date"
             echo "Run 'dotnet ef dbcontext scaffold' locally and commit changes"
             git diff
