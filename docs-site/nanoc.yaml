@@ -16,8 +16,6 @@ text_extensions:
   - txt
 prune:
   auto_prune: true
-lib_dirs:
-  - lib
 data_sources:
   - type: filesystem
     encoding: utf-8

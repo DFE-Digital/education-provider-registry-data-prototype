@@ -1,7 +1,5 @@
-require_relative "lib/filters/govuk_markdown"
-
 compile "/**/*.md" do
-  filter :govuk_markdown
+  filter :kramdown
   layout "/default.*"
 end
 

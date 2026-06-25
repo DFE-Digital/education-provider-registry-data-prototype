@@ -33,69 +33,9 @@
         padding: 2rem;
       }
 
-      table {
-        border-collapse: collapse;
-        margin: 1rem 0;
-        width: 100%;
-      }
-
-      th,
-      td {
-        border-bottom: 1px solid #b1b4b6;
-        padding: 0.5rem;
-        text-align: left;
-        vertical-align: top;
-      }
-
       code {
         background: #f3f2f1;
         padding: 0.1rem 0.2rem;
-      }
-
-      .meta {
-        color: #505a5f;
-        font-size: 0.95rem;
-      }
-
-      .mermaid {
-        margin: 1.5rem 0;
-      }
-
-      .taxonomy-tree {
-        border: 1px solid #b1b4b6;
-        margin: 1.5rem 0;
-        max-height: 720px;
-        overflow: auto;
-        padding: 1rem;
-      }
-
-      .taxonomy-tree ul {
-        list-style: none;
-        margin: 0;
-        padding-left: 1.5rem;
-      }
-
-      .taxonomy-tree > ul {
-        padding-left: 0;
-      }
-
-      .taxonomy-tree li {
-        margin: 0.25rem 0;
-      }
-
-      .taxonomy-tree summary {
-        cursor: pointer;
-        font-weight: 700;
-        padding: 0.15rem 0;
-      }
-
-      .taxonomy-tree details[open] > summary {
-        margin-bottom: 0.25rem;
-      }
-
-      .taxonomy-leaf {
-        display: inline-block;
-        padding: 0.15rem 0;
       }
     </style>
   </head>
@@ -106,13 +46,5 @@
     <main>
       <%= yield %>
     </main>
-    <script type="module">
-      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.14.0/+esm";
-
-      mermaid.initialize({
-        startOnLoad: true,
-        securityLevel: "loose"
-      });
-    </script>
   </body>
 </html>
