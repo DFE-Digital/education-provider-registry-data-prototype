@@ -26,10 +26,18 @@ on:
   push:
    branches:
     - main
+   paths-ignore:
+    - "docs-site/**"
+    - "models/**"
+    - ".github/workflows/publish-docs-site.yml"
   pull_request:
     branches:
     - main
     types: [opened, reopened, synchronize, labeled]
+    paths-ignore:
+    - "docs-site/**"
+    - "models/**"
+    - ".github/workflows/publish-docs-site.yml"
 
 env:
   TERRAFORM_BASE: terraform/application
