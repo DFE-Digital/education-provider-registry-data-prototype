@@ -26,27 +26,45 @@ on:
   push:
     branches:
     - main
-    paths-ignore:
-    - "docs-site/**"
-    - "README.md"
-    - "**/*.md"
   pull_request:
     branches:
     - main
     types: [opened, reopened, synchronize, labeled]
-    paths-ignore:
-    - "docs-site/**"
-    - "README.md"
-    - "**/*.md"
 
 env:
   TERRAFORM_BASE: terraform/application
   HEALTHCHECK_CMD: '' #'healthcheck/all'
 
 jobs:
+  changes:
+    name: Detect changes
+    if: ${{ github.event_name != 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    outputs:
+      app: ${{ steps.filter.outputs.app }}
+      docs: ${{ steps.filter.outputs.docs }}
+    steps:
+    - uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
+
+    - name: Check changed paths
+      id: filter
+      uses: dorny/paths-filter@v3
+      with:
+        filters: |
+          docs:
+            - 'docs-site/**'
+            - 'documentation/**'
+          app:
+            - '**'
+            - '!docs-site/**'
+            - '!documentation/**'
+
   build:
     name: Build
-    if: ${{ github.event_name != 'workflow_dispatch' }}
+    if: ${{ github.event_name != 'workflow_dispatch' && needs.changes.outputs.app == 'true' }}
+    needs: [changes]
     env:
       DOCKER_REPOSITORY: ghcr.io/dfe-digital/education-provider-registry-data
     outputs:
@@ -73,7 +91,8 @@ jobs:
 
   test:
     name: Run tests
-    if: ${{ github.event_name != 'workflow_dispatch' }}
+    if: ${{ github.event_name != 'workflow_dispatch' && needs.changes.outputs.app == 'true' }}
+    needs: [changes]
     runs-on: ubuntu-latest
 
     # This is a skeleton test job
@@ -88,6 +107,50 @@ jobs:
     #   shell: bash
     #   run: |
     #     run some tests
+
+  deploy_docs:
+    name: Deploy docs site
+    if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' && needs.changes.outputs.docs == 'true' }}
+    needs: [changes]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+    - uses: actions/checkout@v6
+      name: Checkout
+
+    - name: Copy documentation pages
+      shell: pwsh
+      run: ./docs-site/scripts/copy-documentation-pages.ps1
+
+    - uses: ruby/setup-ruby@v1
+      name: Set up Ruby
+      with:
+        ruby-version: '3.3'
+        working-directory: docs-site
+        bundler-cache: true
+
+    - name: Build Nanoc docs site
+      working-directory: docs-site
+      run: bundle exec nanoc compile
+
+    - uses: actions/configure-pages@v5
+      name: Configure GitHub Pages
+
+    - uses: actions/upload-pages-artifact@v4
+      name: Upload GitHub Pages artifact
+      with:
+        path: docs-site/output
+
+    - uses: actions/deploy-pages@v4
+      name: Deploy GitHub Pages
+      id: deployment
 
 #  deploy-review-app:
 #    name: Deployment To Review
@@ -122,11 +185,11 @@ jobs:
 
   deploy:
     name: Deploy environments
-    if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
+    if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' && needs.changes.outputs.app == 'true' }}
     environment:
       name: ${{ matrix.environment }}
       url: ${{ steps.deploy_app.outputs.environment_url }}
-    needs: [build, test]
+    needs: [changes, build, test]
     runs-on: ubuntu-latest
     permissions:
       id-token: write

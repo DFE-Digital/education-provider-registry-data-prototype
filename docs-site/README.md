@@ -1,24 +1,24 @@
 # docs-site
 
-This is a vanilla Nanoc scaffold retained for repository structure and future documentation needs.
+This folder contains the Nanoc site used to publish documentation from this repository.
 
-The Education Provider Registry business-domain documentation, RDF/Turtle model artefacts and published documentation site now live in:
-
-```text
-education-provider-registry-docs
-```
-
-Published documentation:
+Documentation source files live in:
 
 ```text
-https://dfe-digital.github.io/education-provider-registry-docs/
+../documentation
 ```
 
-This folder intentionally contains no site content at present.
+During the build, Markdown files are copied into:
+
+```text
+docs-site/content
+```
+
+Nanoc compiles `docs-site/content` into `docs-site/output`, which is then published to GitHub Pages.
 
 ## Local compile
 
-If content is added later, run:
+Run:
 
 ```powershell
 .\scripts\compile-local.ps1

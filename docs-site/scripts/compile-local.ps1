@@ -22,6 +22,8 @@ function Invoke-Native {
 
 Push-Location $docsSiteRoot
 try {
+    & (Join-Path $PSScriptRoot "copy-documentation-pages.ps1")
+
     Invoke-Native -Description "Bundler configuration" -Command { bundle config set path vendor/bundle }
 
     if (-not $SkipBundleInstall) {
